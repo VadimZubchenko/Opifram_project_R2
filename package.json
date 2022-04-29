@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/VadimZubchenko/Opifram_project_R2/issues"
   },
-  "homepage": "https://github.com/VadimZubchenko/Opifram_project_R2#readme"
+  "homepage": "https://github.com/VadimZubchenko/Opifram_project_R2#readme",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
 }
