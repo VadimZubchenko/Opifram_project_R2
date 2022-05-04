@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint './src/**/*.{js,mjs}'",
+    "lint:fix": "eslint './src/**/*.{js,mjs}' --fix"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "mongoose": "^6.3.2"
   },
   "devDependencies": {
+    "eslint": "^8.14.0",
     "nodemon": "^2.0.15"
   }
 }
