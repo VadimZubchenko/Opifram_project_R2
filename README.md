@@ -11,16 +11,12 @@ User
 - role: string (user, admin)
 - password: string
 
-Category
-- name: string
-- description: string
-
 Product
 - name: string
 - description: string
-- price: number
+- price: number / double?
 - quantity: number
-- category: ObjectId
+- category: string
 - image: string
 
 Ids and timestamps are generated automatically by Mongo
