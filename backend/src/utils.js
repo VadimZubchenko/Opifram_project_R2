@@ -1,13 +1,13 @@
 const parseString = (string) => {
   if (!string || !isString(string)) {
-    throw new Error('ValidationError: Incorrect or missing string');
+    throwError('ValidationError', 'Incorrect or missing string');
   }
   return string;
 };
 
 const parseNumber = (number) => {
   if (!number || !isNumber(number)) {
-    throw new Error('ValidationError: Incorrect or missing number');
+    throwError('ValidationError', 'Incorrect or missing number');
   }
   return number;
 };
@@ -20,4 +20,10 @@ const isNumber = (number) => {
   return typeof number === 'number' || number instanceof Number;
 };
 
-module.exports = { parseString, parseNumber };
+const throwError = (name, message) => {
+  const error = new Error(message);
+  error.name = name;
+  throw error;
+};
+
+module.exports = { parseString, parseNumber, throwError };

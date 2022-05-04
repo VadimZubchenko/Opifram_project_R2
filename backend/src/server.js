@@ -22,11 +22,11 @@ app.use(express.json());
 //Routes
 app.use('/api/product', productRouter);
 
-//Very simple error handler so that the app won't crash
-app.use(errorHandler);
-
 //Handle unknown routes
 app.use(unknownEndpoint);
+
+//Handle errors
+app.use(errorHandler);
 
 //Start
 app.listen(PORT);
