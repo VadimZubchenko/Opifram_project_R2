@@ -2,7 +2,7 @@ require('express-async-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const { MONGODB_URI, PORT } = require('./config');
-const productRouter = require('./controllers/product');
+const productRouter = require('./routers/product');
 const { errorHandler, unknownEndpoint } = require('./middleware');
 
 const app = express();

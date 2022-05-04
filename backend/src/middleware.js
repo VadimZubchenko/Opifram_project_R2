@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+const { ACCESS_TOKEN_SECRET } = require('./config');
 const { errorDefinitions } = require('./errorDefinitions');
 const { throwError } = require('./utils');
 
@@ -16,7 +18,6 @@ const errorHandler = (err, req, res, next) => {
   }
 
   if (foundError) {
-
     console.error(foundError.stackTrace ? err.stack : err.name, err.message);
 
     if (foundError.resJson) {
@@ -26,14 +27,33 @@ const errorHandler = (err, req, res, next) => {
     }
 
   } else {
-    //All unexpected errors
+    //All unexpected, not explicitly handled errors
     console.error(`Unexpected error: ${err}`);
-    return res.status(500).end();
+    return res.sendStatus(500);
   }
 };
 
 const unknownEndpoint = () => {
-  throwError('UnknownEndpointError', 'Unknown enpoint');
+  throwError('UnknownEndpointError');
 };
 
-module.exports = { errorHandler, unknownEndpoint };
+const extractToken = (req, res, next) => {
+  const token = req.get('Authorization')?.split(' ')[1];
+  const secret = ACCESS_TOKEN_SECRET;
+
+  if (!token) {
+    throwError('NoTokenError', 'No token found');
+  } else {
+    const payload = jwt.verify(token, secret);
+    if (!payload) {
+      throwError('TokenValidationError', 'Token validation failed');
+    } else {
+      req.userId = payload.user._id;
+      req.userRole = payload.user.role;
+      next();
+    }
+  }
+
+};
+
+module.exports = { errorHandler, unknownEndpoint, extractToken };

@@ -1,15 +1,7 @@
-const parseString = (string) => {
-  if (!string || !isString(string)) {
-    throwError('ValidationError', 'Incorrect or missing string');
-  }
-  return string;
-};
-
-const parseNumber = (number) => {
-  if (!number || !isNumber(number)) {
-    throwError('ValidationError', 'Incorrect or missing number');
-  }
-  return number;
+const throwError = (name, message) => {
+  const error = new Error(message);
+  error.name = name;
+  throw error;
 };
 
 const isString = (string) => {
@@ -17,13 +9,33 @@ const isString = (string) => {
 };
 
 const isNumber = (number) => {
-  return typeof number === 'number' || number instanceof Number;
+  return typeof number === 'number' || number instanceof Number || !isNaN(number);
 };
 
-const throwError = (name, message) => {
-  const error = new Error(message);
-  error.name = name;
-  throw error;
+const validateStringProperty = (key, value) => {
+  if (!value || !isString(value)) {
+    throwError('ValidationError', `Incorrect or missing string: ${key}`);
+  }
+  return value;
 };
 
-module.exports = { parseString, parseNumber, throwError };
+const validateNumberProperty = (key, value) => {
+  if (!value || !isNumber(value)) {
+    throwError(`ValidationError', 'Incorrect or missing number: ${key}`);
+  }
+  return value;
+};
+
+const toProduct = (data) => {
+  const product = {
+    name: validateStringProperty('name', data.name),
+    description: validateStringProperty('description', data.description),
+    price: validateNumberProperty('price', data.price),
+    quantity: validateNumberProperty('quantity', data.quantity),
+    category: validateStringProperty('category', data.category),
+    image: validateStringProperty('image', data.image)
+  };
+  return product;
+};
+
+module.exports = { parseString: validateStringProperty, parseNumber: validateNumberProperty, throwError, toProduct };
