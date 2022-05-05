@@ -1,6 +1,6 @@
 # Opifram_project_R2
 
-## Projektin tavoiteeet.
+## Projektin tavoitteet.
 
 1. Helppokäyttöinen verkkokaupan sovellus
 2. Tervetulosivu (sisäänpääsy joko myynti- tai admin sivulle)
