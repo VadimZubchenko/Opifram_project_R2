@@ -82,7 +82,7 @@ const toUser = (data) => {
     phone: validateStringProperty('phone', data.phone),
     address: validateStringProperty('address', data.address),
     id: validateStringProperty('id', data.id),
-    role: validateStringProperty('role', data.role)
+    //role: validateStringProperty('role', data.role)
   };
   return user;
 };
@@ -110,11 +110,22 @@ const toLoginCredentials = (data) => {
 
 const toLoggedUser = (data) => {
   const user = {
-    email: data.email,
     id: data.id,
     role: data.role
   };
   return user;
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser, toLoginCredentials, toLoggedUser };
+const formatPrice = (price) => {
+  const formatter = new Intl.NumberFormat('fi-FI', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 2,
+    currencyDisplay: 'code'
+  });
+
+  const formatted = formatter.format(price);
+  return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
+};
+
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser, toLoginCredentials, toLoggedUser, formatPrice };

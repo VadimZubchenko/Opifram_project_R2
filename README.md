@@ -1,9 +1,18 @@
 # Opifram_project_R2
 
-Rakenne alustavasti
+## Projektin tavoitteet.
+
+1. Helppokäyttöinen verkkokaupan sovellus
+2. Tervetulosivu (sisäänpääsy joko myynti- tai admin sivulle)
+3. Myyntisivu tuotteiden tilaukseen (nimi, määrä, hinta, loppusumma, kori, tilaajan tiedot)
+4. Admin sivu (sisäänkirjautuminen, tuotteiden lisääminen, lompakko)
+5. Yhteinen tietokanta
+
+## Rakenne alustavasti
 
 User
 
+- user id: string
 - firstName: string
 - lastName: string
 - address: string
@@ -14,6 +23,7 @@ User
 
 Product
 
+- product id: string
 - name: string
 - description: string
 - price: number / double?
@@ -21,12 +31,24 @@ Product
 - category: string
 - image: string
 
-# Ids and timestamps are generated automatically by Mongo
+Order
 
-Projektin tavoiteeet.
+- order id: string
+- product id: string
+- user id: string
+- order amount: number
+- sum of order: number
+- date of order: string
+- order/delivery status: string
 
-1. Helppokäyttöinen verkkokaupan sovellus
-2. Tervetulosivu (sisäänpääsy joko myynti- tai admin sivulle)
-3. Myyntisivu tuotteiden tilaukseen (nimi, määrä, hinta, loppusumma, kori, tilaajan tiedot)
-4. Admin sivu (sisäänkirjautuminen, tuotteiden lisääminen, lompakko)
-5. Yhteinen tietokanta
+Orders/Order kopio toimitetuista tilauksista omaksi tauluksi, historia/tilastointitarpeisiin, tai "jos halutaan tehdä esim. materiaalia vaikka markkinointiin " tämä ei ole välttämätön, tämä siis harkinnan mukaan
+
+- order id: string
+- product id: string
+- user id: string
+- order amount: number
+- sum of order: number
+- date of order: string
+- order/delivery status: string
+
+Ids and timestamps are generated automatically by Mongo
