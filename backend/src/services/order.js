@@ -1,10 +1,27 @@
 const Order = require('../models/order');
-const { toOrder } = require('../utils');
+const { toOrder, toOrderEntry } = require('../utils');
 
-const getOrders = async () => await Order.find({});
-const getOrder = async (id) => await Order.findById(id);
-const createOrder = async (data) => await new Order(toOrder(data)).save();
-const updateOrder = async (id, data) => await Order.findByIdAndUpdate(id, { ...toOrder(data) }, { new: true });
-const deleteOrder = async (id) => await Order.findByIdAndDelete(id);
+const getOrders = async () => {
+  const orders = await Order.find({}).populate('user').populate('product');
+  return orders.map(order => toOrder(order));
+};
 
-module.exports = { getOrders, getOrder, createOrder, updateOrder, deleteOrder };
+const getOrder = async (id) => {
+  const order = await Order.findById(id).populate('user').populate('product');
+  return toOrder(order);
+};
+
+const createOrder = async (data) => {
+  const orderEntry = toOrderEntry(data);
+  const newOrder = new Order(orderEntry);
+  const savedOrder = await newOrder.save();
+  const populatedOrder = await Order.findById(savedOrder._id).populate('user').populate('product');
+  return toOrder(populatedOrder);
+};
+
+const deleteOrder = async (id) => {
+  const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('product');
+  return toOrder(deletedOrder);
+};
+
+module.exports = { getOrders, getOrder, createOrder, deleteOrder };

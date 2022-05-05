@@ -47,14 +47,22 @@ const toOrder = (data) => {
   return order;
 };
 
+const toOrderEntry = (data) => {
+  const order = {
+    user: validateStringProperty('user', data.user),
+    count: validateNumberProperty('count', data.count),
+    product: validateStringProperty('product', data.product),
+  };
+  return order;
+};
+
 const toUser = (data) => {
   const user = {
     firstName: validateStringProperty('firstName', data.firstName),
     lastName: validateStringProperty('lastName', data.lastName),
     email: validateStringProperty('email', data.email),
     phone: validateStringProperty('phone', data.phone),
-    address: validateStringProperty('address', data.address),
-    role: validateStringProperty('role', data.role),
+    address: validateStringProperty('address', data.address)
   };
   return user;
 };
@@ -72,4 +80,4 @@ const toUserEntry = (data) => {
   return user;
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toOrder, toUserEntry };
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toOrder, toOrderEntry, toUserEntry, toUser };
