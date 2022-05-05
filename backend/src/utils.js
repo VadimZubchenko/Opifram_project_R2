@@ -54,9 +54,10 @@ const toProductEntry = (data) => {
 const toOrder = (data) => {
   const order = {
     user: toUser(data.user),
-    count: validateNumberProperty('count', data.count),
     product: toProduct(data.product),
-    totalPrice: validateNumberProperty('totalPrice', data.totalPrice),
+    amount: validateNumberProperty('amount', data.amount),
+    sum: validateNumberProperty('sum', data.sum),
+    status: validateStringProperty('status', data.status),
     id: validateStringProperty('id', data.id)
   };
   return order;
@@ -65,9 +66,10 @@ const toOrder = (data) => {
 const toOrderEntry = (data) => {
   const order = {
     user: validateStringProperty('user', data.user),
-    count: validateNumberProperty('count', data.count),
     product: validateStringProperty('product', data.product),
-    totalPrice: validateNumberProperty('totalPrice', data.totalPrice)
+    amount: validateNumberProperty('amount', data.amount),
+    status: validateStringProperty('status', data.status),
+    sum: validateNumberProperty('sum', data.sum)
   };
   return order;
 };

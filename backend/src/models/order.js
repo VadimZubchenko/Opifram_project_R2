@@ -9,10 +9,10 @@ const orderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
   },
-  count: {
+  amount: {
     type: Number,
   },
-  totalPrice: {
+  sum: {
     type: Number,
   },
   status: {
