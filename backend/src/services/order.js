@@ -43,7 +43,7 @@ const createOrders = async (userId, data) => {
       });
 
       //Update product quantity
-      await product.update({ quantity: (product.quantity - item.amount) });
+      await product.updateOne({ quantity: (product.quantity - item.amount) });
     
       //Save order
       const savedOrder = await order.save();

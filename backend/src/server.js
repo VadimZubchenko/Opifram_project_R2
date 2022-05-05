@@ -6,7 +6,7 @@ const productRouter = require('./routers/product');
 const orderRouter = require('./routers/order');
 const userRouter = require('./routers/user');
 const authRouter = require('./routers/auth');
-const { errorHandler, unknownEndpoint } = require('./middleware');
+const { errorHandler, unknownEndpoint, requestLogger } = require('./middleware');
 
 const app = express();
 
@@ -21,6 +21,9 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 //JSON parser
 app.use(express.json());
+
+//Simple request logger
+app.use(requestLogger);
 
 //Routes
 app.use('/api/product', productRouter);
