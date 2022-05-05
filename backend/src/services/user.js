@@ -11,7 +11,7 @@ const createUser = async (data) => {
   //Check if there is already an user with same email
   const user = await User.findOne({email: userEntry.email});
   if (user) {
-    throwError('EmailAlreadyInUseError', 'Given email is already in use');
+    throwError('EmailAlreadyInUseError', `Email ${userEntry.email} is already in use`);
   }
 
   userEntry.password = await bcrypt.hash(userEntry.password, 10);

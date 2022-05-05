@@ -33,8 +33,8 @@ const errorHandler = (err, req, res, next) => {
   }
 };
 
-const unknownEndpoint = () => {
-  throwError('UnknownEndpointError');
+const unknownEndpoint = (req) => {
+  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found. Maybe typo?`);
 };
 
 const extractToken = (req, res, next) => {
