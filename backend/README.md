@@ -46,7 +46,7 @@ Requires `name`, `description`, `category`, `price`, `quantity`, and `image`.
 Returns `name`, `description`, `category`, `price`, `quantity` and `image` as an object.
 
 ##### `/api/order`
-Requires an `auth token` and an `array of product ids and amount`, for example: `[ { product: id, amount: number } ]`   
+Requires an `access token` and an `array of product ids and amount`, for example: `[ { product: id, amount: number } ]`   
 Returns `succesful` and `failed` order lists as an object.
 
 ### PUT
