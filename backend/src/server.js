@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { MONGODB_URI, PORT } = require('./config');
 const productRouter = require('./routers/product');
 const orderRouter = require('./routers/order');
+const userRouter = require('./routers/user');
 const { errorHandler, unknownEndpoint } = require('./middleware');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.json());
 //Routes
 app.use('/api/product', productRouter);
 app.use('/api/order', orderRouter);
+app.use('/api/user', userRouter);
 
 //Handle unknown routes
 app.use(unknownEndpoint);
