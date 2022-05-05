@@ -110,7 +110,6 @@ const toLoginCredentials = (data) => {
 
 const toLoggedUser = (data) => {
   const user = {
-    email: data.email,
     id: data.id,
     role: data.role
   };
