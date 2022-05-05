@@ -1,13 +1,21 @@
 const User = require('../models/user');
-const { toUser, toUserEntry, hashPassword } = require('../utils');
+const { toUser, toUserEntry, throwError } = require('../utils');
+const bcrypt = require('bcrypt');
 
 const getUsers = async () => await User.find({});
 const getUser = async (id) => await User.findById(id);
 
 const createUser = async (data) => {
-  const newUser = toUserEntry(data);
-  const hashedPassword = hashPassword(newUser.password);
-  newUser.password = hashedPassword;
+  const userEntry = toUserEntry(data);
+
+  //Check if there is already an user with same email
+  const user = await User.findOne({email: userEntry.email});
+  if (user) {
+    throwError('EmailAlreadyInUseError', 'Given email is already in use');
+  }
+
+  userEntry.password = await bcrypt.hash(userEntry.password, 10);
+  const newUser = new User(userEntry);
   return await newUser.save();
 };
 
