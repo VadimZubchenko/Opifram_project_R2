@@ -116,4 +116,16 @@ const toLoggedUser = (data) => {
   return user;
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser, toLoginCredentials, toLoggedUser };
+const formatPrice = (price) => {
+  const formatter = new Intl.NumberFormat('fi-FI', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 2,
+    currencyDisplay: 'code'
+  });
+
+  const formatted = formatter.format(price);
+  return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
+};
+
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser, toLoginCredentials, toLoggedUser, formatPrice };

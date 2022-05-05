@@ -1,6 +1,6 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
-const { toOrder, toProduct } = require('../utils');
+const { toOrder, toProduct, formatPrice } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('product');
@@ -30,8 +30,8 @@ const createOrders = async (userId, data) => {
       continue;
     } else {
     
-      //Calculate total sum
-      const sum = product.price * item.amount;
+      //Calculate and format price
+      const sum = formatPrice(product.price * item.amount);
 
       //Create order
       const order = new Order({
