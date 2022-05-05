@@ -38,4 +38,37 @@ const toProduct = (data) => {
   return product;
 };
 
-module.exports = { parseString: validateStringProperty, parseNumber: validateNumberProperty, throwError, toProduct };
+const toOrder = (data) => {
+  const order = {
+    user: toUser(data.user),
+    count: validateNumberProperty('count', data.count),
+    product: toProduct(data.product)
+  };
+  return order;
+};
+
+const toUser = (data) => {
+  const user = {
+    firstName: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('firstName', data.firstName),
+    email: validateStringProperty('firstName', data.firstName),
+    phone: validateStringProperty('firstName', data.firstName),
+    address: validateStringProperty('firstName', data.firstName),
+  };
+  return user;
+};
+
+const toUserEntry = (data) => {
+  const user = {
+    firstName: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('firstName', data.firstName),
+    email: validateStringProperty('firstName', data.firstName),
+    phone: validateStringProperty('firstName', data.firstName),
+    address: validateStringProperty('firstName', data.firstName),
+    role: validateStringProperty('role', data.firstName),
+    password: validateStringProperty('password', data.firstName),
+  };
+  return user;
+};
+
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toOrder, toUserEntry };
