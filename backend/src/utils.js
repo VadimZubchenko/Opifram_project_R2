@@ -33,9 +33,68 @@ const toProduct = (data) => {
     price: validateNumberProperty('price', data.price),
     quantity: validateNumberProperty('quantity', data.quantity),
     category: validateStringProperty('category', data.category),
+    image: validateStringProperty('image', data.image),
+    id: validateStringProperty('id', data.id)
+  };
+  return product;
+};
+
+const toProductEntry = (data) => {
+  const product = {
+    name: validateStringProperty('name', data.name),
+    description: validateStringProperty('description', data.description),
+    price: validateNumberProperty('price', data.price),
+    quantity: validateNumberProperty('quantity', data.quantity),
+    category: validateStringProperty('category', data.category),
     image: validateStringProperty('image', data.image)
   };
   return product;
 };
 
-module.exports = { parseString: validateStringProperty, parseNumber: validateNumberProperty, throwError, toProduct };
+const toOrder = (data) => {
+  const order = {
+    user: toUser(data.user),
+    count: validateNumberProperty('count', data.count),
+    product: toProduct(data.product),
+    totalPrice: validateNumberProperty('totalPrice', data.totalPrice),
+    id: validateStringProperty('id', data.id)
+  };
+  return order;
+};
+
+const toOrderEntry = (data) => {
+  const order = {
+    user: validateStringProperty('user', data.user),
+    count: validateNumberProperty('count', data.count),
+    product: validateStringProperty('product', data.product),
+    totalPrice: validateNumberProperty('totalPrice', data.totalPrice)
+  };
+  return order;
+};
+
+const toUser = (data) => {
+  const user = {
+    firstName: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('lastName', data.lastName),
+    email: validateStringProperty('email', data.email),
+    phone: validateStringProperty('phone', data.phone),
+    address: validateStringProperty('address', data.address),
+    id: validateStringProperty('id', data.id)
+  };
+  return user;
+};
+
+const toUserEntry = (data) => {
+  const user = {
+    firstName: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('lastName', data.lastName),
+    email: validateStringProperty('email', data.email),
+    phone: validateStringProperty('phone', data.phone),
+    address: validateStringProperty('address', data.address),
+    role: 'user',
+    password: validateStringProperty('password', data.password),
+  };
+  return user;
+};
+
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser };
