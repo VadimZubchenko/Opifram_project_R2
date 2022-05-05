@@ -37,13 +37,13 @@ Rest API for Kahvikauppa.
 Requires `email` and `password`.    
 Returns an `access token` and `user` as an object.
 
+##### `/api/auth/register`
+Requires `firstName`, `lastName`, `email`, `address`, `phone` and `password`.   
+Returns an `access token` and `user` as an object.
+
 ##### `/api/product`
 Requires `name`, `description`, `category`, `price`, `quantity`, and `image`.   
 Returns `name`, `description`, `category`, `price`, `quantity` and `image` as an object.
-
-##### `/api/user`
-Requires `firstName`, `lastName`, `email`, `address`, `phone` and `password`.   
-Returns `firstName`, `lastName`, `email`, `address`, `phone` and `id` as an object. 
 
 ##### `/api/order`
 Requires an `auth token` and an `array of product ids and amount`, for example: `[ { product: id, amount: number } ]`   
