@@ -27,21 +27,24 @@ const login = async (credentials) => {
 const register = async (data) => {
   const userEntry = toUserEntry(data);
 
-  //For login
-  const email = userEntry.email;
-  const password = userEntry.password;
-
   //Check if there is already an user with same email
   const user = await User.findOne({ email: userEntry.email });
   if (user) {
     throwError('EmailAlreadyInUseError', `Email ${userEntry.email} is already in use`);
   }
 
+  //Credentials for login
+  const email = userEntry.email;
+  const password = userEntry.password;
+
+  //Hash password
   userEntry.password = await bcrypt.hash(userEntry.password, 10);
 
+  //Create and save new user
   const newUser = new User(userEntry);
   await newUser.save();
 
+  //Login
   const loggedUser = await login({ email: email, password: password });
   return loggedUser;
 };
