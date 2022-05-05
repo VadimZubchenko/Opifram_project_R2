@@ -5,6 +5,7 @@ const { MONGODB_URI, PORT } = require('./config');
 const productRouter = require('./routers/product');
 const orderRouter = require('./routers/order');
 const userRouter = require('./routers/user');
+const authRouter = require('./routers/auth');
 const { errorHandler, unknownEndpoint } = require('./middleware');
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/api/product', productRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
 
 //Handle unknown routes
 app.use(unknownEndpoint);

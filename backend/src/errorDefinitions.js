@@ -6,6 +6,8 @@ const errorDefinitions = [
   { name: 'NoTokenError', status: 401, resJson: true, stackTrace: false },
   { name: 'TypeError', status: 400, resJson: true, stackTrace: true },
   { name: 'EmailAlreadyInUseError', status: 409, resJson: true, stackTrace: false },
+  { name: 'UserNotFoundError', status: 404, resJson: true, stackTrace: false },
+  { name: 'WrongCredentialsError', status: 403, resJson: true, stackTrace: false },
 ];
 
 module.exports = { errorDefinitions };

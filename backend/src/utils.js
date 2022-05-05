@@ -79,7 +79,8 @@ const toUser = (data) => {
     email: validateStringProperty('email', data.email),
     phone: validateStringProperty('phone', data.phone),
     address: validateStringProperty('address', data.address),
-    id: validateStringProperty('id', data.id)
+    id: validateStringProperty('id', data.id),
+    role: validateStringProperty('role', data.role)
   };
   return user;
 };
@@ -97,4 +98,21 @@ const toUserEntry = (data) => {
   return user;
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser };
+const toLoginCredentials = (data) => {
+  const creds = {
+    email: validateStringProperty('email', data.email),
+    password: validateStringProperty('password', data.password)
+  };
+  return creds;
+};
+
+const toLoggedUser = (data) => {
+  const user = {
+    email: data.email,
+    id: data.id,
+    role: data.role
+  };
+  return user;
+};
+
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser, toLoginCredentials, toLoggedUser };
