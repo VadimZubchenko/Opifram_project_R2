@@ -1,15 +1,37 @@
-`npm run dev` to start in dev mode
+# Description
+Rest API for Kahvikauppa.
 
-REST API
+#### General information  
+`./routers` holds the controllers used for routes.    
+`./services` holds the services used for routes functionality.    
+`./models` holds the database models.  
+`./utils.js` holds useful functions for simple validations and such.    
+`./config.js` inits environment variables.    
+`./errorDefinitions.js` holds error definitions to handle them explicitly in middleware.    
+`./middleware.js` holds useful middlewares.    
 
-GET /api/product returns all products\
-GET /api/product/:id returns a single product\
-POST /api/product creates a new product\
-PUT /api/product/:id updates a single product\
-DELETE /api/product/:id deletes a single product\
+# Usage
 
-GET /api/user returns all users\
-GET /api/user/:id returns a single user\
-POST /api/user creates a new user\
-PUT /api/user/:id updates a single user\
-DELETE /api/user/:id deletes a single user
+1. `$ npm install` to install the dependencies.
+2. `$ npm run dev` to run the API in development mode. 
+
+# API
+
+#### GET
+`/api/product` returns a list of `products`.  
+`/api/product/:id` returns a single `product` by given `id`.  
+`/api/user` returns a list of `users`.  
+`/api/user/:id` returns a single `user` by given `id`.  
+
+#### POST
+`/api/auth/login` returns an `access token` and `user object`.  
+`/api/product` creates and returns a single `product`.   
+`/api/user` creates and returns a single `user`.   
+
+#### PUT
+`/api/product/:id` updates and returns a single `product` by given `id`.   
+`/api/user/:id` updates and returns a single `user` by given `id`.   
+
+#### DELETE
+`/api/product/:id` deletes and returns a single `product` by given `id`.   
+`/api/user/:id` deletes and returns a single `user` by given `id`.     
