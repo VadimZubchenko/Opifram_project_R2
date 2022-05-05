@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-const { toProduct } = require('../utils');
+const { toProduct, toProductEntry } = require('../utils');
 
 const getProducts = async () => {
   const products = await Product.find({});
@@ -12,14 +12,14 @@ const getProduct = async (id) => {
 };
 
 const createProduct = async (data) => {
-  const productEntry = toProduct(data);
+  const productEntry = toProductEntry(data);
   const newProduct = new Product(productEntry);
   const savedProduct = await newProduct.save();
   return toProduct(savedProduct);
 };
 
 const updateProduct = async (id, data) => {
-  const productData = toProduct(data);
+  const productData = toProductEntry(data);
   const updatedProduct = await Product.findByIdAndUpdate(id, productData, { new: true });
   return toProduct(updatedProduct);
 };
