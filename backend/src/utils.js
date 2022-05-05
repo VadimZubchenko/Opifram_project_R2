@@ -89,7 +89,7 @@ const toUserEntry = (data) => {
     email: validateStringProperty('email', data.email),
     phone: validateStringProperty('phone', data.phone),
     address: validateStringProperty('address', data.address),
-    role: validateStringProperty('role', data.role),
+    role: 'user',
     password: validateStringProperty('password', data.password),
   };
   return user;

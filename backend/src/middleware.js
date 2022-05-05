@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
   }
 
   if (foundError) {
-    console.error(foundError.stackTrace ? err.stack : err.name, err.message);
+    console.error(foundError.stackTrace ? err.stack : `${err.name}: ${err.message}`);
 
     if (foundError.resJson) {
       return res.status(foundError.status).json({ [errorName]: errorMessage });

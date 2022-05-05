@@ -12,6 +12,9 @@ const orderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
   },
+  price: {
+    type: Number,
+  },
 }, { timestamps: true });
 
 orderSchema.set('toJSON', {

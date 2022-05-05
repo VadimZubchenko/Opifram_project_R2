@@ -11,6 +11,7 @@ const getOrder = async (id) => {
   return toOrder(order);
 };
 
+//TODO: get userId from request, needs to call extractToken on this route
 const createOrder = async (data) => {
   const orderEntry = toOrderEntry(data);
   const newOrder = new Order(orderEntry);
@@ -19,9 +20,15 @@ const createOrder = async (data) => {
   return toOrder(populatedOrder);
 };
 
+const updateProduct = async (id, data) => {
+  const orderData = toOrderEntry(data);
+  const updatedOrder = await Order.findByIdAndUpdate(id, orderData, { new: true }).populate('user').populate('product');
+  return toOrder(updatedOrder);
+};
+
 const deleteOrder = async (id) => {
   const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('product');
   return toOrder(deletedOrder);
 };
 
-module.exports = { getOrders, getOrder, createOrder, deleteOrder };
+module.exports = { getOrders, getOrder, createOrder, updateProduct, deleteOrder };
