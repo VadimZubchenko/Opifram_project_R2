@@ -15,9 +15,9 @@ const createOrder = async () => {
   // Loop data array which contains {userId, productId, count}
   // Find product by id
   // Calculate total price product.price * count
-  // Create a new order sand save it
-  // Push the newly created order into new array
-  // Finally return array which contains all orders
+  // Create a new order and save it
+  // Populate and push the newly created order into new array
+  // Finally return array which contains all ordered products
 };
 
 const updateOrder = async () => {};
