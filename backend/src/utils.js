@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const throwError = (name, message) => {
   const error = new Error(message);
   error.name = name;
@@ -54,6 +56,7 @@ const toUser = (data) => {
     email: validateStringProperty('email', data.email),
     phone: validateStringProperty('phone', data.phone),
     address: validateStringProperty('address', data.address),
+    role: validateStringProperty('role', data.role),
   };
   return user;
 };
@@ -71,4 +74,17 @@ const toUserEntry = (data) => {
   return user;
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toOrder, toUserEntry };
+const hashPassword = (password, saltRounds) => {
+  bcrypt.hash(password, saltRounds || 10, (err, hash) => {
+    return hash;
+  });
+};
+
+const checkPassword = (password, hash) => {
+  bcrypt.compare(password, hash, () => {
+    return true;
+  });
+  return false;
+};
+
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toOrder, toUserEntry, hashPassword, checkPassword };
