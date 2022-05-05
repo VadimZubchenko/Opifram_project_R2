@@ -1,8 +1,14 @@
 const Order = require('../models/order');
-const { toOrder } = require('../utils');
+const Product = require('../models/product');
+const { toOrder, toProduct } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('product');
+  return orders.map(order => toOrder(order));
+};
+
+const getOrdersByUserId = async (userId) => {
+  const orders = await Order.find({ user: userId }).populate('user').populate('product');
   return orders.map(order => toOrder(order));
 };
 
@@ -11,20 +17,51 @@ const getOrder = async (id) => {
   return toOrder(order);
 };
 
-const createOrder = async () => {
-  // Loop data array which contains {productId, count}, userId is taken from request (extractToken)
-  // Find product by id
-  // Calculate total price product.price * count
-  // Create a new order and save it
-  // Populate and push the newly created order into new array
-  // Finally return array which contains all ordered products
-};
+const createOrders = async (userId, data) => {
+  const successfulOrders = [];
+  const failedOrders = [];
 
-const updateOrder = async () => {};
+  for (const item of data) {
+    const product = await Product.findById(item.product);
+    
+    //If amount exceedes stock, push to failed list and continue
+    if (product.quantity - item.amount < 0) {
+      failedOrders.push({ reason: 'Amount exceedes stock', product: toProduct(product) });
+      continue;
+    } else {
+    
+      //Calculate total sum
+      const sum = product.price * item.amount;
+
+      //Create order
+      const order = new Order({
+        user: userId,
+        product: product.id,
+        amount: item.amount,
+        sum: sum,
+        status: 'WAITING_FOR_SHIPMENT'
+      });
+
+      //Update product quantity
+      await product.update({ quantity: (product.quantity - item.amount) });
+    
+      //Save order
+      const savedOrder = await order.save();
+
+      //Populate order
+      const populatedOrder = await Order.findById(savedOrder.id).populate('user').populate('product');
+    
+      //Push to completed list
+      successfulOrders.push(toOrder(populatedOrder));
+    }
+  }
+
+  return { successful: successfulOrders, failed: failedOrders };
+};
 
 const deleteOrder = async (id) => {
   const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('product');
   return toOrder(deletedOrder);
 };
 
-module.exports = { getOrders, getOrder, createOrder, updateOrder, deleteOrder };
+module.exports = { getOrders, getOrdersByUserId, getOrder, createOrders, deleteOrder };

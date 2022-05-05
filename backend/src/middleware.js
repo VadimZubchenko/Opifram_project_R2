@@ -29,6 +29,7 @@ const errorHandler = (err, req, res, next) => {
   } else {
     //All unexpected, not explicitly handled errors
     console.error(`Unexpected error: ${err}`);
+    console.error('Stack:', err.stack);
     return res.sendStatus(500);
   }
 };
@@ -45,10 +46,11 @@ const extractToken = (req, res, next) => {
     throwError('NoTokenError', 'No token found');
   } else {
     const payload = jwt.verify(token, secret);
+    console.log('Payload:', payload);
     if (!payload) {
       throwError('TokenValidationError', 'Token validation failed');
     } else {
-      req.userId = payload.user._id;
+      req.userId = payload.user.id;
       req.userRole = payload.user.role;
       next();
     }

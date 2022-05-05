@@ -82,7 +82,7 @@ const toUser = (data) => {
     phone: validateStringProperty('phone', data.phone),
     address: validateStringProperty('address', data.address),
     id: validateStringProperty('id', data.id),
-    role: validateStringProperty('role', data.role)
+    //role: validateStringProperty('role', data.role)
   };
   return user;
 };

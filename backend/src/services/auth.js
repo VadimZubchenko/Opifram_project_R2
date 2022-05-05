@@ -20,7 +20,7 @@ const login = async (credentials) => {
   }
 
   //Return token and user object
-  const token = jwt.sign({ accessToken: toLoggedUser(userByEmail) }, ACCESS_TOKEN_SECRET);
+  const token = jwt.sign({ user: toLoggedUser(userByEmail) }, ACCESS_TOKEN_SECRET);
   return { token: token, user: toUser(userByEmail) };
 };
 
