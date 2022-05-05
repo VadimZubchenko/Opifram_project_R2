@@ -50,10 +50,10 @@ const toOrder = (data) => {
 const toUser = (data) => {
   const user = {
     firstName: validateStringProperty('firstName', data.firstName),
-    lastName: validateStringProperty('firstName', data.firstName),
-    email: validateStringProperty('firstName', data.firstName),
-    phone: validateStringProperty('firstName', data.firstName),
-    address: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('lastName', data.lastName),
+    email: validateStringProperty('email', data.email),
+    phone: validateStringProperty('phone', data.phone),
+    address: validateStringProperty('address', data.address),
   };
   return user;
 };
@@ -61,12 +61,12 @@ const toUser = (data) => {
 const toUserEntry = (data) => {
   const user = {
     firstName: validateStringProperty('firstName', data.firstName),
-    lastName: validateStringProperty('firstName', data.firstName),
-    email: validateStringProperty('firstName', data.firstName),
-    phone: validateStringProperty('firstName', data.firstName),
-    address: validateStringProperty('firstName', data.firstName),
-    role: validateStringProperty('role', data.firstName),
-    password: validateStringProperty('password', data.firstName),
+    lastName: validateStringProperty('lastName', data.lastName),
+    email: validateStringProperty('email', data.email),
+    phone: validateStringProperty('phone', data.phone),
+    address: validateStringProperty('address', data.address),
+    role: validateStringProperty('role', data.role),
+    password: validateStringProperty('password', data.password),
   };
   return user;
 };
