@@ -12,7 +12,7 @@ const getOrder = async (id) => {
 };
 
 const createOrder = async () => {
-  // Loop data array which contains {userId, productId, count}
+  // Loop data array which contains {productId, count}, userId is taken from request (extractToken)
   // Find product by id
   // Calculate total price product.price * count
   // Create a new order and save it
