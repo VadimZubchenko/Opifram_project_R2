@@ -2,13 +2,13 @@
 Rest API for Kahvikauppa.
 
 #### General information  
-`./routers` holds the controllers used for routes.    
-`./services` holds the services used for routes functionality.    
-`./models` holds the database models.  
-`./utils.js` holds useful functions for simple validations and such.    
-`./config.js` inits environment variables.    
-`./errorDefinitions.js` holds error definitions to handle them explicitly in middleware.    
-`./middleware.js` holds useful middlewares.    
+`routers` holds the controllers used for routes.    
+`services` holds the services used for routes functionality.    
+`models` holds the database models.  
+`utils.js` holds useful functions for simple validations and such.    
+`config.js` inits environment variables.    
+`errorDefinitions.js` holds error definitions to handle them explicitly in middleware.    
+`middleware.js` holds useful middlewares.    
 
 # Usage
 
