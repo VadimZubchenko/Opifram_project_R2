@@ -16,6 +16,7 @@ Rest API for Kahvikauppa.
 
 1. `$ npm install` to install the dependencies.
 2. `$ npm run dev` to run the API in development mode. 
+3. `(optional)` import Insomnia collection to get request examples.
 
 # API
 
