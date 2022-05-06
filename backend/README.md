@@ -16,7 +16,7 @@ Rest API for Kahvikauppa.
 
 1. `$ npm install` to install the dependencies.
 2. `$ npm run dev` to run the API in development mode. 
-3. `optional` Import Insomnia collection from `./other/insomnia-collection.json` to get request examples.
+3. `optional` Import [Insomnia](https://insomnia.rest/) collection from `./other/insomnia-collection.json` to get request examples.
 
 # Database UML
 
