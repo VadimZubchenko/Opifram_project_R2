@@ -33,7 +33,7 @@ const createOrder = async (userId, data) => {
     const product = await Product.findById(item.product);
     order.products.push({ product: product.id, amount: item.amount });
     sum += product.price * item.amount;
-    await product.updateOne({ quantity: (product.quantity - item.amount) });
+    await product.updateOne({ quantity: product.quantity - item.amount });
   }
 
   order.sum = formatPrice(sum);

@@ -10,7 +10,6 @@ const { errorHandler, unknownEndpoint, requestLogger } = require('./middleware')
 
 const app = express();
 
-//MongoDB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log(`Connected to MongoDB: ${MONGODB_URI}`);
@@ -19,24 +18,16 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
     console.error(`Error connecting to MongoDB: ${error.message}`);
   });
 
-//JSON parser
 app.use(express.json());
-
-//Simple request logger
 app.use(requestLogger);
 
-//Routes
 app.use('/api/product', productRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
-//Handle unknown routes
 app.use(unknownEndpoint);
-
-//Handle errors
 app.use(errorHandler);
 
-//Start
 app.listen(PORT);
 console.log('Server is running in port: ' + PORT);

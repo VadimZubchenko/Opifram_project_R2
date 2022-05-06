@@ -17,21 +17,18 @@ const errorHandler = (err, req, res, next) => {
       return res.sendStatus(errorDef.status);
     }
   } else {
-    //All unexpected, not explicitly handled errors
     console.error(`Unexpected error: ${err}`, err.stack);
     return res.sendStatus(500);
   }
 };
 
 const unknownEndpoint = (req) => {
-  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found. Maybe typo?`);
+  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found.`);
 };
 
 //TODO: Access control, for example https://www.npmjs.com/package/accesscontrol
 //TODO: Validator? https://www.npmjs.com/package/express-validator#documentation
 
-//Get token from Authorization header, extract it to get user id and role
-//Set user id and role to req object
 const extractToken = (req, res, next) => {
   const token = req.get('Authorization')?.split(' ')[1];
   const secret = ACCESS_TOKEN_SECRET;
@@ -48,7 +45,6 @@ const extractToken = (req, res, next) => {
       next();
     }
   }
-
 };
 
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
