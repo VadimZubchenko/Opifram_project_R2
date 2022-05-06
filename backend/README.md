@@ -18,6 +18,10 @@ Rest API for Kahvikauppa.
 2. `$ npm run dev` to run the API in development mode. 
 3. `optional` Import Insomnia collection from `./other/insomnia-collection.json` to get request examples.
 
+# Database UML
+
+View and edit `./other/db-uml.drawio` at https://app.diagrams.net
+
 # API
 
 ### GET
@@ -67,8 +71,4 @@ Returns `firstName`, `lastName`, `email`, `address`, `phone` and `id` as an obje
 `/api/user/:id` deletes and returns a single `user` by given id.     
 
 `/api/order/:id` deletes and returns a single `order` by given id.  
-
-# Database UML
-
-View and edit `./other/db-uml.drawio` at https://app.diagrams.net
 
