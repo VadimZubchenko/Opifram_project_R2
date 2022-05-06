@@ -27,6 +27,9 @@ const unknownEndpoint = (req) => {
   throwError('UnknownEndpointError', `Route ${req.originalUrl} not found. Maybe typo?`);
 };
 
+//TODO: Access control, for example https://www.npmjs.com/package/accesscontrol
+//TODO: Validator? https://www.npmjs.com/package/express-validator#documentation
+
 //Get token from Authorization header, extract it to get user id and role
 //Set user id and role to req object
 const extractToken = (req, res, next) => {
@@ -48,7 +51,7 @@ const extractToken = (req, res, next) => {
 
 };
 
-//Very simple request logger
+//TODO: Pino? https://www.npmjs.com/package/express-pino-logger
 const requestLogger = (req, res, next) => {
   console.log(req.method, req.originalUrl, res.statusCode);
   next();
