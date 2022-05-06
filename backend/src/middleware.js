@@ -38,6 +38,9 @@ const unknownEndpoint = (req) => {
   throwError('UnknownEndpointError', `Route ${req.originalUrl} not found. Maybe typo?`);
 };
 
+//Get token from Authorization header
+//Extract it to get user id and role
+//Set user id and role to req object
 const extractToken = (req, res, next) => {
   const token = req.get('Authorization')?.split(' ')[1];
   const secret = ACCESS_TOKEN_SECRET;
@@ -46,7 +49,6 @@ const extractToken = (req, res, next) => {
     throwError('NoTokenError', 'No token found');
   } else {
     const payload = jwt.verify(token, secret);
-    console.log('Payload:', payload);
     if (!payload) {
       throwError('TokenValidationError', 'Token validation failed');
     } else {
@@ -58,4 +60,10 @@ const extractToken = (req, res, next) => {
 
 };
 
-module.exports = { errorHandler, unknownEndpoint, extractToken };
+//Very simple request logger
+const requestLogger = (req, res, next) => {
+  console.log(req.method, req.originalUrl, res.statusCode);
+  next();
+};
+
+module.exports = { errorHandler, unknownEndpoint, extractToken, requestLogger };

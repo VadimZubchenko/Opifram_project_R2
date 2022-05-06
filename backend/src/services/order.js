@@ -24,13 +24,13 @@ const createOrders = async (userId, data) => {
   for (const item of data) {
     const product = await Product.findById(item.product);
     
-    //If amount exceedes stock, push to failed list and continue
+    //If amount exceedes quantity, push to failed list and continue
     if (product.quantity - item.amount < 0) {
-      failedOrders.push({ reason: 'Amount exceedes stock', product: toProduct(product) });
+      failedOrders.push({ reason: 'Amount exceeded quantity', product: toProduct(product) });
       continue;
     } else {
     
-      //Calculate and format price
+      //Calculate and format total price
       const sum = formatPrice(product.price * item.amount);
 
       //Create order
@@ -43,7 +43,7 @@ const createOrders = async (userId, data) => {
       });
 
       //Update product quantity
-      await product.update({ quantity: (product.quantity - item.amount) });
+      await product.updateOne({ quantity: (product.quantity - item.amount) });
     
       //Save order
       const savedOrder = await order.save();

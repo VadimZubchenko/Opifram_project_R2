@@ -16,6 +16,7 @@ Rest API for Kahvikauppa.
 
 1. `$ npm install` to install the dependencies.
 2. `$ npm run dev` to run the API in development mode. 
+3. `(optional)` import Insomnia collection to get request examples.
 
 # API
 
@@ -46,7 +47,7 @@ Requires `name`, `description`, `category`, `price`, `quantity`, and `image`.
 Returns `name`, `description`, `category`, `price`, `quantity` and `image` as an object.
 
 ##### `/api/order`
-Requires an `auth token` and an `array of product ids and amount`, for example: `[ { product: id, amount: number } ]`   
+Requires an `access token` and an `array of product ids and amount`, for example: `[ { product: id, amount: number } ]`   
 Returns `succesful` and `failed` order lists as an object.
 
 ### PUT
