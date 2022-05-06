@@ -27,7 +27,7 @@ const unknownEndpoint = (req) => {
 };
 
 //TODO: Access control, for example https://www.npmjs.com/package/accesscontrol
-//TODO: Validator? https://www.npmjs.com/package/express-validator#documentation
+//TODO: Validator? https://www.npmjs.com/package/express-validator
 
 const extractToken = (req, res, next) => {
   const token = req.get('Authorization')?.split(' ')[1];
