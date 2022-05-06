@@ -7,22 +7,18 @@ const { throwError } = require('./utils');
 const errorHandler = (err, req, res, next) => {
   const errorName = err.name;
   const errorMessage = err.message;
-
   const foundError = errorDefinitions.find(e => e.name === errorName);
 
   if (foundError) {
     console.error(foundError.stackTrace ? err.stack : `${err.name}: ${err.message}`);
-
     if (foundError.resJson) {
       return res.status(foundError.status).json({ [errorName]: errorMessage });
     } else {
       return res.sendStatus(foundError.status);
     }
-
   } else {
     //All unexpected, not explicitly handled errors
-    console.error(`Unexpected error: ${err}`);
-    console.error('Stack:', err.stack);
+    console.error(`Unexpected error: ${err}`, err.stack);
     return res.sendStatus(500);
   }
 };
@@ -31,8 +27,7 @@ const unknownEndpoint = (req) => {
   throwError('UnknownEndpointError', `Route ${req.originalUrl} not found. Maybe typo?`);
 };
 
-//Get token from Authorization header
-//Extract it to get user id and role
+//Get token from Authorization header, extract it to get user id and role
 //Set user id and role to req object
 const extractToken = (req, res, next) => {
   const token = req.get('Authorization')?.split(' ')[1];
