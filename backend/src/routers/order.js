@@ -10,6 +10,7 @@ router.get('/user/:id', async (req, res) => res.json(await orderService.getOrder
 router.post('/', extractToken, async (req, res) => {
   const userId = req.userId;
   const data = req.body;
+
   const orders = await orderService.createOrders(userId, data);
   res.json(orders);
 });

@@ -5,19 +5,23 @@ const orderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  product: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-  },
-  amount: {
-    type: Number,
+  products: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+      },
+      amount: {
+        type: Number,
+      },
+    }
+  ],
+  status: {
+    type: String
   },
   sum: {
     type: Number,
   },
-  status: {
-    type: String
-  }
 }, { timestamps: true });
 
 orderSchema.set('toJSON', {
