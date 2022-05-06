@@ -17,7 +17,7 @@ const getOrder = async (id) => {
   return toOrder(order);
 };
 
-const createOrders = async (userId, data) => {
+const createOrder = async (userId, data) => {
 
   //Create order
   const order = new Order({
@@ -62,4 +62,4 @@ const deleteOrder = async (id) => {
   return toOrder(deletedOrder);
 };
 
-module.exports = { getOrders, getOrdersByUserId, getOrder, createOrders, deleteOrder };
+module.exports = { getOrders, getOrdersByUserId, getOrder, createOrder, deleteOrder };

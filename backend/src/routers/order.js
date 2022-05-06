@@ -11,8 +11,8 @@ router.post('/', extractToken, async (req, res) => {
   const userId = req.userId;
   const data = req.body;
 
-  const orders = await orderService.createOrders(userId, data);
-  res.json(orders);
+  const order = await orderService.createOrder(userId, data);
+  res.json(order);
 });
 
 router.delete('/:id', async (req, res) => res.json(await orderService.deleteOrder(req.params.id)));
