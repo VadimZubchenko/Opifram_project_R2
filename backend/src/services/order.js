@@ -1,6 +1,6 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
-const { formatPrice, toOrder, toOrderEntry } = require('../utils');
+const { formatPrice, toOrder, toShoppingCartData } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('products.product');
@@ -18,7 +18,7 @@ const getOrder = async (id) => {
 };
 
 const createOrder = async (userId, data) => {
-  const orderEntry = toOrderEntry(data);
+  const orderEntry = toShoppingCartData(data);
 
   //Create order
   const order = new Order({
