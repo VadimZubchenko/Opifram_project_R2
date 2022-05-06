@@ -29,6 +29,8 @@ const deleteProduct = async (id) => {
   return toProduct(deletedProduct);
 };
 
+//TODO: Search and sort products?
+
 module.exports = {
   getProducts,
   getProduct,
