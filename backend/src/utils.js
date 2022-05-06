@@ -27,35 +27,33 @@ const validateNumberProperty = (key, value) => {
 };
 
 const toProduct = (data) => {
-  const product = {
-    name: validateStringProperty('name', data.name),
-    description: validateStringProperty('description', data.description),
-    price: validateNumberProperty('price', data.price),
-    quantity: validateNumberProperty('quantity', data.quantity),
-    category: validateStringProperty('category', data.category),
-    image: validateStringProperty('image', data.image),
-    id: validateStringProperty('id', data.id)
+  return {
+    name: data.name,
+    description: data.description,
+    price: data.price,
+    quantity: data.quantity,
+    category: data.category,
+    image: data.image,
+    id: data.id
   };
-  return product;
 };
 
 const toOrderedProduct = (data) => {
   const orderedProduct = data.product;
-  const product = {
-    name: validateStringProperty('name', orderedProduct.name),
-    description: validateStringProperty('description', orderedProduct.description),
-    price: validateNumberProperty('price', orderedProduct.price),
-    quantity: validateNumberProperty('quantity', orderedProduct.quantity),
-    category: validateStringProperty('category', orderedProduct.category),
-    image: validateStringProperty('image', orderedProduct.image),
-    id: validateStringProperty('id', orderedProduct.id),
-    amount: validateNumberProperty('amount', data.amount)
+  return {
+    name: orderedProduct.name,
+    description: orderedProduct.description,
+    price: orderedProduct.price,
+    quantity: orderedProduct.quantity,
+    category: orderedProduct.category,
+    image: orderedProduct.image,
+    id: orderedProduct.id,
+    amount: data.amount
   };
-  return product;
 };
 
 const toProductEntry = (data) => {
-  const product = {
+  return {
     name: validateStringProperty('name', data.name),
     description: validateStringProperty('description', data.description),
     price: validateNumberProperty('price', data.price),
@@ -63,35 +61,32 @@ const toProductEntry = (data) => {
     category: validateStringProperty('category', data.category),
     image: validateStringProperty('image', data.image)
   };
-  return product;
 };
 
 const toOrder = (data) => {
   const order = {
-    user: toUser(data.user),
+    user: data.user,
     products: data.products.map(product => toOrderedProduct(product)),
-    sum: validateNumberProperty('sum', data.sum),
-    status: validateStringProperty('status', data.status),
-    id: validateStringProperty('id', data.id)
+    sum: data.sum,
+    status: data.status,
+    id: data.id,
   };
   return order;
 };
 
 const toUser = (data) => {
-  const user = {
-    firstName: validateStringProperty('firstName', data.firstName),
-    lastName: validateStringProperty('lastName', data.lastName),
-    email: validateStringProperty('email', data.email),
-    phone: validateStringProperty('phone', data.phone),
-    address: validateStringProperty('address', data.address),
-    id: validateStringProperty('id', data.id),
-    //role: validateStringProperty('role', data.role)
+  return {
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    phone: data.phone,
+    address: data.address,
+    id: data.id,
   };
-  return user;
 };
 
 const toUserEntry = (data) => {
-  const user = {
+  return {
     firstName: validateStringProperty('firstName', data.firstName),
     lastName: validateStringProperty('lastName', data.lastName),
     email: validateStringProperty('email', data.email),
@@ -100,23 +95,20 @@ const toUserEntry = (data) => {
     role: 'user',
     password: validateStringProperty('password', data.password),
   };
-  return user;
 };
 
 const toLoginCredentials = (data) => {
-  const creds = {
+  return {
     email: validateStringProperty('email', data.email),
     password: validateStringProperty('password', data.password)
   };
-  return creds;
 };
 
-const toLoggedUser = (data) => {
-  const user = {
+const toAccessTokenData = (data) => {
+  return {
     id: data.id,
     role: data.role
   };
-  return user;
 };
 
 const formatPrice = (price) => {
@@ -131,4 +123,4 @@ const formatPrice = (price) => {
   return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct,toProductEntry, toOrder, toUserEntry, toUser, toLoginCredentials, toLoggedUser, formatPrice };
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toProductEntry, toOrder, toUserEntry, toUser, toLoginCredentials, toAccessTokenData, formatPrice };

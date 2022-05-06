@@ -28,7 +28,7 @@ const createOrder = async (userId, data) => {
 
   let sum = 0;
 
-  //Loop every product
+  //Loop every shopping cart item
   for (const item of data) {
 
     //TODO: Need to check that item.amount does not exceed product quantity ( = there must be atleast same amount of products in stock than what is ordered)
