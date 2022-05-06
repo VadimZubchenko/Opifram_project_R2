@@ -39,6 +39,21 @@ const toProduct = (data) => {
   return product;
 };
 
+const toOrderedProduct = (data) => {
+  const orderedProduct = data.product;
+  const product = {
+    name: validateStringProperty('name', orderedProduct.name),
+    description: validateStringProperty('description', orderedProduct.description),
+    price: validateNumberProperty('price', orderedProduct.price),
+    quantity: validateNumberProperty('quantity', orderedProduct.quantity),
+    category: validateStringProperty('category', orderedProduct.category),
+    image: validateStringProperty('image', orderedProduct.image),
+    id: validateStringProperty('id', orderedProduct.id),
+    amount: validateNumberProperty('amount', data.amount)
+  };
+  return product;
+};
+
 const toProductEntry = (data) => {
   const product = {
     name: validateStringProperty('name', data.name),
@@ -54,7 +69,7 @@ const toProductEntry = (data) => {
 const toOrder = (data) => {
   const order = {
     user: toUser(data.user),
-    products: data.products.map(product => toProduct(product.product)),
+    products: data.products.map(product => toOrderedProduct(product)),
     sum: validateNumberProperty('sum', data.sum),
     status: validateStringProperty('status', data.status),
     id: validateStringProperty('id', data.id)

@@ -1,6 +1,6 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
-const { toOrder, formatPrice } = require('../utils');
+const { formatPrice, toOrder } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('products.product');
@@ -54,7 +54,7 @@ const createOrder = async (userId, data) => {
 
   //Populate order
   const populatedOrder = await Order.findById(savedOrder.id).populate('user').populate('products.product');
-  return populatedOrder;
+  return toOrder(populatedOrder);
 };
 
 const deleteOrder = async (id) => {
