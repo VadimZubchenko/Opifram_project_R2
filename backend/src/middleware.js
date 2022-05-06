@@ -8,14 +8,7 @@ const errorHandler = (err, req, res, next) => {
   const errorName = err.name;
   const errorMessage = err.message;
 
-  let foundError;
-
-  for (const errorDef of errorDefinitions) {
-    if (errorDef.name === errorName) {
-      foundError = errorDef;
-      break;
-    }
-  }
+  const foundError = errorDefinitions.find(e => e.name === errorName);
 
   if (foundError) {
     console.error(foundError.stackTrace ? err.stack : `${err.name}: ${err.message}`);

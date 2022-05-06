@@ -3,7 +3,6 @@ const errorDefinitions = [
   { name: 'TypeError', status: 400, resJson: false, stackTrace: true },
   { name: 'CastError', status: 400, resJson: false, stackTrace: true },
   { name: 'JsonWebTokenError', status: 401, resJson: true, stackTrace: false },
-
   { name: 'ValidationError', status: 400, resJson: true, stackTrace: true },
   { name: 'UnknownEndpointError', status: 404, resJson: true, stackTrace: false },
   { name: 'NoTokenError', status: 401, resJson: true, stackTrace: false },
