@@ -19,8 +19,6 @@ const getOrder = async (id) => {
 
 const createOrder = async (userId, data) => {
   const orderEntry = toOrderEntry(data);
-  console.log('orderEntry', orderEntry);
-  console.log('Data', data);
 
   //Create order
   const order = new Order({

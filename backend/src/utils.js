@@ -107,7 +107,7 @@ const toLoginCredentials = (data) => {
 const toOrderEntry = (data) => {
   return data.map((item) => {
     return {
-      product: validateStringProperty('productId', item.product),
+      product: validateStringProperty('product', item.product),
       amount: validateNumberProperty('amount', item.amount)
     };
   });
