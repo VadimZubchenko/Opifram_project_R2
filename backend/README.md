@@ -52,7 +52,7 @@ Returns `name`, `description`, `category`, `price`, `quantity` and `image` as an
 
 ##### `/api/order`
 Requires an `access token` and an `array of product ids and amount`, for example: `[ { product: id, amount: number } ]`   
-Returns `succesful` and `failed` order lists as an object.
+Returns `order` as an object.
 
 ### PUT
 
