@@ -21,4 +21,9 @@ const deleteUser = async (id) => {
   return toUser(deletedUser);
 };
 
-module.exports = { getUsers, getUser, updateUser, deleteUser };
+module.exports = {
+  getUsers,
+  getUser,
+  updateUser,
+  deleteUser
+};

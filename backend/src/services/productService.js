@@ -29,4 +29,10 @@ const deleteProduct = async (id) => {
   return toProduct(deletedProduct);
 };
 
-module.exports = { getProducts, getProduct, createProduct, updateProduct, deleteProduct };
+module.exports = {
+  getProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct
+};

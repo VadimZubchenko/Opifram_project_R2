@@ -132,4 +132,17 @@ const formatPrice = (price) => {
   return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toProductEntry, toOrder, toShoppingCartData, toUserEntry, toUser, toLoginCredentials, toAccessTokenData, formatPrice };
+module.exports = {
+  validateStringProperty,
+  validateNumberProperty,
+  throwError,
+  toProduct,
+  toProductEntry,
+  toOrder,
+  toShoppingCartData,
+  toUserEntry,
+  toUser,
+  toLoginCredentials,
+  toAccessTokenData,
+  formatPrice
+};

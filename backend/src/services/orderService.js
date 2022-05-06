@@ -63,4 +63,10 @@ const deleteOrder = async (id) => {
   return toOrder(deletedOrder);
 };
 
-module.exports = { getOrders, getOrdersByUserId, getOrder, createOrder, deleteOrder };
+module.exports = {
+  getOrders,
+  getOrdersByUserId,
+  getOrder,
+  createOrder,
+  deleteOrder
+};

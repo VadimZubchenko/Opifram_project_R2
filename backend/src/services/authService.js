@@ -49,4 +49,7 @@ const register = async (data) => {
   return loggedUser;
 };
 
-module.exports = { login, register };
+module.exports = {
+  login,
+  register
+};
