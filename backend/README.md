@@ -12,15 +12,15 @@ Rest API for Kahvikauppa.
 `errorDefinitions.js` holds error definitions to handle them explicitly in middleware.    
 `middleware.js` holds useful middlewares.    
 
+#### Database UML
+
+View or edit `./other/db-uml.drawio` at https://app.diagrams.net
+
 # Getting started
 
 1. `$ npm install` to install the dependencies.
 2. `$ npm run dev` to run the API in development mode. 
-3. `optional` Import [Insomnia](https://insomnia.rest/) collection from `./other/insomnia-collection.json` to get request examples.
-
-# Database UML
-
-View and edit `./other/db-uml.drawio` at https://app.diagrams.net
+3. Import [Insomnia](https://insomnia.rest/) collection from `./other/insomnia-collection.json` to get request examples (optional).
 
 # API
 
@@ -67,8 +67,5 @@ Returns `firstName`, `lastName`, `email`, `address`, `phone` and `id` as an obje
 ### DELETE
 
 `/api/product/:id` deletes and returns a single `product` by given id.   
-
 `/api/user/:id` deletes and returns a single `user` by given id.     
-
 `/api/order/:id` deletes and returns a single `order` by given id.  
-
