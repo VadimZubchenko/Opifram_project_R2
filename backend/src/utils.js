@@ -39,15 +39,14 @@ const toProduct = (data) => {
 };
 
 const toOrderedProduct = (data) => {
-  const orderedProduct = data.product;
   return {
-    name: orderedProduct.name,
-    description: orderedProduct.description,
-    price: orderedProduct.price,
-    quantity: orderedProduct.quantity,
-    category: orderedProduct.category,
-    image: orderedProduct.image,
-    id: orderedProduct.id,
+    name: data.product.name,
+    description: data.product.description,
+    price: data.product.price,
+    quantity: data.product.quantity,
+    category: data.product.category,
+    image: data.product.image,
+    id: data.product.id,
     amount: data.amount
   };
 };
@@ -64,14 +63,13 @@ const toProductEntry = (data) => {
 };
 
 const toOrder = (data) => {
-  const order = {
+  return {
     user: data.user,
     products: data.products.map(product => toOrderedProduct(product)),
     sum: data.sum,
     status: data.status,
     id: data.id,
   };
-  return order;
 };
 
 const toUser = (data) => {
