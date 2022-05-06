@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { ACCESS_TOKEN_SECRET } = require('./config');
-const { errorDefinitions } = require('./errorDefinitions');
+const errorDefinitions = require('./errorDefinitions');
 const { throwError } = require('./utils');
 
 // eslint-disable-next-line no-unused-vars
