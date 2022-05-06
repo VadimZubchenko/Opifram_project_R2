@@ -7,14 +7,14 @@ const { throwError } = require('./utils');
 const errorHandler = (err, req, res, next) => {
   const errorName = err.name;
   const errorMessage = err.message;
-  const foundError = errorDefinitions.find(e => e.name === errorName);
+  const errorDef = errorDefinitions.find(e => e.name === errorName);
 
-  if (foundError) {
-    console.error(foundError.stackTrace ? err.stack : `${err.name}: ${err.message}`);
-    if (foundError.resJson) {
-      return res.status(foundError.status).json({ [errorName]: errorMessage });
+  if (errorDef) {
+    console.error(errorDef.stackTrace ? err.stack : `${err.name}: ${err.message}`);
+    if (errorDef.resJson) {
+      return res.status(errorDef.status).json({ [errorName]: errorMessage });
     } else {
-      return res.sendStatus(foundError.status);
+      return res.sendStatus(errorDef.status);
     }
   } else {
     //All unexpected, not explicitly handled errors
