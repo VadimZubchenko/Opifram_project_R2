@@ -3,17 +3,17 @@ const Product = require('../models/product');
 const { toOrder, formatPrice } = require('../utils');
 
 const getOrders = async () => {
-  const orders = await Order.find({}).populate('user').populate('product');
+  const orders = await Order.find({}).populate('user').populate('products.product');
   return orders.map(order => toOrder(order));
 };
 
 const getOrdersByUserId = async (userId) => {
-  const orders = await Order.find({ user: userId }).populate('user').populate('product');
+  const orders = await Order.find({ user: userId }).populate('user').populate('products.product');
   return orders.map(order => toOrder(order));
 };
 
 const getOrder = async (id) => {
-  const order = await Order.findById(id).populate('user').populate('product');
+  const order = await Order.findById(id).populate('user').populate('products.product');
   return toOrder(order);
 };
 
@@ -58,7 +58,7 @@ const createOrder = async (userId, data) => {
 };
 
 const deleteOrder = async (id) => {
-  const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('product');
+  const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('products.product');
   return toOrder(deletedOrder);
 };
 
