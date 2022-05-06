@@ -1,6 +1,6 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
-const { formatPrice, toOrder } = require('../utils');
+const { formatPrice, toOrder, toOrderEntry } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('products.product');
@@ -18,6 +18,9 @@ const getOrder = async (id) => {
 };
 
 const createOrder = async (userId, data) => {
+  const orderEntry = toOrderEntry(data);
+  console.log('orderEntry', orderEntry);
+  console.log('Data', data);
 
   //Create order
   const order = new Order({
@@ -29,7 +32,7 @@ const createOrder = async (userId, data) => {
   let sum = 0;
 
   //Loop every shopping cart item
-  for (const item of data) {
+  for (const item of orderEntry) {
 
     //TODO: Need to check that item.amount does not exceed product quantity ( = there must be atleast same amount of products in stock than what is ordered)
 

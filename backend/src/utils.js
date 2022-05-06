@@ -21,7 +21,7 @@ const validateStringProperty = (key, value) => {
 
 const validateNumberProperty = (key, value) => {
   if (!value || !isNumber(value)) {
-    throwError(`ValidationError', 'Incorrect or missing number: ${key}`);
+    throwError('ValidationError', `Incorrect or missing number: ${key}`);
   }
   return value;
 };
@@ -104,6 +104,15 @@ const toLoginCredentials = (data) => {
   };
 };
 
+const toOrderEntry = (data) => {
+  return data.map((item) => {
+    return {
+      product: validateStringProperty('productId', item.product),
+      amount: validateNumberProperty('amount', item.amount)
+    };
+  });
+};
+
 const toAccessTokenData = (data) => {
   return {
     id: data.id,
@@ -123,4 +132,4 @@ const formatPrice = (price) => {
   return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
 };
 
-module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toProductEntry, toOrder, toUserEntry, toUser, toLoginCredentials, toAccessTokenData, formatPrice };
+module.exports = { validateStringProperty, validateNumberProperty, throwError, toProduct, toProductEntry, toOrder, toOrderEntry, toUserEntry, toUser, toLoginCredentials, toAccessTokenData, formatPrice };
