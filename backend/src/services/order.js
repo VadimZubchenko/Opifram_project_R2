@@ -39,15 +39,15 @@ const createOrder = async (userId, data) => {
     //Add product to orders
     order.products.push({ product: product.id, amount: item.amount });
 
-    //Add price to total sum
-    sum += formatPrice(product.price * item.amount);
+    //Add products total price to sum
+    sum += product.price * item.amount;
 
     //Update product quantity
     await product.updateOne({ quantity: (product.quantity - item.amount) });
   }
 
-  //Set total sum
-  order.sum = sum;
+  //Format and set total sum
+  order.sum = formatPrice(sum);
 
   //Save order
   const savedOrder = await order.save();
