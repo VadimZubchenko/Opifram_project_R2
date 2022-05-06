@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userService = require('../services/user');
+const userService = require('../services/userService');
 
 router.get('/', async (req, res) => res.json(await userService.getUsers()));
 router.get('/:id', async (req, res) => res.json(await userService.getUser(req.params.id)));

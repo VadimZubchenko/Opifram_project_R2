@@ -2,10 +2,10 @@ require('express-async-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const { MONGODB_URI, PORT } = require('./config');
-const productRouter = require('./routers/product');
-const orderRouter = require('./routers/order');
-const userRouter = require('./routers/user');
-const authRouter = require('./routers/auth');
+const productRouter = require('./routers/productRouter');
+const orderRouter = require('./routers/orderRouter');
+const userRouter = require('./routers/userRouter');
+const authRouter = require('./routers/authRouter');
 const { errorHandler, unknownEndpoint, requestLogger } = require('./middleware');
 
 const app = express();

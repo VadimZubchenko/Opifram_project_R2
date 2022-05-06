@@ -1,5 +1,5 @@
-const Order = require('../models/order');
-const Product = require('../models/product');
+const Order = require('../models/orderModel');
+const Product = require('../models/productModel');
 const { formatPrice, toOrder, toShoppingCartData } = require('../utils');
 
 const getOrders = async () => {

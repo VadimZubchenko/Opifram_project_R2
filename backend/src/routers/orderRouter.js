@@ -1,7 +1,7 @@
 const express = require('express');
 const { extractToken } = require('../middleware');
 const router = express.Router();
-const orderService = require('../services/order');
+const orderService = require('../services/orderService');
 
 router.get('/', async (req, res) => res.json(await orderService.getOrders()));
 router.get('/:id', async (req, res) => res.json(await orderService.getOrder(req.params.id)));
