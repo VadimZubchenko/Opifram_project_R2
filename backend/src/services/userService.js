@@ -1,5 +1,5 @@
 const User = require("../models/userModel");
-const { toUser } = require("../utils");
+const { toUser, toUserEntry } = require("../utils");
 
 const getUsers = async () => {
   const users = await User.find({});
@@ -35,6 +35,7 @@ const deleteUser = async (id) => {
 module.exports = {
   getUsers,
   getUser,
+  createUser,
   updateUser,
   deleteUser,
 };
