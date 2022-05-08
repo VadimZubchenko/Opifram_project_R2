@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const Product = require('../models/productModel');
 const { toProduct, toProductEntry } = require('../utils');
 
 const getProducts = async () => {
@@ -29,4 +29,12 @@ const deleteProduct = async (id) => {
   return toProduct(deletedProduct);
 };
 
-module.exports = { getProducts, getProduct, createProduct, updateProduct, deleteProduct };
+//TODO: Search/sort products?
+
+module.exports = {
+  getProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct
+};

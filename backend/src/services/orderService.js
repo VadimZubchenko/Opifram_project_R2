@@ -1,6 +1,6 @@
-const Order = require('../models/order');
-const Product = require('../models/product');
-const { formatPrice, toOrder } = require('../utils');
+const Order = require('../models/orderModel');
+const Product = require('../models/productModel');
+const { formatPrice, toOrder, toShoppingCartData } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('products.product');
@@ -18,8 +18,8 @@ const getOrder = async (id) => {
 };
 
 const createOrder = async (userId, data) => {
+  const shoppingCartData = toShoppingCartData(data);
 
-  //Create order
   const order = new Order({
     user: userId,
     products: [],
@@ -28,31 +28,16 @@ const createOrder = async (userId, data) => {
 
   let sum = 0;
 
-  //Loop every product
-  for (const item of data) {
-
-    //TODO: Need to check that item.amount does not exceed product quantity ( = there must be atleast same amount of products in stock than what is ordered)
-
-    //Find product
+  for (const item of shoppingCartData) {
+    //TODO: Need to check that item.amount does not exceed product.quantity
     const product = await Product.findById(item.product);
-
-    //Add product to orders
     order.products.push({ product: product.id, amount: item.amount });
-
-    //Add products total price to sum
     sum += product.price * item.amount;
-
-    //Update product quantity
-    await product.updateOne({ quantity: (product.quantity - item.amount) });
+    await product.updateOne({ quantity: product.quantity - item.amount });
   }
 
-  //Format and set total sum
   order.sum = formatPrice(sum);
-
-  //Save order
   const savedOrder = await order.save();
-
-  //Populate order
   const populatedOrder = await Order.findById(savedOrder.id).populate('user').populate('products.product');
   return toOrder(populatedOrder);
 };
@@ -62,4 +47,10 @@ const deleteOrder = async (id) => {
   return toOrder(deletedOrder);
 };
 
-module.exports = { getOrders, getOrdersByUserId, getOrder, createOrder, deleteOrder };
+module.exports = {
+  getOrders,
+  getOrdersByUserId,
+  getOrder,
+  createOrder,
+  deleteOrder
+};

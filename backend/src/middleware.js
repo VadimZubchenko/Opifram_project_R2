@@ -1,46 +1,34 @@
 const jwt = require('jsonwebtoken');
 const { ACCESS_TOKEN_SECRET } = require('./config');
-const { errorDefinitions } = require('./errorDefinitions');
+const errorDefinitions = require('./errorDefinitions');
 const { throwError } = require('./utils');
 
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
   const errorName = err.name;
   const errorMessage = err.message;
+  const errorDef = errorDefinitions.find(e => e.name === errorName);
 
-  let foundError;
-
-  for (const errorDef of errorDefinitions) {
-    if (errorDef.name === errorName) {
-      foundError = errorDef;
-      break;
-    }
-  }
-
-  if (foundError) {
-    console.error(foundError.stackTrace ? err.stack : `${err.name}: ${err.message}`);
-
-    if (foundError.resJson) {
-      return res.status(foundError.status).json({ [errorName]: errorMessage });
+  if (errorDef) {
+    console.error(errorDef.stackTrace ? err.stack : `${err.name}: ${err.message}`);
+    if (errorDef.resJson) {
+      return res.status(errorDef.status).json({ [errorName]: errorMessage });
     } else {
-      return res.sendStatus(foundError.status);
+      return res.sendStatus(errorDef.status);
     }
-
   } else {
-    //All unexpected, not explicitly handled errors
-    console.error(`Unexpected error: ${err}`);
-    console.error('Stack:', err.stack);
+    console.error(`Unexpected error: ${err}`, err.stack);
     return res.sendStatus(500);
   }
 };
 
 const unknownEndpoint = (req) => {
-  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found. Maybe typo?`);
+  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found.`);
 };
 
-//Get token from Authorization header
-//Extract it to get user id and role
-//Set user id and role to req object
+//TODO: Access control, for example https://www.npmjs.com/package/accesscontrol
+//TODO: Validator? https://www.npmjs.com/package/express-validator
+
 const extractToken = (req, res, next) => {
   const token = req.get('Authorization')?.split(' ')[1];
   const secret = ACCESS_TOKEN_SECRET;
@@ -57,13 +45,17 @@ const extractToken = (req, res, next) => {
       next();
     }
   }
-
 };
 
-//Very simple request logger
+//TODO: Pino? https://www.npmjs.com/package/express-pino-logger
 const requestLogger = (req, res, next) => {
   console.log(req.method, req.originalUrl, res.statusCode);
   next();
 };
 
-module.exports = { errorHandler, unknownEndpoint, extractToken, requestLogger };
+module.exports = {
+  errorHandler,
+  unknownEndpoint,
+  extractToken,
+  requestLogger
+};

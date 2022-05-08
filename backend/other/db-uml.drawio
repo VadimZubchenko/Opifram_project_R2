@@ -14,7 +14,9 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="11YwbLFzU8OK_7AQaoxu-34" value="Product" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="250" width="160" height="160" as="geometry"/>
+                    <mxGeometry x="40" y="250" width="160" height="160" as="geometry">
+                        <mxRectangle x="40" y="250" width="80" height="30" as="alternateBounds"/>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="11YwbLFzU8OK_7AQaoxu-35" value="productId: ObjectId&#10;name: String&#10;description: String&#10;price: Number&#10;quantity: Number&#10;image: String&#10;createdAt: Date&#10;updatedAt: Date" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="11YwbLFzU8OK_7AQaoxu-34" vertex="1">
                     <mxGeometry y="30" width="160" height="130" as="geometry"/>
