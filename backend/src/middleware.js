@@ -30,7 +30,7 @@ const unknownEndpoint = (req) => {
 //TODO: Validator? https://www.npmjs.com/package/express-validator
 
 const extractToken = (req, res, next) => {
-  const token = req.get('Authorization')?.split(' ')[1];
+  const token = req.get('Authorization').split(' ')[1];
   const secret = ACCESS_TOKEN_SECRET;
 
   if (!token) {
@@ -49,7 +49,7 @@ const extractToken = (req, res, next) => {
 
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
 const requestLogger = (req, res, next) => {
-  console.log(req.method, req.originalUrl, res.statusCode);
+  console.log(req.method, req.originalUrl);
   next();
 };
 

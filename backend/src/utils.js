@@ -5,25 +5,25 @@ const throwError = (name, message) => {
 };
 
 const isString = (string) => {
-  return typeof string == "string" || string instanceof String;
+  return typeof string == 'string' || string instanceof String;
 };
 
 const isNumber = (number) => {
   return (
-    typeof number === "number" || number instanceof Number || !isNaN(number)
+    typeof number === 'number' || number instanceof Number || !isNaN(number)
   );
 };
 
 const validateStringProperty = (key, value) => {
   if (!value || !isString(value)) {
-    throwError("ValidationError", `Incorrect or missing string: ${key}`);
+    throwError('ValidationError', `Incorrect or missing string: ${key}`);
   }
   return value;
 };
 
 const validateNumberProperty = (key, value) => {
   if (!value || !isNumber(value)) {
-    throwError("ValidationError", `Incorrect or missing number: ${key}`);
+    throwError('ValidationError', `Incorrect or missing number: ${key}`);
   }
   return value;
 };
@@ -55,18 +55,18 @@ const toOrderedProduct = (data) => {
 
 const toProductEntry = (data) => {
   return {
-    name: validateStringProperty("name", data.name),
-    description: validateStringProperty("description", data.description),
-    price: validateNumberProperty("price", data.price),
-    quantity: validateNumberProperty("quantity", data.quantity),
-    category: validateStringProperty("category", data.category),
-    image: validateStringProperty("image", data.image),
+    name: validateStringProperty('name', data.name),
+    description: validateStringProperty('description', data.description),
+    price: validateNumberProperty('price', data.price),
+    quantity: validateNumberProperty('quantity', data.quantity),
+    category: validateStringProperty('category', data.category),
+    image: validateStringProperty('image', data.image),
   };
 };
 
 const toOrder = (data) => {
   return {
-    user: data.user,
+    user: toUser(data.user),
     products: data.products.map((product) => toOrderedProduct(product)),
     sum: data.sum,
     status: data.status,
@@ -87,28 +87,28 @@ const toUser = (data) => {
 
 const toUserEntry = (data) => {
   return {
-    firstName: validateStringProperty("firstName", data.firstName),
-    lastName: validateStringProperty("lastName", data.lastName),
-    email: validateStringProperty("email", data.email),
-    phone: validateStringProperty("phone", data.phone),
-    address: validateStringProperty("address", data.address),
-    role: "user",
-    password: validateStringProperty("password", data.password),
+    firstName: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('lastName', data.lastName),
+    email: validateStringProperty('email', data.email),
+    phone: validateStringProperty('phone', data.phone),
+    address: validateStringProperty('address', data.address),
+    role: 'user',
+    password: validateStringProperty('password', data.password),
   };
 };
 
 const toLoginCredentials = (data) => {
   return {
-    email: validateStringProperty("email", data.email),
-    password: validateStringProperty("password", data.password),
+    email: validateStringProperty('email', data.email),
+    password: validateStringProperty('password', data.password),
   };
 };
 
 const toShoppingCartData = (data) => {
   return data.map((item) => {
     return {
-      product: validateStringProperty("product", item.product),
-      amount: validateNumberProperty("amount", item.amount),
+      product: validateStringProperty('product', item.product),
+      amount: validateNumberProperty('amount', item.amount),
     };
   });
 };
@@ -121,15 +121,15 @@ const toAccessTokenData = (data) => {
 };
 
 const formatPrice = (price) => {
-  const formatter = new Intl.NumberFormat("fi-FI", {
-    style: "currency",
-    currency: "EUR",
+  const formatter = new Intl.NumberFormat('fi-FI', {
+    style: 'currency',
+    currency: 'EUR',
     minimumFractionDigits: 2,
-    currencyDisplay: "code",
+    currencyDisplay: 'code',
   });
 
   const formatted = formatter.format(price);
-  return parseFloat(formatted.replace(",", ".").replace("EUR", "").trim());
+  return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
 };
 
 module.exports = {

@@ -1,5 +1,5 @@
-const User = require("../models/userModel");
-const { toUser, toUserEntry } = require("../utils");
+const User = require('../models/userModel');
+const { toUser, toUserEntry } = require('../utils');
 
 const getUsers = async () => {
   const users = await User.find({});
@@ -19,11 +19,8 @@ const createUser = async (data) => {
 };
 
 const updateUser = async (id, data) => {
-  const updatedUser = await User.findByIdAndUpdate(
-    id,
-    { ...toUser(data) },
-    { new: true }
-  );
+  const userData = toUserEntry(data);
+  const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
   return toUser(updatedUser);
 };
 

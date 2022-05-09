@@ -1,16 +1,16 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
     products: [
       {
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
+          ref: 'Product',
         },
         amount: {
           type: Number,
@@ -27,7 +27,7 @@ const orderSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-orderSchema.set("toJSON", {
+orderSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -35,4 +35,4 @@ orderSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Order", orderSchema);
+module.exports = mongoose.model('Order', orderSchema);
