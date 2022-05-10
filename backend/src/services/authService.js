@@ -6,15 +6,15 @@ const { ACCESS_TOKEN_SECRET } = require('../config');
 
 const login = async (credentials) => {
   const creds = toLoginCredentials(credentials);
-  const userByEmail = await User.findOne({ email: creds.email });
 
+  const userByEmail = await User.findOne({ email: creds.email });
   if (!userByEmail) {
-    throwError('UserNotFoundError', `User not found by email ${creds.email}`);
+    throwError('WrongCredentialsError', 'Invalid email or password');
   }
 
   const match = await bcrypt.compare(creds.password, userByEmail.password);
   if (!match) {
-    throwError('WrongCredentialsError', 'Invalid password');
+    throwError('WrongCredentialsError', 'Invalid email or password');
   }
 
   const token = jwt.sign({ user: toAccessTokenData(userByEmail) }, ACCESS_TOKEN_SECRET);
