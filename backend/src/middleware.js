@@ -39,7 +39,7 @@ const extractToken = (req, res, next) => {
   }
 
   if (!token) {
-    throwError('TokenValidationError', 'No token found');
+    throwError('TokenVerifyError', 'No token found');
   }
 
   try {
@@ -48,9 +48,9 @@ const extractToken = (req, res, next) => {
     req.userRole = payload.user.role;
     next();
   } catch(error) {
-    throwError('TokenValidationError', 'Token validation failed');
+    throwError('TokenVerifyError', 'Token verify failed');
   }
-  
+
 };
 
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
