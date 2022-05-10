@@ -50,7 +50,7 @@ const extractToken = (req, res, next) => {
     next();
   } catch(error) {
     if (error.name === 'TokenExpiredError') {
-      throwError('TokenExpiredError', 'Token has expired.');
+      throwError('TokenExpiredError', 'Token expired');
     }
     throwError('TokenVerifyError', 'Token verify failed');
   }
