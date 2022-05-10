@@ -1,11 +1,26 @@
 const express = require('express');
-const { checkPermission } = require('../middleware');
+const { checkPermission, authenticate } = require('../middleware');
 const router = express.Router();
 const userService = require('../services/userService');
 
-router.get('/', checkPermission, async (req, res) => res.json(await userService.getUsers()));
-router.get('/:id', checkPermission, async (req, res) =>res.json(await userService.getUser(req.params.id)));
-router.put('/:id', checkPermission, async (req, res) =>res.json(await userService.updateUser(req.params.id, req.body)));
-router.delete('/:id', checkPermission, async (req, res) =>res.json(await userService.deleteUser(req.params.id)));
+router.get('/', authenticate, checkPermission, async (req, res) => {
+  const users = await userService.getUsers();
+  res.json(users);
+});
+
+router.get('/:id', authenticate, checkPermission, async (req, res) => {
+  const user = await userService.getUser(req.params.id);
+  res.json(user);
+});
+
+router.put('/:id', authenticate, checkPermission, async (req, res) => {
+  const updatedUser = await userService.updateUser(req.params.id, req.body);
+  res.json(updatedUser);
+});
+
+router.delete('/:id', authenticate, checkPermission, async (req, res) => {
+  const deletedUser = await userService.deleteUser(req.params.id);
+  res.json(deletedUser);
+});
 
 module.exports = router;

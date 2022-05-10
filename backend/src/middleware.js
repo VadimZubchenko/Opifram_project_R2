@@ -55,14 +55,12 @@ const authenticate = (req, res, next) => {
 };
 
 const checkPermission = (req, res, next) => {
-  authenticate(req, res, next);
-
   let granted = false;
-
+  
   const userId = req.userId;
   const userRole = req.userRole;
   const resourceId = req.params.id;
-
+  
   switch(userRole) {
   case 'user':
     if (userId === resourceId) {
@@ -76,11 +74,12 @@ const checkPermission = (req, res, next) => {
     granted = false;
     break;
   }
-
+  
   if (!granted) {
     throwError('AccessDeniedError', 'You are not allowed to perform this action');
+  } else {
+    next();
   }
-
 };
 
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
