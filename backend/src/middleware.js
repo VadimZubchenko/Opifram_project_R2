@@ -78,7 +78,7 @@ const checkPermission = (req, res, next) => {
   }
 
   if (!granted) {
-    throwError('AccessDeniedError', 'You are not allowed to perform an action for given resource.');
+    throwError('AccessDeniedError', 'You are not allowed to perform this action');
   }
 
 };
