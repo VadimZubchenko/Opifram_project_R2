@@ -11,13 +11,6 @@ const getUser = async (id) => {
   return toUser(user);
 };
 
-const createUser = async (data) => {
-  const userEntry = toUserEntry(data);
-  const newUser = new User(userEntry);
-  const savedUser = await newUser.save();
-  return toUser(savedUser);
-};
-
 const updateUser = async (id, data) => {
   const userData = toUserEntry(data);
   const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
@@ -32,7 +25,6 @@ const deleteUser = async (id) => {
 module.exports = {
   getUsers,
   getUser,
-  createUser,
   updateUser,
   deleteUser,
 };
