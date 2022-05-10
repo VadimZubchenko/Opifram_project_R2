@@ -1,6 +1,5 @@
 const express = require('express');
-const checkPermission = require('../accessControl');
-const { extractToken } = require('../middleware');
+const { extractToken, checkPermission } = require('../middleware');
 const router = express.Router();
 const orderService = require('../services/orderService');
 

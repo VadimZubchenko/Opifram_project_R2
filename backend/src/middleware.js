@@ -26,7 +26,6 @@ const unknownEndpoint = (req) => {
   throwError('UnknownEndpointError', `Route ${req.originalUrl} not found.`);
 };
 
-//TODO: Access control, for example https://www.npmjs.com/package/accesscontrol
 //TODO: Validator? https://www.npmjs.com/package/express-validator
 
 const extractToken = (req, res, next) => {
@@ -55,6 +54,35 @@ const extractToken = (req, res, next) => {
   }
 };
 
+const checkPermission = (req, res, next) => {
+  extractToken(req, res, next);
+
+  let granted = false;
+
+  const userId = req.userId;
+  const userRole = req.userRole;
+  const targetId = req.params.id;
+
+  switch(userRole) {
+  case 'user':
+    if (userId === targetId) {
+      granted = true;
+    }
+    break;
+  case 'admin':
+    granted = true;
+    break;
+  default:
+    granted = false;
+    break;
+  }
+
+  if (!granted) {
+    throwError('AccessDeniedError', 'You are not allowed to perform an action for given resource.');
+  }
+
+};
+
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
 const requestLogger = (req, res, next) => {
   console.log(req.method, req.originalUrl);
@@ -65,5 +93,6 @@ module.exports = {
   errorHandler,
   unknownEndpoint,
   extractToken,
-  requestLogger
+  requestLogger,
+  checkPermission
 };
