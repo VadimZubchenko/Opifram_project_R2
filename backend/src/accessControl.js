@@ -2,8 +2,8 @@ const { extractToken } = require('./middleware');
 const { throwError } = require('./utils');
 
 const checkPermission = () => {
-  return async (req, res, next) => {
-    extractToken(req, res, next);
+  return async (err, req, res, next) => {
+    extractToken(err, req, res, next);
 
     let granted = false;
 
@@ -22,6 +22,7 @@ const checkPermission = () => {
       break;
     default:
       granted = false;
+      break;
     }
 
     if (!granted) {
