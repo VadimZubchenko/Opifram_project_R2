@@ -30,21 +30,27 @@ const unknownEndpoint = (req) => {
 //TODO: Validator? https://www.npmjs.com/package/express-validator
 
 const extractToken = (req, res, next) => {
-  const token = req.get('Authorization').split(' ')[1];
   const secret = ACCESS_TOKEN_SECRET;
+  const bearer = req.get('Authorization');
+  let token;
+
+  if (bearer) {
+    token = bearer.split(' ')[1];
+  }
 
   if (!token) {
-    throwError('NoTokenError', 'No token found');
-  } else {
-    const payload = jwt.verify(token, secret);
-    if (!payload) {
-      throwError('TokenValidationError', 'Token validation failed');
-    } else {
-      req.userId = payload.user.id;
-      req.userRole = payload.user.role;
-      next();
-    }
+    throwError('TokenValidationError', 'No token found');
   }
+
+  try {
+    const payload = jwt.verify(token, secret);
+    req.userId = payload.user.id;
+    req.userRole = payload.user.role;
+    next();
+  } catch(error) {
+    throwError('TokenValidationError', 'Token validation failed');
+  }
+  
 };
 
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
