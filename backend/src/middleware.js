@@ -61,11 +61,11 @@ const checkPermission = (req, res, next) => {
 
   const userId = req.userId;
   const userRole = req.userRole;
-  const targetId = req.params.id;
+  const resourceId = req.params.id;
 
   switch(userRole) {
   case 'user':
-    if (userId === targetId) {
+    if (userId === resourceId) {
       granted = true;
     }
     break;
