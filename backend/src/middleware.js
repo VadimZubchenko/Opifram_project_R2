@@ -28,7 +28,7 @@ const unknownEndpoint = (req) => {
 
 //TODO: Validator? https://www.npmjs.com/package/express-validator
 
-const extractToken = (req, res, next) => {
+const authenticate = (req, res, next) => {
   const secret = ACCESS_TOKEN_SECRET;
   const bearer = req.get('Authorization');
   let token;
@@ -55,7 +55,7 @@ const extractToken = (req, res, next) => {
 };
 
 const checkPermission = (req, res, next) => {
-  extractToken(req, res, next);
+  authenticate(req, res, next);
 
   let granted = false;
 
@@ -92,7 +92,7 @@ const requestLogger = (req, res, next) => {
 module.exports = {
   errorHandler,
   unknownEndpoint,
-  extractToken,
+  authenticate: authenticate,
   requestLogger,
   checkPermission
 };
