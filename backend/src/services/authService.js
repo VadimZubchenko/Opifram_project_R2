@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const { toLoginCredentials, throwError, toUser, toUserEntry, toAccessTokenData } = require('../utils');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { ACCESS_TOKEN_SECRET } = require('../config');
+const { ACCESS_TOKEN_SECRET, ACCESS_TOKEN_EXPIRATION_TIME } = require('../config');
 
 const login = async (credentials) => {
   const creds = toLoginCredentials(credentials);
@@ -17,7 +17,7 @@ const login = async (credentials) => {
     throwError('WrongCredentialsError', 'Invalid email or password');
   }
 
-  const token = jwt.sign({ user: toAccessTokenData(userByEmail) }, ACCESS_TOKEN_SECRET);
+  const token = jwt.sign({ user: toAccessTokenData(userByEmail) }, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRATION_TIME });
   return { token: token, user: toUser(userByEmail) };
 };
 

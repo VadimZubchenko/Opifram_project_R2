@@ -48,9 +48,11 @@ const extractToken = (req, res, next) => {
     req.userRole = payload.user.role;
     next();
   } catch(error) {
+    if (error.name === 'TokenExpiredError') {
+      throwError('TokenExpiredError', 'Token has expired.');
+    }
     throwError('TokenVerifyError', 'Token verify failed');
   }
-
 };
 
 //TODO: Pino? https://www.npmjs.com/package/express-pino-logger
