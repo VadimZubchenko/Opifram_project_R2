@@ -32,7 +32,7 @@ const register = async (data) => {
   const email = userEntry.email;
   const password = userEntry.password;
 
-  userEntry.password = await bcrypt.hash(userEntry.password, 10);
+  userEntry.password = await bcrypt.hash(userEntry.password, 16);
 
   const newUser = new User(userEntry);
   await newUser.save();
