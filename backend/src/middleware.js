@@ -29,6 +29,7 @@ const unknownEndpoint = (req) => {
 //TODO: Access control, for example https://www.npmjs.com/package/accesscontrol
 //TODO: Validator? https://www.npmjs.com/package/express-validator
 
+//If 403 returned, require new login in frontend
 const extractToken = (req, res, next) => {
   const secret = ACCESS_TOKEN_SECRET;
   const bearer = req.get('Authorization');
