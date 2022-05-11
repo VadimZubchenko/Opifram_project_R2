@@ -22,15 +22,15 @@ const createFetcher = () => {
                 errorMessage = item[1];
             });
 
+            if (!errorName && !errorMessage) {
+                errorName = 'Unexpected error';
+                errorMessage = "Something went wrong"
+            }
+
             const error = {
                 name: errorName,
                 message: errorMessage,
                 status: response.status
-            }
-
-            if (!error.name && !error.message) {
-                error.name = 'Unexpected error';
-                error.message = "Something went wrong"
             }
 
             baseResponse.error = error;
