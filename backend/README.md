@@ -40,11 +40,11 @@ View or edit `./other/db-uml.drawio` at https://app.diagrams.net
 
 ##### `/api/auth/login`   
 Requires `email` and `password`.    
-Returns an `access token` and `user` as an object.
+Returns `token`, `firstName` and `lastName` as an object.
 
 ##### `/api/auth/register`
 Requires `firstName`, `lastName`, `email`, `address`, `phone` and `password`.   
-Returns an `access token` and `user` as an object.
+Returns `token`, `firstName` and `lastName` as an object.
 
 ##### `/api/product`
 Requires `name`, `description`, `category`, `price`, `quantity`, and `image`.   
