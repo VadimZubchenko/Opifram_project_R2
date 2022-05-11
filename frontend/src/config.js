@@ -1,0 +1,1 @@
+export const apiURI = process.env.API_URI || '/api';

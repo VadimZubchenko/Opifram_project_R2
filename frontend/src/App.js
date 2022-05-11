@@ -1,7 +1,13 @@
+import Appbar from "./components/Appbar";
+import Footer from "./components/Footer";
+
 const App = () => {
   return (
-    <p>App works!</p>
+    <div className='app-container'>
+      <Appbar />
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
