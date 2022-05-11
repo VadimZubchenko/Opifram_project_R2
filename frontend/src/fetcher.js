@@ -76,7 +76,11 @@ const createFetcher = () => {
 
 /* EXAMPLE USAGE 
 
+//Base
 const response = await fetcher.get('/product');
+
+//With service
+const response = await productService.getProducts();
 
  if (response.data) {
     console.log('Fetched data:', response.data);
