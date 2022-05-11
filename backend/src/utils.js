@@ -32,7 +32,7 @@ const validatePassword = (password) => {
   const isProperString = validateStringProperty('password', password);
   if (isProperString) {
     if (isProperString.length > 8) {
-      return password;
+      return isProperString;
     } else {
       throwError('ValidationError', 'Password must be at least 8 characters long');
     }
