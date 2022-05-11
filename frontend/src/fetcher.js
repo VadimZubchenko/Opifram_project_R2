@@ -8,10 +8,9 @@ const createFetcher = () => {
 
     const handleResponse = async (response) => {
         const baseResponse = { status: response.status };
-        const data = await response.json();
 
         if (response.ok) {
-            baseResponse.data = data;
+            baseResponse.data = await response.json();
         } else {
 
             let errorName;
@@ -80,10 +79,8 @@ const createFetcher = () => {
 const response = await fetcher.get('/product');
 
  if (response.data) {
-    * SUCCESS *
     console.log('Fetched data:', response.data);
  } else {
-    * ERROR *
     console.log('Error name:', response.error.name);
     console.log('Error message:', response.error.message);
     console.log('Error status code:', response.error.status);
