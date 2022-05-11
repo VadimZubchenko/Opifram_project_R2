@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const { toLoginCredentials, throwError, toUser, toUserEntry, toAccessTokenData } = require('../utils');
+const { toLoginCredentials, throwError, toLoggedUser, toUserEntry, toAccessTokenData } = require('../utils');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { ACCESS_TOKEN_SECRET, ACCESS_TOKEN_EXPIRATION_TIME } = require('../config');
@@ -18,7 +18,7 @@ const login = async (credentials) => {
   }
 
   const token = jwt.sign({ user: toAccessTokenData(userByEmail) }, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRATION_TIME });
-  return { token: token, user: toUser(userByEmail) };
+  return { token: token, ...toLoggedUser(userByEmail) };
 };
 
 const register = async (data) => {

@@ -37,7 +37,7 @@ const validatePassword = (password) => {
       throwError('ValidationError', 'Password must be at least 8 characters long');
     }
   }
-}
+};
 
 const toProduct = (data) => {
   return {
@@ -93,6 +93,13 @@ const toUser = (data) => {
     phone: data.phone,
     address: data.address,
     id: data.id,
+  };
+};
+
+const toLoggedUser = (data) => {
+  return {
+    firstName: data.firstName,
+    lastName: data.lastName
   };
 };
 
@@ -156,4 +163,5 @@ module.exports = {
   toLoginCredentials,
   toAccessTokenData,
   formatPrice,
+  toLoggedUser
 };
