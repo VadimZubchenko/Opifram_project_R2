@@ -3,6 +3,9 @@ const { ACCESS_TOKEN_SECRET } = require('./config');
 const errorDefinitions = require('./errorDefinitions');
 const { throwError } = require('./utils');
 
+//TODO: Pino? https://www.npmjs.com/package/express-pino-logger
+//TODO: Validator? https://www.npmjs.com/package/express-validator
+
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
   const errorName = err.name;
@@ -23,10 +26,8 @@ const errorHandler = (err, req, res, next) => {
 };
 
 const unknownEndpoint = (req) => {
-  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found.`);
+  throwError('UnknownEndpointError', `Route ${req.originalUrl} not found`);
 };
-
-//TODO: Validator? https://www.npmjs.com/package/express-validator
 
 const authenticate = (req, res, next) => {
   const secret = ACCESS_TOKEN_SECRET;
@@ -74,15 +75,14 @@ const checkPermission = (req, res, next) => {
     granted = false;
     break;
   }
-  
-  if (!granted) {
-    throwError('AccessDeniedError', 'You are not allowed to perform this action');
-  } else {
+
+  if (granted) {
     next();
+  } else {
+    throwError('AccessDeniedError', 'You are not allowed to perform this action');
   }
 };
 
-//TODO: Pino? https://www.npmjs.com/package/express-pino-logger
 const requestLogger = (req, res, next) => {
   console.log(req.method, req.originalUrl);
   next();

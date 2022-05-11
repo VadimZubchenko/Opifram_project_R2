@@ -28,6 +28,17 @@ const validateNumberProperty = (key, value) => {
   return value;
 };
 
+const validatePassword = (password) => {
+  const isProperString = validateStringProperty('password', password);
+  if (isProperString) {
+    if (isProperString.length > 8) {
+      return password;
+    } else {
+      throwError('ValidationError', 'Password must be at least 8 characters long');
+    }
+  }
+}
+
 const toProduct = (data) => {
   return {
     name: data.name,
@@ -93,7 +104,7 @@ const toUserEntry = (data) => {
     phone: validateStringProperty('phone', data.phone),
     address: validateStringProperty('address', data.address),
     role: 'user',
-    password: validateStringProperty('password', data.password),
+    password: validatePassword(data.password)
   };
 };
 
