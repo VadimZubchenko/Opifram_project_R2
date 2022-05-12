@@ -56,31 +56,17 @@ const authenticate = (req, res, next) => {
 };
 
 const checkPermission = (req, res, next) => {
-  let granted = false;
-  
+
   const userId = req.userId;
   const userRole = req.userRole;
-  const resourceId = req.params.id;
-  
-  switch(userRole) {
-  case 'user':
-    if (userId === resourceId) {
-      granted = true;
-    }
-    break;
-  case 'admin':
-    granted = true;
-    break;
-  default:
-    granted = false;
-    break;
-  }
+  const requestParamId = req.params.id;
 
-  if (granted) {
+  if (userRole === 'admin' || userId === requestParamId) {
     next();
   } else {
     throwError('AccessDeniedError', 'You are not allowed to perform this action');
   }
+
 };
 
 const requestLogger = (req, res, next) => {
