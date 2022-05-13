@@ -9,9 +9,9 @@
     margin: auto;
 }
 
-.title {
+.mat-card-title {
     text-align: center;
-    margin-bottom: 15px;
+    padding-bottom: 20px;
 }
 
 .content {
@@ -20,4 +20,9 @@
 
 .login-button {
     height: 50px;
+    margin-top: 15px;
+}
+
+.mat-card {
+    padding: 30px;
 }
