@@ -12,7 +12,7 @@
 // Fonts
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-     
+
 $fontConfig: (
   display-4: mat.define-typography-level(112px, 112px, 300, 'Roboto', -0.0134em),
   display-3: mat.define-typography-level(56px, 56px, 400, 'Roboto', -0.0089em),
@@ -28,6 +28,8 @@ $fontConfig: (
   caption: mat.define-typography-level(12px, 20px, 400, 'Roboto', 0.0333em),
   input: mat.define-typography-level(inherit, 1.125, 400, 'Roboto', 1.5px)
 );
+
+$border-radius: 15px;
 
 // Foreground Elements
 
@@ -245,7 +247,16 @@ $altTheme: (
   padding: 0 1.15em;
   margin: 0 .65em;
   min-width: 3em;
-  line-height: 36.4px
+  line-height: 36.4px;
+  border-radius: $border-radius !important;
+}
+
+.mat-card {
+  border-radius: $border-radius !important;
+}
+
+.mat-toolbar {
+  border-radius: $border-radius !important;
 }
 
 .mat-standard-chip {
