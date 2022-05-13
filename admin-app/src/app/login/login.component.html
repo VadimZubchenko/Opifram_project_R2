@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="container">
+    <mat-card>
+        <mat-card-title class="title">Kirjaudu sisään</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content class="content">
+            <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Sähköpostiosoite</mat-label>
+                    <input (focus)="onFocus()" matInput ngModel type="email" name="email">
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Salasana</mat-label>
+                    <input (focus)="onFocus()" matInput ngModel type="password" name="password">
+                    <mat-icon matSuffix>password</mat-icon>
+                </mat-form-field>
+
+                <p class="warn-color centered" *ngIf="errorText">{{errorText}}</p>
+
+                <button class="full-width login-button" mat-raised-button color="primary">Kirjaudu sisään</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

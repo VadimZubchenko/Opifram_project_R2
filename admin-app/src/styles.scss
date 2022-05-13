@@ -260,3 +260,11 @@ $altTheme: (
     font-family: 'Roboto';
   }
 }
+
+.warn-color {
+  color: var(--warn-color);
+}
+
+.full-width {
+  width: 100%;
+}
