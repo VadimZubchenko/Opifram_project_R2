@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of, tap, catchError } from 'rxjs';
 import { apiURI } from 'src/config';
 import { LoggedUser } from '../models/logged-user';
@@ -31,7 +32,8 @@ export class AuthService {
   logout(): void {
     this.user = undefined;
     localStorage.removeItem('user');
+    this.router.navigate(['login']);
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 }

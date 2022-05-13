@@ -2,7 +2,7 @@
     <mat-toolbar>
         <span>Kahvikauppa Admin</span>
         <span class="spacer"></span>
-        <button mat-icon-button aria-label="logout">
+        <button (click)="authService.logout()" mat-icon-button aria-label="logout">
             <mat-icon>logout</mat-icon>
         </button>
     </mat-toolbar>
