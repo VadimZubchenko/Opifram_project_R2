@@ -11,7 +11,7 @@ import { LoggedUser } from '../common/models/logged-user';
 })
 export class LoginComponent implements OnInit {
 
-  errorText: string | undefined = "Virheellinen sähköpostiosoite tai salasana.";
+  errorText: string | undefined;
   loading: boolean = false;
 
   loginForm: FormGroup = new FormGroup({
