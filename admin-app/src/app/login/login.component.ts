@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../common/services/auth.service';
 import { Router } from '@angular/router';
+import { LoggedUser } from '../common/models/logged-user';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  errorText: string | undefined;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
-
-  errorText: string | undefined;
 
   onSubmit(): void {
     const email = this.loginForm.get('email')?.value;
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (v) => {
         this.authService.user = v;
-        this.router.navigate(['/products']);
+        localStorage.setItem('user', JSON.stringify(v));
+        this.router.navigate(['/dashboard']);
       },
       error: (e) => {
         if (e.status === 401) {
@@ -42,8 +44,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 }

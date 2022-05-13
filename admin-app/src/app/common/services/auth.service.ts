@@ -16,12 +16,21 @@ export class AuthService {
 
   user: LoggedUser | undefined;
 
+  isLoggedIn(): boolean {
+    return this.user ? true : false;
+  }
+
   login(email: string, password: string): Observable<LoggedUser> {
     return this.http.post<LoggedUser>(`${apiURI}/auth/login`, { email: email, password: password }, this.httpOptions);
   }
 
+  setUser(user: LoggedUser): void {
+    this.user = user;
+  }
+
   logout(): void {
     this.user = undefined;
+    localStorage.removeItem('user');
   }
 
   constructor(private http: HttpClient) { }
