@@ -10,11 +10,12 @@ import { AuthService } from '../services/auth.service';
 export class OnlyLoggedOffUserGuardGuard implements CanActivate {
   canActivate() {
 
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard']);
-      return false;
+    if (!this.authService.isLoggedIn()) {
+      return true;
     }
-    return true;
+    
+    this.router.navigate(['/dashboard']);
+    return false;
   }
   constructor(private authService: AuthService, private router: Router) { }
 

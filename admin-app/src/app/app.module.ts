@@ -18,12 +18,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DarkModeService } from './common/services/dark-mode.service';
 import { AuthService } from './common/services/auth.service';
+import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    UnknownRouteComponent,
   ],
   imports: [
     BrowserModule,
