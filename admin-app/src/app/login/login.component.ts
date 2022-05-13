@@ -20,10 +20,18 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-
-    this.authService.setLoggedIn(true);
+    this.authService.login(email, password).subscribe({
+      next: (v) => {
+        this.authService.user = v;
+      },
+      error: (e) => {
+        if (e.status === 401) {
+          this.errorText = 'Virheellinen käyttäjätunnus tai salasana.';
+        } else if (e.status === 500) {
+          this.errorText = 'Tapahtui odottaman virhe. Yritä uudelleen.';
+        }
+      }
+    });
   }
 
   onFocus(): void {

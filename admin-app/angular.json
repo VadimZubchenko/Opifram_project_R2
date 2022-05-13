@@ -75,7 +75,8 @@
               "browserTarget": "admin-app:build:production"
             },
             "development": {
-              "browserTarget": "admin-app:build:development"
+              "browserTarget": "admin-app:build:development",
+              "proxyConfig": "proxy.config.json"
             }
           },
           "defaultConfiguration": "development"
