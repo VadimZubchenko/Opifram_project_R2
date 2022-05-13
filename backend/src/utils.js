@@ -99,7 +99,8 @@ const toUser = (data) => {
 const toLoggedUser = (data) => {
   return {
     firstName: data.firstName,
-    lastName: data.lastName
+    lastName: data.lastName,
+    role: data.role
   };
 };
 
