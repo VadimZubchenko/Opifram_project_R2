@@ -1,14 +1,16 @@
 require('express-async-errors');
 const express = require('express');
 const mongoose = require('mongoose');
-const { MONGODB_URI, PORT } = require('./config');
+const { MONGODB_URI, PORT, ALLOWED_ORIGINS } = require('./config');
 const productRouter = require('./routers/productRouter');
 const orderRouter = require('./routers/orderRouter');
 const userRouter = require('./routers/userRouter');
 const authRouter = require('./routers/authRouter');
+const cors = require('cors');
 const { errorHandler,unknownEndpoint, requestLogger } = require('./middleware');
 
 const app = express();
+app.use(cors(ALLOWED_ORIGINS));
 
 mongoose
   .connect(MONGODB_URI)
