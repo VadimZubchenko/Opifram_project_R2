@@ -5,4 +5,15 @@
 .container {
     max-width: 768px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mat-card {
+    padding: 0;
+}
+
+.mat-toolbar {
+    background-color: transparent;
 }

@@ -14,6 +14,5 @@ export class DarkModeService {
     }
   };
 
-
   constructor(@Inject(DOCUMENT) private document: Document) { }
 }

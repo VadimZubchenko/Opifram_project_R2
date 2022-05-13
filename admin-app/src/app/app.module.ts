@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatToolbarModule 
+    MatToolbarModule,
+    MatTabsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
