@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   errorText: string | undefined;
 
-  loginForm = new FormGroup({
+  loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password')?.value;
 
     this.authService.login(email, password).subscribe({
-      next: (v) => {
+      next: (v): void => {
         if (v.role === 'user') {
           this.errorText = "Pääsy evätty.";
         } else {
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         }
       },
-      error: (e) => {
+      error: (e): void => {
         if (e.status === 401) {
           this.errorText = 'Virheellinen sähköpostiosoite tai salasana.';
         } else if (e.status === 500) {
