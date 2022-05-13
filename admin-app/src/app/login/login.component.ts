@@ -24,9 +24,13 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe({
       next: (v) => {
-        this.authService.user = v;
-        localStorage.setItem('user', JSON.stringify(v));
-        this.router.navigate(['/dashboard']);
+        if (v.role === 'user') {
+          this.errorText = "Pääsy evätty.";
+        } else {
+          this.authService.user = v;
+          localStorage.setItem('user', JSON.stringify(v));
+          this.router.navigate(['/dashboard']);
+        }
       },
       error: (e) => {
         if (e.status === 401) {
@@ -44,6 +48,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }
