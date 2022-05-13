@@ -3,22 +3,40 @@
         <mat-card-title class="title">Kirjaudu sisään</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-content class="content">
-            <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Sähköpostiosoite</mat-label>
-                    <input (focus)="onFocus()" matInput ngModel type="email" name="email">
+                    <input (focus)="onFocus()" matInput type="email" formControlName="email">
                     <mat-icon matSuffix>email</mat-icon>
+                    <!--
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                        Virheellinen sähköpostiosoite.
+                    </mat-error>
+                    -->
                 </mat-form-field>
+
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Salasana</mat-label>
-                    <input (focus)="onFocus()" matInput ngModel type="password" name="password">
+                    <input (focus)="onFocus()" matInput type="password" formControlName="password">
                     <mat-icon matSuffix>password</mat-icon>
+                    <!--
+                    <mat-error *ngIf="loginForm.get('password')?.hasError('password')">
+                        Virheellinen salasana.
+                    </mat-error>
+                    -->
                 </mat-form-field>
 
-                <p class="warn-color centered" *ngIf="errorText">{{errorText}}</p>
+                <p *ngIf="errorText" class="warn-color">{{errorText}}</p>
 
-                <button class="full-width login-button" mat-raised-button color="primary">Kirjaudu sisään</button>
+                <button [disabled]="!loginForm.valid" type="submit" class="full-width login-button" mat-raised-button
+                    color="primary">Kirjaudu sisään
+                </button>
             </form>
+
+
         </mat-card-content>
     </mat-card>
 </div>

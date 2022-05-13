@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +8,19 @@ import { FormGroup, FormControl, FormArray, NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
+  });
+
   errorText: string | undefined;
 
-  onSubmit(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
+  onSubmit(): void {
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
 
     console.log('Email:', email);
     console.log('Password:', password);
-
-    this.errorText = 'Virheellinen sähköpostiosoite tai salasana.';
   }
 
   onFocus(): void {
@@ -27,6 +30,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
