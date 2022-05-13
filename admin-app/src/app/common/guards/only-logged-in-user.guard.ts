@@ -15,7 +15,7 @@ export class OnlyLoggedInUserGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
     return false;
   }
 
