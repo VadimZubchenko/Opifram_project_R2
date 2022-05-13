@@ -33,7 +33,7 @@
                 <p *ngIf="errorText" class="warn-color centered-text error">{{errorText}}</p>
 
                 <button [disabled]="!loginForm.valid || loading" type="submit" class="full-width login-button" mat-raised-button
-                    color="primary">Kirjaudu sisään
+                    color="primary">{{loginButtonText}}
                 </button>
             </form>
 
