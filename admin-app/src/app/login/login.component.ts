@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(v));
           this.router.navigate(['/dashboard']);
         }
+        this.loading = false;
       },
       error: (e): void => {
         if (e.status === 401) {
