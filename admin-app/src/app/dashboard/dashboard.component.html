@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card>
         <mat-toolbar>
-            <span>Kahvikauppa Admin</span>
+            <span>Admin - Kahvikauppa</span>
             <span class="spacer"></span>
             <button (click)="darkModeService.toggleDarkMode()" mat-icon-button aria-label="brightness_medium">
                 <mat-icon>brightness_medium</mat-icon>
@@ -13,9 +13,21 @@
     </mat-card>
     <mat-card>
         <mat-tab-group mat-align-tabs="center">
-            <mat-tab label="Tuotteet">Products </mat-tab>
-            <mat-tab label="Tilaukset">Orders</mat-tab>
-            <mat-tab label="Käyttäjät">Users</mat-tab>
+            <mat-tab label="Tuotteet">
+                <div class="content-container">
+                    <h2>Tuotteet</h2>
+                </div>
+            </mat-tab>
+            <mat-tab label="Tilaukset">
+                <div class="content-container">
+                    <h2>Tilaukset</h2>
+                </div>
+            </mat-tab>
+            <mat-tab label="Käyttäjät">
+                <div class="content-container">
+                    <h2>Käyttäjät</h2>
+                </div>
+            </mat-tab>
         </mat-tab-group>
     </mat-card>
 </div>
