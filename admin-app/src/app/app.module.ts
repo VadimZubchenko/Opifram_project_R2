@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
