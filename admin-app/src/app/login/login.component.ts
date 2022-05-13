@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       },
       error: (e) => {
         if (e.status === 401) {
-          this.errorText = 'Virheellinen käyttäjätunnus tai salasana.';
+          this.errorText = 'Virheellinen sähköpostiosoite tai salasana.';
         } else if (e.status === 500) {
           this.errorText = 'Tapahtui odottaman virhe. Yritä uudelleen.';
         }
