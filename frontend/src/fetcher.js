@@ -7,32 +7,12 @@ const createFetcher = () => {
     }
 
     const handleResponse = async (response) => {
-        const baseResponse = { status: response.status };
+        const baseResponse = {};
 
         if (response.ok) {
             baseResponse.data = await response.json();
         } else {
-
-            let errorName;
-            let errorMessage;
-
-            Object.entries(data).forEach((item) => {
-                errorName = item[0];
-                errorMessage = item[1];
-            });
-
-            if (!errorName && !errorMessage) {
-                errorName = 'Unexpected error';
-                errorMessage = "Something went wrong"
-            }
-
-            const error = {
-                name: errorName,
-                message: errorMessage,
-                status: response.status
-            }
-
-            baseResponse.error = error;
+            baseResponse.errorCode = response.status;
         }
 
         return baseResponse;
@@ -42,24 +22,24 @@ const createFetcher = () => {
         get: async (path) => {
             baseRequest.method = 'GET';
             const response = await fetch(path, baseRequest);
-            return await handleResponse(response);
+            await handleResponse(response);
         },
         post: async (path, data) => {
             baseRequest.method = 'POST';
             baseRequest.body = JSON.stringify(data);
             const response = await fetch(path, baseRequest);
-            return await handleResponse(response);
+            await handleResponse(response);
         },
         put: async (path, data) => {
             baseRequest.method = 'PUT';
             baseRequest.body = JSON.stringify(data);
             const response = await fetch(path, baseRequest);
-            return await handleResponse(response);
+            await handleResponse(response);
         },
         delete: async (path) => {
             baseRequest.method = 'DELETE';
             const response = await fetch(path, baseRequest);
-            return await handleResponse(response);
+            await handleResponse(response);
         },
         config: {
             setAuthToken: (token) => {
@@ -74,23 +54,20 @@ const createFetcher = () => {
     }
 }
 
-/* EXAMPLE USAGE 
+/* EXAMPLE USAGE
 
-//Base
 const response = await fetcher.get('/product');
-
-//With service
+or with service
 const response = await productService.getProducts();
 
- if (response.data) {
+if (response.data) {
+    SUCCESS
     console.log('Fetched data:', response.data);
- } else {
-    console.log('Error name:', response.error.name);
-    console.log('Error message:', response.error.message);
-    console.log('Error status code:', response.error.status);
- }
+} else {
+    ERROR
+    console.log('Error code:, response.errorCode);
+}
 
 */
-
 
 export const fetcher = createFetcher();

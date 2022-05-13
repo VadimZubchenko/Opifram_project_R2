@@ -18,8 +18,8 @@ View or edit `./other/db-uml.drawio` at https://app.diagrams.net
 
 # Getting started
 
-1. `$ npm install` to install the dependencies.
-2. `$ npm run dev` to run the API in development mode. 
+1. `npm install` to install the dependencies.
+2. `npm run dev` to run the API in development mode. 
 3. Import [Insomnia](https://insomnia.rest/) collection from `./other/insomnia-collection.json` to get request examples (optional).
 
 # API

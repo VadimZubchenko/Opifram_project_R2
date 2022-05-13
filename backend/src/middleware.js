@@ -56,7 +56,6 @@ const authenticate = (req, res, next) => {
 };
 
 const checkPermission = (req, res, next) => {
-
   const userId = req.userId;
   const userRole = req.userRole;
   const requestParamId = req.params.id;
@@ -66,7 +65,6 @@ const checkPermission = (req, res, next) => {
   } else {
     throwError('AccessDeniedError', 'You are not allowed to perform this action');
   }
-
 };
 
 const requestLogger = (req, res, next) => {
