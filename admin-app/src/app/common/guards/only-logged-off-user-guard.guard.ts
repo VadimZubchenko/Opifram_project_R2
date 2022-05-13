@@ -9,13 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class OnlyLoggedOffUserGuardGuard implements CanActivate {
   canActivate() {
-
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const parsedUser: LoggedUser = JSON.parse(storedUser);
-      this.authService.setUser(parsedUser);
-    }
-
+    
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['dashboard']);
       return false;

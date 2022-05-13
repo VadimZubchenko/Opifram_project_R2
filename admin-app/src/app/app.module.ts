@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DarkModeService } from './common/services/dark-mode.service';
+import { AuthService } from './common/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,9 +39,22 @@ import { MatTabsModule } from '@angular/material/tabs';
     ReactiveFormsModule,
     HttpClientModule,
     MatToolbarModule,
-    MatTabsModule 
+    MatTabsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (darkModeService: DarkModeService) => () => darkModeService.enableIfSaved(),
+      deps: [DarkModeService],
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authService: AuthService) => () => authService.autoLogin(),
+      deps: [AuthService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

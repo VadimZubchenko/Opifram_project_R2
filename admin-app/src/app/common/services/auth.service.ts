@@ -35,5 +35,13 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
+  autoLogin(): void {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const parsedUser: LoggedUser = JSON.parse(storedUser);
+      this.user = parsedUser;
+    }
+  }
+
   constructor(private http: HttpClient, private router: Router) { }
 }
