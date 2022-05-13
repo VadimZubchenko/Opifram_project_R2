@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe({
       next: (v): void => {
-        if (v.role === 'user') {
+        if (v.role !== 'admin') {
           this.errorText = 'Pääsy evätty';
         } else {
           this.authService.user = v;
