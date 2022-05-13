@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../common/services/auth.service';
+import { DarkModeService } from '../common/services/dark-mode.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,7 @@ import { AuthService } from '../common/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public darkModeService: DarkModeService) { }
 
   ngOnInit(): void {
   }

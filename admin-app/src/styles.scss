@@ -234,7 +234,7 @@ $altTheme: (
 // Theme Init
 @include mat.all-component-themes($theme);
 
-.darkMode {
+.dark-theme {
   @include mat.all-component-themes($altTheme);
 }
 

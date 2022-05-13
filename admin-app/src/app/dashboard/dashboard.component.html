@@ -2,6 +2,9 @@
     <mat-toolbar>
         <span>Kahvikauppa Admin</span>
         <span class="spacer"></span>
+        <button (click)="darkModeService.toggleDarkMode()" mat-icon-button aria-label="brightness_medium">
+            <mat-icon>brightness_medium</mat-icon>
+        </button>
         <button (click)="authService.logout()" mat-icon-button aria-label="logout">
             <mat-icon>logout</mat-icon>
         </button>
