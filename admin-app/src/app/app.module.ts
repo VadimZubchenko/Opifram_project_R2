@@ -20,6 +20,9 @@ import { DarkModeService } from './common/services/dark-mode.service';
 import { AuthService } from './common/services/auth.service';
 import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { ProductsComponent } from './products/products.component';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
     LoginComponent,
     DashboardComponent,
     UnknownRouteComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     MatToolbarModule,
     MatTabsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule
   ],
   providers: [
     {

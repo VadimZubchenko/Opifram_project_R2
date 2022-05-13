@@ -14,22 +14,24 @@ export class DarkModeService {
   }
 
   toggleDarkMode(): void {
-    if (this.document.body.classList.contains('dark-theme')) {
-      this.document.body.classList.remove('dark-theme');
+    const classList = this.document.body.classList;
+    if (classList.contains('dark-theme')) {
+      classList.remove('dark-theme');
       localStorage.setItem('mode', 'light');
     } else {
-      this.document.body.classList.add('dark-theme');
+      classList.add('dark-theme');
       localStorage.setItem('mode', 'dark');
     }
-  };
+  }
 
   enableIfSaved(): void {
     const savedMode = localStorage.getItem('mode');
     if (savedMode) {
+      const classList = this.document.body.classList;
       if (savedMode === 'dark') {
-        this.document.body.classList.add('dark-theme');
+        classList.add('dark-theme');
       } else {
-        this.document.body.classList.remove('dark-theme');
+        classList.remove('dark-theme');
       }
     }
   }

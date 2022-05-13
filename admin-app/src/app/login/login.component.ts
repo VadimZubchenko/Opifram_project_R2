@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../common/services/auth.service';
 import { Router } from '@angular/router';
-import { LoggedUser } from '../common/models/logged-user';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +11,8 @@ import { LoggedUser } from '../common/models/logged-user';
 export class LoginComponent implements OnInit {
 
   errorText: string | undefined;
-  loginButtonText: string = 'Kirjaudu sisään';
-  loading: boolean = false;
+  loginButtonText = 'Kirjaudu sisään';
+  loading = false;
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -65,6 +64,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void { }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit(): void {}
 
 }

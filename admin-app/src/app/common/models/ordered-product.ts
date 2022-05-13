@@ -1,5 +1,4 @@
-import { Order } from "./order";
-import { User } from "./user";
+import { Order } from './order';
 
 export interface OrderedProduct extends Order {
     amount: number;

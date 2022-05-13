@@ -279,3 +279,10 @@ $border-radius: 15px;
 .centered-text {
   text-align: center;
 }
+
+.text-ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

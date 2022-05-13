@@ -16,23 +16,23 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${apiURI}/product`, baseHttpOptions);
-  };
+  }
 
   getProduct(id: string): Observable<Product> {
     return this.http.get<Product>(`${apiURI}/product/${id}`, baseHttpOptions);
-  };
+  }
 
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${apiURI}/product`, product, baseHttpOptions);
-  };
+  }
 
   updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${apiURI}/product/${product.id}`, baseHttpOptions);
-  };
+  }
 
   deleteProduct(product: Product): Observable<Product> {
     return this.http.delete<Product>(`${apiURI}/product/${product.id}`, baseHttpOptions);
-  };
+  }
 
   constructor(private http: HttpClient) { }
 }

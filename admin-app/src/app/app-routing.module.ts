@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [OnlyLoggedOffUserGuardGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [OnlyLoggedInUserGuard] },
   { path: '**', component: UnknownRouteComponent, canActivate: [UnknownRouteGuardGuard] },
-]
+];
 
 @NgModule({
   declarations: [],

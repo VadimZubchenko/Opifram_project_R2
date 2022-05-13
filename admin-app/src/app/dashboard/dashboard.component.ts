@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../common/services/auth.service';
 import { DarkModeService } from '../common/services/dark-mode.service';
 
@@ -10,9 +9,10 @@ import { DarkModeService } from '../common/services/dark-mode.service';
 })
 export class DashboardComponent implements OnInit {
 
+  tab = 'Tuotteet';
+
   constructor(public authService: AuthService, public darkModeService: DarkModeService) { }
 
-  ngOnInit(): void {
-  }
-
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit(): void {}
 }
