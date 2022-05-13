@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../common/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (v) => {
         this.authService.user = v;
+        this.router.navigate(['/products']);
       },
       error: (e) => {
         if (e.status === 401) {
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.errorText = undefined;
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
