@@ -1,7 +1,7 @@
 /**
 * Generated theme by Material Theme Generator
 * https://materialtheme.arcsine.dev
-* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48I2Y1MDA1NyIsIj9lcjwjZmNiM2NkIiwiO2VyPCNmMDAwM2N$LCIlPmBePCM2NjY2NjYiLCI~ZXI8I2QxZDFkMSIsIjtlcjwjNDk0OTQ5fiwid2Fybj5gXjwjZGU1YzVjIiwiP2VyPCNmNWNlY2UiLCI7ZXI8I2QxNDE0MX4sIj9UZXh0PCMxMTExMTEiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz50cnVlLCJ2ZXJzaW9uPjEzfQ==
+* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48I2Y1MDA1NyIsIj9lcjwjZmNiM2NkIiwiO2VyPCNmMDAwM2N$LCIlPmBePCMxZjFmMWYiLCI~ZXI8IzEyMTIxMiIsIjtlcjwjMTIxMjEyfiwid2Fybj5gXjwjZDY1ZDVkIiwiP2VyPCNmM2NlY2UiLCI7ZXI8I2M2NDE0MX4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMxMjEyMTJ$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz5mYWxzZSwidmVyc2lvbj4xM30=
 */
 
 @use '@angular/material' as mat;
@@ -12,7 +12,7 @@
 // Fonts
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-
+     
 $fontConfig: (
   display-4: mat.define-typography-level(112px, 112px, 300, 'Roboto', -0.0134em),
   display-3: mat.define-typography-level(56px, 56px, 400, 'Roboto', -0.0089em),
@@ -29,12 +29,10 @@ $fontConfig: (
   input: mat.define-typography-level(inherit, 1.125, 400, 'Roboto', 1.5px)
 );
 
-$border-radius: 15px;
-
 // Foreground Elements
 
 // Light Theme Text
-$dark-text: #111111;
+$dark-text: #000000;
 $dark-primary-text: rgba($dark-text, 0.87);
 $dark-accent-text: rgba($dark-primary-text, 0.54);
 $dark-disabled-text: rgba($dark-primary-text, 0.38);
@@ -95,9 +93,9 @@ $light-bg-darker-10:  darken($light-background, 10%);
 $light-bg-darker-20:  darken($light-background, 20%);
 $light-bg-darker-30:  darken($light-background, 30%);
 $light-bg-lighter-5:  lighten($light-background, 5%);
-$dark-bg-tooltip:     lighten(#2c2c2c, 20%);
-$dark-bg-alpha-4:     rgba(#2c2c2c, 0.04);
-$dark-bg-alpha-12:    rgba(#2c2c2c, 0.12);
+$dark-bg-tooltip:     lighten(#121212, 20%);
+$dark-bg-alpha-4:     rgba(#121212, 0.04);
+$dark-bg-alpha-12:    rgba(#121212, 0.12);
 
 $mat-light-theme-background: (
   background:               $light-background,
@@ -118,7 +116,7 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background:     #2c2c2c;
+$dark-background:     #121212;
 $dark-bg-lighter-5:   lighten($dark-background, 5%);
 $dark-bg-lighter-10:  lighten($dark-background, 10%);
 $dark-bg-lighter-20:  lighten($dark-background, 20%);
@@ -173,21 +171,21 @@ $theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
 
 
 body {
-  --accent-color: #666666;
-  --accent-lighter-color: #d1d1d1;
-  --accent-darker-color: #494949;
+  --accent-color: #1f1f1f;
+  --accent-lighter-color: #121212;
+  --accent-darker-color: #121212;
   --text-accent-color: #{$light-primary-text};
-  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-lighter-color: #{$light-primary-text};
   --text-accent-darker-color: #{$light-primary-text};
 }   
 $mat-accent: (
-  main: #666666,
-  lighter: #d1d1d1,
-  darker: #494949,
-  200: #666666, // For slide toggle,
+  main: #1f1f1f,
+  lighter: #121212,
+  darker: #121212,
+  200: #1f1f1f, // For slide toggle,
   contrast : (
     main: $light-primary-text,
-    lighter: $dark-primary-text,
+    lighter: $light-primary-text,
     darker: $light-primary-text,
   )
 );
@@ -195,18 +193,18 @@ $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
 
 
 body {
-  --warn-color: #de5c5c;
-  --warn-lighter-color: #f5cece;
-  --warn-darker-color: #d14141;
+  --warn-color: #d65d5d;
+  --warn-lighter-color: #f3cece;
+  --warn-darker-color: #c64141;
   --text-warn-color: #{$dark-primary-text};
   --text-warn-lighter-color: #{$dark-primary-text};
   --text-warn-darker-color: #{$light-primary-text};
 }   
 $mat-warn: (
-  main: #de5c5c,
-  lighter: #f5cece,
-  darker: #d14141,
-  200: #de5c5c, // For slide toggle,
+  main: #d65d5d,
+  lighter: #f3cece,
+  darker: #c64141,
+  200: #d65d5d, // For slide toggle,
   contrast : (
     main: $dark-primary-text,
     lighter: $dark-primary-text,
@@ -220,17 +218,17 @@ $theme: (
   primary: $theme-primary,
   accent: $theme-accent,
   warn: $theme-warn,
-  is-dark: false,
-  foreground: $mat-light-theme-foreground,
-  background: $mat-light-theme-background,
+  is-dark: true,
+  foreground: $mat-dark-theme-foreground,
+  background: $mat-dark-theme-background,
 );
 $altTheme: (
   primary: $theme-primary,
   accent: $theme-accent,
   warn: $theme-warn,
-  is-dark: true,
-  foreground: $mat-dark-theme-foreground,
-  background: $mat-dark-theme-background,
+  is-dark: false,
+  foreground: $mat-light-theme-foreground,
+  background: $mat-light-theme-background,
 );
 
 // Theme Init
@@ -242,6 +240,8 @@ $altTheme: (
 
 // Specific component overrides, pieces that are not in line with the general theming
 
+$border-radius: 15px;
+
 // Handle buttons appropriately, with respect to line-height
 .mat-raised-button, .mat-stroked-button, .mat-flat-button {
   padding: 0 1.15em;
@@ -251,11 +251,7 @@ $altTheme: (
   border-radius: $border-radius !important;
 }
 
-.mat-card {
-  border-radius: $border-radius !important;
-}
-
-.mat-toolbar {
+.mat-card, .mat-toolbar, .mat-menu-content {
   border-radius: $border-radius !important;
 }
 

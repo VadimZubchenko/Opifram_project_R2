@@ -39,7 +39,9 @@ export class AuthService {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const parsedUser: LoggedUser = JSON.parse(storedUser);
-      this.user = parsedUser;
+      if (parsedUser.role === 'admin') {
+        this.user = parsedUser;
+      }
     }
   }
 

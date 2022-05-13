@@ -6,6 +6,13 @@ import { Inject, Injectable } from '@angular/core';
 })
 export class DarkModeService {
 
+  isDarkMode(): boolean {
+    if (this.document.body.classList.contains('dark-theme')) {
+      return true;
+    }
+    return false;
+  }
+
   toggleDarkMode(): void {
     if (this.document.body.classList.contains('dark-theme')) {
       this.document.body.classList.remove('dark-theme');

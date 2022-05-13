@@ -3,12 +3,18 @@
 }
 
 .container {
-    max-width: 768px;
+    max-width: 640px;
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 15px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .content-container {
@@ -21,4 +27,40 @@
 
 .mat-toolbar {
     background-color: transparent;
+}
+
+.dark-mode-button {
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+.face-icon {
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
+
+.user-menu-icon {
+    margin-bottom: 3px;
+}
+
+.brand-image {
+    margin-right: 12px;
+}
+
+.brand-divider-dot {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+@media only screen and (max-width: 500px) {
+    .brand-text-secondary {
+        display: none;
+    }
+    .brand-divider-dot {
+        display: none;
+    }
 }

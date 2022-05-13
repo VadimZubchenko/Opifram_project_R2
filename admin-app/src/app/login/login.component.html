@@ -5,12 +5,11 @@
         <mat-divider></mat-divider>
         <mat-card-content class="content">
 
-
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Sähköpostiosoite</mat-label>
-                    <input (focus)="onFocus()" matInput type="email" formControlName="email">
+                    <input (focus)="clearError()" matInput type="email" formControlName="email">
                     <mat-icon matSuffix>email</mat-icon>
                     <!--
                     <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
@@ -21,7 +20,7 @@
 
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Salasana</mat-label>
-                    <input (focus)="onFocus()" matInput type="password" formControlName="password">
+                    <input (focus)="clearError()" matInput type="password" formControlName="password">
                     <mat-icon matSuffix>password</mat-icon>
                     <!--
                     <mat-error *ngIf="loginForm.get('password')?.hasError('password')">
@@ -32,8 +31,8 @@
 
                 <p *ngIf="errorText" class="warn-color centered-text error">{{errorText}}</p>
 
-                <button [disabled]="!loginForm.valid || loading" type="submit" class="full-width login-button" mat-raised-button
-                    color="primary">{{loginButtonText}}
+                <button [disabled]="!loginForm.valid || loading" type="submit" class="full-width login-button"
+                    mat-raised-button color="primary">{{loginButtonText}}
                 </button>
             </form>
 

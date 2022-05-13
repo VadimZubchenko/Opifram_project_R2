@@ -19,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { DarkModeService } from './common/services/dark-mode.service';
 import { AuthService } from './common/services/auth.service';
 import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatMenuModule
   ],
   providers: [
     {

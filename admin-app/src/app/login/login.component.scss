@@ -3,10 +3,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    max-width: 365px;
+    max-width: 345px;
     margin: auto;
+    margin-top: 25vh;
 }
 
 .mat-card-title {
@@ -19,13 +20,13 @@
 }
 
 .login-button {
-    height: 50px;
+    height: 60px;
 }
 
 .mat-card {
-    padding: 30px;
+    padding: 25px;
 }
 
 .error {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }

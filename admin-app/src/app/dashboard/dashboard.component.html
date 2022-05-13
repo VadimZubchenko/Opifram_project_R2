@@ -1,26 +1,41 @@
 <div class="container">
     <mat-card>
         <mat-toolbar>
-            <span>Admin - Kahvikauppa</span>
+                <button class="brand-image" [color]="'primary'" mat-mini-fab><mat-icon>verified_user</mat-icon></button>
+                <span class="brand-text-primary">Admin</span>
+                <span class="brand-divider-dot">·</span>
+                <span class="brand-text-secondary">Kahvikauppa</span>
             <span class="spacer"></span>
-            <button (click)="darkModeService.toggleDarkMode()" mat-icon-button aria-label="brightness_medium">
+            <!--
+            <button class="dark-mode-button" (click)="darkModeService.toggleDarkMode()" mat-icon-button
+                aria-label="brightness_medium">
                 <mat-icon>brightness_medium</mat-icon>
             </button>
-            <button (click)="authService.logout()" mat-icon-button aria-label="logout">
-                <mat-icon>logout</mat-icon>
+            -->
+            <button [matMenuTriggerFor]="menu" mat-stroked-button aria-label="logout">
+                <mat-icon class="face-icon">face</mat-icon>{{authService.user?.firstName}} {{authService.user?.lastName}}
             </button>
+
+            <mat-menu #menu="matMenu" xPosition="before">
+                <div (click) = "$event.stopPropagation()">
+                    <button (click)="darkModeService.toggleDarkMode()" mat-menu-item><mat-icon class="user-menu-icon">brightness_medium</mat-icon>{{!darkModeService.isDarkMode() ? 'Vaalea' : 'Tumma'}} teema</button>
+                </div>
+                <mat-divider></mat-divider>
+                <button (click)="authService.logout()" mat-menu-item><mat-icon class="user-menu-icon">logout</mat-icon>Kirjaudu ulos</button>
+            </mat-menu>
+
         </mat-toolbar>
     </mat-card>
     <mat-card>
         <mat-tab-group mat-align-tabs="center">
-            <mat-tab label="Tuotteet">
-                <div class="content-container">
-                    <h2>Tuotteet</h2>
-                </div>
-            </mat-tab>
             <mat-tab label="Tilaukset">
                 <div class="content-container">
                     <h2>Tilaukset</h2>
+                </div>
+            </mat-tab>
+            <mat-tab label="Tuotteet">
+                <div class="content-container">
+                    <h2>Tuotteet</h2>
                 </div>
             </mat-tab>
             <mat-tab label="Käyttäjät">

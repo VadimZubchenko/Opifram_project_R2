@@ -32,19 +32,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-   this.setLoading(true);
+    this.setLoading(true);
 
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
     this.authService.login(email, password).subscribe({
       next: (v): void => {
-        if (v.role !== 'admin') {
-          this.errorText = 'Pääsy evätty';
-        } else {
+        if (v.role === 'admin') {
           this.authService.user = v;
           localStorage.setItem('user', JSON.stringify(v));
           this.router.navigate(['/dashboard']);
+        } else {
+          this.errorText = 'Sinulla ei ole oikeuksia kirjautua tälle sivulle.';
         }
         this.setLoading(false);
       },
@@ -52,14 +52,14 @@ export class LoginComponent implements OnInit {
         if (e.status === 401) {
           this.errorText = 'Virheellinen sähköpostiosoite tai salasana.';
         } else if (e.status === 500) {
-          this.errorText = 'Tapahtui odottaman virhe. Yritä uudelleen.';
+          this.errorText = 'Tapahtui odottamaton virhe. Yritä uudelleen.';
         }
         this.setLoading(false);
       }
     });
   }
 
-  onFocus(): void {
+  clearError(): void {
     this.errorText = undefined;
   }
 
