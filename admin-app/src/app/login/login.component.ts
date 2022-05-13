@@ -12,6 +12,7 @@ import { LoggedUser } from '../common/models/logged-user';
 export class LoginComponent implements OnInit {
 
   errorText: string | undefined;
+  loading: boolean = false;
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -19,6 +20,8 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit(): void {
+    this.loading = true;
+
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
@@ -38,6 +41,7 @@ export class LoginComponent implements OnInit {
         } else if (e.status === 500) {
           this.errorText = 'Tapahtui odottaman virhe. Yritä uudelleen.';
         }
+        this.loading = false;
       }
     });
   }
