@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { Product } from '../common/models/product';
 import { ConfirmService } from '../common/services/confirm.service';
 import { ProductService } from '../common/services/product.service';
@@ -25,9 +26,13 @@ export class ProductsComponent implements OnInit {
 
   onEdit(): void {
     this.dialog
-      .open(ProductDialogComponent, { data: { action: 'edit', item: this.selectedProduct } })
+      .open(ProductDialogComponent, { disableClose: true, data: { action: DialogOpenAction.Edit, item: this.selectedProduct } })
       .afterClosed()
-      .subscribe(result => console.log('Result:', result));
+      .subscribe(save => {
+        if (save) {
+          console.log('Edit product');
+        }
+      });
   }
 
   onDelete(): void {
@@ -42,8 +47,13 @@ export class ProductsComponent implements OnInit {
 
   onCreate(): void {
     this.dialog
-      .open(ProductDialogComponent, { data: { action: 'create' } })
-      .afterClosed().subscribe(result => console.log('Result', result));
+      .open(ProductDialogComponent, { disableClose: true, data: { action: DialogOpenAction.Create } })
+      .afterClosed()
+      .subscribe(save => {
+        if (save) {
+          console.log('Create product');
+        }
+      });
   }
 
   constructor(public productService: ProductService, private confirmService: ConfirmService, public dialog: MatDialog) { }

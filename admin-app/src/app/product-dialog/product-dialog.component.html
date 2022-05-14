@@ -1,8 +1,52 @@
-<h1 mat-dialog-title>{{data.action === 'edit' ? 'Muokkaa tuotetta' : 'Lisää tuote'}}</h1>
-<mat-dialog-content>
-    Inputit tähän
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-stroked-button [color]="'primary'" [mat-dialog-close]="true">Tallenna</button>
-    <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
-</mat-dialog-actions>
+<div class="container">
+    <h1 mat-dialog-title>{{data.action === 'edit' ? 'Muokkaa tuotetta' : 'Lisää tuote'}}</h1>
+    <mat-dialog-content>
+        <form [formGroup]="productForm">
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Nimi</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Kuvaus</mat-label>
+                <input matInput formControlName="description">
+                <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Hinta</mat-label>
+                <input matInput type="number" formControlName="price">
+                <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Määrä</mat-label>
+                <input matInput type="number" formControlName="quantity">
+                <mat-error *ngIf="productForm.get('quantity')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Kuva (URL)</mat-label>
+                <input matInput type="string" formControlName="image">
+                <mat-error *ngIf="productForm.get('image')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button [disabled]="productForm.invalid" mat-stroked-button [color]="'primary'" [mat-dialog-close]="true">Tallenna</button>
+        <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
+    </mat-dialog-actions>
+</div>
