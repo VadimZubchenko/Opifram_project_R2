@@ -25,6 +25,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
     MatTabsModule,
     MatMenuModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [
     {
