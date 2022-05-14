@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const { toUser, toUserEntry } = require('../utils');
+const bcrypt = require('bcrypt');
 
 const getUsers = async () => {
   const users = await User.find({});
@@ -14,6 +15,8 @@ const getUser = async (id) => {
 const createUser = async (data) => {
   const userEntry = toUserEntry(data);
   userEntry.role = data.role;
+  const hashedPassword = await bcrypt.hash(userEntry.password, 12);
+  userEntry.password = hashedPassword;
   const createdUser = new User(userEntry);
   const savedUser = await createdUser.save();
   return toUser(savedUser);
