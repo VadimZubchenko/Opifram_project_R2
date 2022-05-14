@@ -29,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { UsersComponent } from './users/users.component';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UsersComponent } from './users/users.component';
     OrdersComponent,
     OrderDialogComponent,
     UsersComponent,
+    UserDialogComponent,
   ],
   imports: [
     BrowserModule,

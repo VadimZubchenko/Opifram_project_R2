@@ -15,8 +15,6 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 })
 
 export class OrdersComponent implements OnInit {
-  title = 'Tilaukset';
-
   orders$: Observable<Order[]>;
   selectedOrder: Order;
 

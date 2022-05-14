@@ -15,8 +15,6 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
 })
 
 export class ProductsComponent implements OnInit {
-  title = 'Tuotteet';
-
   products$: Observable<Product[]>;
   selectedProduct: Product;
 
