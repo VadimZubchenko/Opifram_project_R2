@@ -12,6 +12,7 @@ const getUser = async (id) => {
   return toUser(user);
 };
 
+//Remove this before production
 const createUser = async (data) => {
   const userEntry = toUserEntry(data);
   userEntry.role = data.role;

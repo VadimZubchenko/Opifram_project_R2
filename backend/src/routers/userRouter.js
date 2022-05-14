@@ -13,6 +13,7 @@ router.get('/:id', authenticate, checkPermission, async (req, res) => {
   res.json(user);
 });
 
+//Remove this before production
 router.post('/', async (req, res) => {
   const createdUser = await userService.createUser(req.body);
   res.json(createdUser);
