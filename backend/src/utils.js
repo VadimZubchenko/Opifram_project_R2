@@ -82,6 +82,7 @@ const toOrder = (data) => {
     sum: data.sum,
     status: data.status,
     id: data.id,
+    createdAt: data.createdAt
   };
 };
 
