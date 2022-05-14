@@ -34,8 +34,7 @@ export class ProductsComponent implements OnInit {
       .afterClosed()
       .subscribe(data => {
         if (data) {
-          this.productService.updateProduct(data).subscribe();
-          this.getProducts();
+          this.productService.updateProduct(data).subscribe(() => this.getProducts());
         }
       });
   }
@@ -45,8 +44,7 @@ export class ProductsComponent implements OnInit {
       .confirm(`Haluatko varmasti poistaa tuotteen ${this.selectedProduct.name}?`)
       .subscribe(confirmed => {
         if (confirmed) {
-          this.productService.deleteProduct(this.selectedProduct).subscribe();
-          this.getProducts();
+          this.productService.deleteProduct(this.selectedProduct).subscribe(() => this.getProducts());
         }
       });
   }
@@ -57,8 +55,7 @@ export class ProductsComponent implements OnInit {
       .afterClosed()
       .subscribe(data => {
         if (data) {
-          this.productService.createProduct(data).subscribe();
-          this.getProducts();
+          this.productService.createProduct(data).subscribe(() => this.getProducts());
         }
       });
   }
