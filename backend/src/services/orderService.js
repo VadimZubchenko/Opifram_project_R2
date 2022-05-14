@@ -31,7 +31,7 @@ const createOrder = async (userId, data) => {
   for (const item of shoppingCartData) {
     //TODO: Need to check that item.amount does not exceed product.quantity
     const product = await Product.findById(item.product);
-    order.products.push({ product: product.id, amount: item.amount });
+    order.products.push({ product: product.id, amount: item.amount, price: product.price });
     sum += product.price * item.amount;
     await product.updateOne({ quantity: product.quantity - item.amount });
   }
