@@ -55,6 +55,7 @@ const toOrderedProduct = (data) => {
   return {
     name: data.product.name,
     amount: data.amount,
+    id: data.id
   };
 };
 
