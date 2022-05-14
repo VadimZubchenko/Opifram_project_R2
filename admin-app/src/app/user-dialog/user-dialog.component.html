@@ -1,1 +1,59 @@
-<p>user-dialog works!</p>
+<div class="container">
+    <h1 mat-dialog-title>{{data.action === 'edit' ? 'Muokkaa käyttäjää' : 'Lisää käyttäjä'}}</h1>
+    <mat-dialog-content>
+        <form [formGroup]="userForm">
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Etunimi</mat-label>
+                <input matInput formControlName="firstName">
+                <mat-error *ngIf="userForm.get('firstName')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Sukunimi</mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error *ngIf="userForm.get('category')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Sähköpostiosoite</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Osoite</mat-label>
+                <input matInput formControlName="address">
+                <mat-error *ngIf="userForm.get('address')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Rooli</mat-label>
+
+                <mat-select formControlName="role">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{role}}
+                    </mat-option>
+                </mat-select>
+                
+                <mat-error *ngIf="userForm.get('role')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button [disabled]="userForm.invalid" mat-stroked-button [color]="'primary'"
+            [mat-dialog-close]="userForm.value">Tallenna</button>
+        <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
+    </mat-dialog-actions>
+</div>

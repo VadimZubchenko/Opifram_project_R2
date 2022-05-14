@@ -13,7 +13,11 @@
 
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Kategoria</mat-label>
-                <input matInput formControlName="category">
+                <mat-select formControlName="category">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{category}}
+                    </mat-option>
+                </mat-select>
                 <mat-error *ngIf="productForm.get('category')?.hasError('required')">
                     Täytä tämä kenttä.
                 </mat-error>
@@ -45,7 +49,7 @@
 
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Kuva (URL)</mat-label>
-                <input matInput type="string" formControlName="image">
+                <input matInput formControlName="image">
                 <mat-error *ngIf="productForm.get('image')?.hasError('required')">
                     Täytä tämä kenttä.
                 </mat-error>
@@ -54,7 +58,8 @@
         </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button [disabled]="productForm.invalid" mat-stroked-button [color]="'primary'" [mat-dialog-close]="productForm.value">Tallenna</button>
+        <button [disabled]="productForm.invalid" mat-stroked-button [color]="'primary'"
+            [mat-dialog-close]="productForm.value">Tallenna</button>
         <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
     </mat-dialog-actions>
 </div>

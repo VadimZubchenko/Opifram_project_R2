@@ -30,6 +30,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { UsersComponent } from './users/users.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule
   ],
   providers: [
     {

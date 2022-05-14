@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../common/models/dialog-data';
 import { Product } from '../common/models/product';
+import { ProductCategory } from '../common/models/product-category';
 
 @Component({
   selector: 'app-product-dialog',
@@ -13,6 +14,7 @@ import { Product } from '../common/models/product';
 export class ProductDialogComponent implements OnInit {
 
   product = this.data.item as Product;
+  categories: ProductCategory[] = Object.values(ProductCategory);
 
   productForm: FormGroup = new FormGroup({
     name: new FormControl(this.product?.name, Validators.required),

@@ -1,6 +1,6 @@
 export interface OrderedProduct {
+    id: string;
     name: string;
     amount: number;
-    id: string;
     price: number;
 }
