@@ -24,8 +24,6 @@ export class ProductsComponent implements OnInit {
   }
 
   onEdit(): void {
-    //TODO: Edit product
-    console.log('Edit:', this.selectedProduct);
     this.dialog
       .open(ProductDialogComponent, { data: { action: 'edit', item: this.selectedProduct } })
       .afterClosed()
@@ -33,8 +31,8 @@ export class ProductsComponent implements OnInit {
   }
 
   onDelete(): void {
-    //TODO: Delete product
-    this.confirmService.confirm(`Haluatko varmasti poistaa tuotteen ${this.selectedProduct.name}?`)
+    this.confirmService
+      .confirm(`Haluatko varmasti poistaa tuotteen ${this.selectedProduct.name}?`)
       .subscribe(confirmed => {
         if (confirmed) {
           console.log('Delete:', this.selectedProduct);
@@ -43,8 +41,6 @@ export class ProductsComponent implements OnInit {
   }
 
   onCreate(): void {
-    //TODO: Create new product
-    console.log('Create new product');
     this.dialog
       .open(ProductDialogComponent, { data: { action: 'create' } })
       .afterClosed().subscribe(result => console.log('Result', result));

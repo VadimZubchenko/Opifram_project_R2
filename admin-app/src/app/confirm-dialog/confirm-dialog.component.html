@@ -3,6 +3,6 @@
     {{message}}
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-stroked-button [color]="'primary'" (click)="dialogRef.close(true)">Vahvista</button>
-    <button mat-stroked-button cdkFocusInitial (click)="dialogRef.close(false)">Peruuta</button>
+    <button mat-stroked-button [color]="'primary'" [mat-dialog-close]="true">Vahvista</button>
+    <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
 </mat-dialog-actions>

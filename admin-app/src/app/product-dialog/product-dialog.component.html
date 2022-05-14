@@ -3,6 +3,6 @@
     Inputit tähän
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-stroked-button [color]="'primary'" mat-dialog-close="true">Tallenna</button>
-    <button mat-stroked-button cdkFocusInitial mat-dialog-close="false">Peruuta</button>
+    <button mat-stroked-button [color]="'primary'" [mat-dialog-close]="true">Tallenna</button>
+    <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
 </mat-dialog-actions>
