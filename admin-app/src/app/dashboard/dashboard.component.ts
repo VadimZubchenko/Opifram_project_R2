@@ -13,6 +13,5 @@ export class DashboardComponent implements OnInit {
 
   constructor(public authService: AuthService, public darkModeService: DarkModeService) { }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 }

@@ -22,7 +22,8 @@ import { UnknownRouteComponent } from './unknown-route/unknown-route.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProductsComponent } from './products/products.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatTableModule } from '@angular/material/table';
     DashboardComponent,
     UnknownRouteComponent,
     ProductsComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { MatTableModule } from '@angular/material/table';
     MatToolbarModule,
     MatTabsModule,
     MatMenuModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [
     {

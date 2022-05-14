@@ -20,6 +20,9 @@
             "error",
             2
         ],
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
         "linebreak-style": [
             "error",
             "unix"
@@ -29,6 +32,10 @@
             "single"
         ],
         "semi": [
+            "error",
+            "always"
+        ],
+        "object-curly-spacing": [
             "error",
             "always"
         ]

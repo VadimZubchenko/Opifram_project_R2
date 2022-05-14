@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../common/models/product';
+import { ConfirmService } from '../common/services/confirm.service';
 import { ProductService } from '../common/services/product.service';
 
 @Component({
@@ -21,13 +22,18 @@ export class ProductsComponent implements OnInit {
   }
 
   onEdit(): void {
-    //TODO: Edit product
+    //TODO: Delete product
     console.log('Edit:', this.selectedProduct);
   }
 
   onDelete(): void {
     //TODO: Delete product
-    console.log('Delete:', this.selectedProduct);
+    this.confirmService.confirm(`Haluatko varmasti poistaa tuotteen ${this.selectedProduct.name}?`)
+      .subscribe(confirmed => {
+        if (confirmed) {
+          console.log('Delete:', this.selectedProduct);
+        }
+      });
   }
 
   onCreate(): void {
@@ -35,7 +41,7 @@ export class ProductsComponent implements OnInit {
     console.log('Create new product');
   }
 
-  constructor(public productService: ProductService) { }
+  constructor(public productService: ProductService, private confirmService: ConfirmService) { }
 
   ngOnInit(): void {
     this.products$ = this.productService.getProducts();

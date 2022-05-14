@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
   errorText: string | undefined;
@@ -64,7 +65,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
 }
