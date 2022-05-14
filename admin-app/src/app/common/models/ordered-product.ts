@@ -1,5 +1,5 @@
-import { Order } from './order';
-
-export interface OrderedProduct extends Order {
+export interface OrderedProduct {
+    name: string;
     amount: number;
+    id: string;
 }
