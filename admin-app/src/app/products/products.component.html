@@ -44,7 +44,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<mat-menu #menu="matMenu">
+<mat-menu #menu="matMenu" xPosition="before">
     <button (click)="onEdit()" mat-menu-item>
         <mat-icon>edit</mat-icon>Muokkaa
     </button>
