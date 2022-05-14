@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   getToken(): string {
-    return this.user ? this.user.token : '';
+    return this.user ? `Bearer ${this.user.token}` : '';
   }
 
   autoLogin(): void {

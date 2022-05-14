@@ -20,6 +20,10 @@ export class ProductsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'category', 'price', 'quantity', 'id'];
 
+  getProducts(): void {
+    this.products$ = this.productService.getProducts();
+  }
+
   onSelect(product: Product): void {
     this.selectedProduct = product;
   }
@@ -28,9 +32,10 @@ export class ProductsComponent implements OnInit {
     this.dialog
       .open(ProductDialogComponent, { disableClose: true, data: { action: DialogOpenAction.Edit, item: this.selectedProduct } })
       .afterClosed()
-      .subscribe(save => {
-        if (save) {
-          console.log('Edit product');
+      .subscribe(data => {
+        if (data) {
+          this.productService.updateProduct(data).subscribe();
+          this.getProducts();
         }
       });
   }
@@ -40,7 +45,8 @@ export class ProductsComponent implements OnInit {
       .confirm(`Haluatko varmasti poistaa tuotteen ${this.selectedProduct.name}?`)
       .subscribe(confirmed => {
         if (confirmed) {
-          console.log('Delete:', this.selectedProduct);
+          this.productService.deleteProduct(this.selectedProduct).subscribe();
+          this.getProducts();
         }
       });
   }
@@ -49,9 +55,10 @@ export class ProductsComponent implements OnInit {
     this.dialog
       .open(ProductDialogComponent, { disableClose: true, data: { action: DialogOpenAction.Create } })
       .afterClosed()
-      .subscribe(save => {
-        if (save) {
-          console.log('Create product');
+      .subscribe(data => {
+        if (data) {
+          this.productService.createProduct(data).subscribe();
+          this.getProducts();
         }
       });
   }
@@ -59,7 +66,7 @@ export class ProductsComponent implements OnInit {
   constructor(public productService: ProductService, private confirmService: ConfirmService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.products$ = this.productService.getProducts();
+    this.getProducts();
   }
 
 }

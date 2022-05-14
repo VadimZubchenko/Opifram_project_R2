@@ -12,6 +12,14 @@
             </mat-form-field>
 
             <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Kategoria</mat-label>
+                <input matInput formControlName="category">
+                <mat-error *ngIf="productForm.get('category')?.hasError('required')">
+                    Täytä tämä kenttä.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Kuvaus</mat-label>
                 <input matInput formControlName="description">
                 <mat-error *ngIf="productForm.get('description')?.hasError('required')">
@@ -46,7 +54,7 @@
         </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button [disabled]="productForm.invalid" mat-stroked-button [color]="'primary'" [mat-dialog-close]="true">Tallenna</button>
+        <button [disabled]="productForm.invalid" mat-stroked-button [color]="'primary'" [mat-dialog-close]="productForm.value">Tallenna</button>
         <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
     </mat-dialog-actions>
 </div>

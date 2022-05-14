@@ -14,9 +14,11 @@ export class ProductDialogComponent implements OnInit {
   productForm: FormGroup = new FormGroup({
     name: new FormControl(this.data.item?.name, Validators.required),
     description: new FormControl(this.data.item?.description, Validators.required),
+    category: new FormControl(this.data.item?.category, Validators.required),
     price: new FormControl(this.data.item?.price, Validators.required),
     quantity: new FormControl(this.data.item?.quantity, Validators.required),
-    image: new FormControl(this.data.item?.image, Validators.required)
+    image: new FormControl(this.data.item?.image, Validators.required),
+    id: new FormControl(this.data.item?.id)
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
