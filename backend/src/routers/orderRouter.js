@@ -23,6 +23,11 @@ router.post('/', authenticate, async (req, res) => {
   res.json(createdOrder);
 });
 
+router.put('/:id', authenticate, checkPermission, async (req, res) => {
+  const updatedOrder = await orderService.updateOrder(req.params.id, req.body);
+  res.json(updatedOrder);
+});
+
 router.delete('/:id', authenticate, checkPermission, async (req, res) => {
   const deletedOrder = await orderService.deleteOrder(req.params.id);
   res.json(deletedOrder);

@@ -1,6 +1,6 @@
 const Order = require('../models/orderModel');
 const Product = require('../models/productModel');
-const { formatPrice, toOrder, toShoppingCartData } = require('../utils');
+const { formatPrice, toOrder, toShoppingCartData, toOrderUpdateEntry } = require('../utils');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('products.product');
@@ -42,6 +42,12 @@ const createOrder = async (userId, data) => {
   return toOrder(populatedOrder);
 };
 
+const updateOrder = async (id, data) => {
+  const orderUpdateEntry = toOrderUpdateEntry(data);
+  const updatedOrder = await Order.findByIdAndUpdate(id, orderUpdateEntry, {new: true});
+  return toOrder(updatedOrder);
+};
+
 const deleteOrder = async (id) => {
   const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('products.product');
   return toOrder(deletedOrder);
@@ -51,6 +57,7 @@ module.exports = {
   getOrders,
   getOrdersByUserId,
   getOrder,
+  updateOrder,
   createOrder,
   deleteOrder
 };

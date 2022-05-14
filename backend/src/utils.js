@@ -87,6 +87,7 @@ const toUser = (data) => {
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
+    role: data.role,
     phone: data.phone,
     address: data.address,
     id: data.id,
@@ -110,6 +111,23 @@ const toUserEntry = (data) => {
     address: validateStringProperty('address', data.address),
     role: 'user',
     password: validatePassword(data.password)
+  };
+};
+
+const toUserUpdateEntry = (data) => {
+  return {
+    firstName: validateStringProperty('firstName', data.firstName),
+    lastName: validateStringProperty('lastName', data.lastName),
+    email: validateStringProperty('email', data.email),
+    phone: validateStringProperty('phone', data.phone),
+    address: validateStringProperty('address', data.address),
+    role: validateStringProperty('role', data.role)
+  };
+};
+
+const toOrderUpdateEntry = (data) => {
+  return {
+    status: validateStringProperty('status', data.status)
   };
 };
 
@@ -156,7 +174,9 @@ module.exports = {
   toProductEntry,
   toOrder,
   toShoppingCartData,
+  toOrderUpdateEntry,
   toUserEntry,
+  toUserUpdateEntry,
   toUser,
   toLoginCredentials,
   toAccessTokenData,

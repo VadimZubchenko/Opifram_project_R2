@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', authenticate, checkPermission, async (req, res) => {
-  const updatedUser = await userService.updateUser(req.params.id, req.body);
+  const updatedUser = await userService.updateUser(req.params.id, req.body, req.userRole);
   res.json(updatedUser);
 });
 
