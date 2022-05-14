@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
 
   onEdit(): void {
     this.dialog
-      .open(UserDialogComponent, { data: { action: DialogOpenAction.Open, item: this.selectedUser } })
+      .open(UserDialogComponent, { data: { action: DialogOpenAction.Edit, item: this.selectedUser } })
       .afterClosed()
       .subscribe((user: User) => {
         if (user) {

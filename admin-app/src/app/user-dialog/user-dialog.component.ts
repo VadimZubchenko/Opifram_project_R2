@@ -18,7 +18,7 @@ export class UserDialogComponent implements OnInit {
   userForm: FormGroup = new FormGroup({
     firstName: new FormControl(this.user?.firstName, [Validators.required]),
     lastName: new FormControl(this.user?.lastName, [Validators.required]),
-    email: new FormControl(this.user?.email, [Validators.required]),
+    email: new FormControl(this.user?.email, [Validators.required, Validators.email]),
     phone: new FormControl(this.user?.phone, [Validators.required]),
     address: new FormControl(this.user?.address, [Validators.required]),
     role: new FormControl(this.user?.role, [Validators.required]),
