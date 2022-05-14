@@ -26,6 +26,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ProductsComponent,
     ConfirmDialogComponent,
     ProductDialogComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

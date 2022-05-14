@@ -53,7 +53,7 @@ export class ProductsComponent implements OnInit {
 
   onDelete(): void {
     this.confirmService
-      .confirm(`Haluatko varmasti poistaa tuotteen ${this.selectedProduct.name}?`)
+      .confirm('Vahvista tuotteen poistaminen.')
       .subscribe((confirmed: boolean) => {
         if (confirmed) {
           this.productService.deleteProduct(this.selectedProduct).subscribe({
