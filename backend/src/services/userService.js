@@ -11,6 +11,14 @@ const getUser = async (id) => {
   return toUser(user);
 };
 
+const createUser = async (data) => {
+  const userEntry = toUserEntry(data);
+  userEntry.role = data.role;
+  const createdUser = new User(userEntry);
+  const savedUser = await createdUser.save();
+  return toUser(savedUser);
+};
+
 const updateUser = async (id, data) => {
   const userData = toUserEntry(data);
   const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
@@ -27,4 +35,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  createUser
 };

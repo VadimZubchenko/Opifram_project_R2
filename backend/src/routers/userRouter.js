@@ -13,6 +13,11 @@ router.get('/:id', authenticate, checkPermission, async (req, res) => {
   res.json(user);
 });
 
+router.post('/', async (req, res) => {
+  const createdUser = await userService.createUser(req.body);
+  res.json(createdUser);
+});
+
 router.put('/:id', authenticate, checkPermission, async (req, res) => {
   const updatedUser = await userService.updateUser(req.params.id, req.body);
   res.json(updatedUser);
