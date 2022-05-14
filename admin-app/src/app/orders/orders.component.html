@@ -6,12 +6,13 @@
 
     <ng-container matColumnDef="user">
         <th mat-header-cell *matHeaderCellDef>Tilaaja</th>
-        <td style="min-width: 135px;" mat-cell *matCellDef="let element">{{element.user.firstName}} {{element.user.lastName}}</td>
+        <td style="min-width: 135px;" mat-cell *matCellDef="let element">{{element.user.firstName}}
+            {{element.user.lastName}}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Tila</th>
-        <td style="min-width: 135px;" mat-cell *matCellDef="let element">{{element.status}}</td>
+        <td style="min-width: 80px;" mat-cell *matCellDef="let element">{{element.status}}</td>
     </ng-container>
 
     <ng-container matColumnDef="sum">
@@ -22,7 +23,8 @@
 
     <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef>Päiväys</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.createdAt | date: 'dd.MM.YYYY HH:mm' }}</td>
+        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.createdAt | date: 'dd.MM.YYYY HH:mm'
+            }}</td>
     </ng-container>
 
     <ng-container matColumnDef="id">
@@ -39,6 +41,9 @@
 </table>
 
 <mat-menu #menu="matMenu" xPosition="before">
+    <button (click)="onShow()" mat-menu-item>
+        <mat-icon>open_in_new</mat-icon>Avaa
+    </button>
     <button (click)="onDelete()" mat-menu-item>
         <mat-icon>delete</mat-icon>Poista
     </button>

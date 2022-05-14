@@ -9,8 +9,6 @@ import { DarkModeService } from '../common/services/dark-mode.service';
 })
 export class DashboardComponent implements OnInit {
 
-  tab = 'Tuotteet';
-
   constructor(public authService: AuthService, public darkModeService: DarkModeService) { }
 
   ngOnInit(): void {}

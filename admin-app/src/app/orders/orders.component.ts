@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { Order } from '../common/models/order';
 import { ConfirmService } from '../common/services/confirm.service';
 import { OrderService } from '../common/services/order.service';
 import { SnackbarService } from '../common/services/snackbar.service';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 
 @Component({
   selector: 'app-orders',
@@ -21,6 +24,10 @@ export class OrdersComponent implements OnInit {
 
   onSelect(order: Order) {
     this.selectedOrder = order;
+  }
+
+  onShow(): void {
+    this.dialog.open(OrderDialogComponent, { data: { action: DialogOpenAction.Open, item: this.selectedOrder } });
   }
 
   onDelete(): void {
@@ -46,7 +53,7 @@ export class OrdersComponent implements OnInit {
     this.orders$ = this.orderService.getOrders();
   }
 
-  constructor(private orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService) { }
+  constructor(private orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getOrders();

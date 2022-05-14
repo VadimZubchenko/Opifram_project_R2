@@ -1,0 +1,11 @@
+<div class="container">
+    <h1 mat-dialog-title>Tilauksen tiedot</h1>
+    <mat-dialog-content>
+
+        <p *ngFor="let product of order.products">{{product.name}}, {{product.amount}} kpl</p>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Sulje</button>
+    </mat-dialog-actions>
+</div>
