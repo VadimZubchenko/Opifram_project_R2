@@ -54,12 +54,6 @@ const toProduct = (data) => {
 const toOrderedProduct = (data) => {
   return {
     name: data.product.name,
-    description: data.product.description,
-    price: data.product.price,
-    quantity: data.product.quantity,
-    category: data.product.category,
-    image: data.product.image,
-    id: data.product.id,
     amount: data.amount,
   };
 };
