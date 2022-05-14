@@ -28,6 +28,7 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { OrderDialogComponent } from './order-dialog/order-dialog.component';
     ProductDialogComponent,
     OrdersComponent,
     OrderDialogComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
