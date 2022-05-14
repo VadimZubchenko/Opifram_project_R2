@@ -24,6 +24,7 @@ import { ProductsComponent } from './products/products.component';
 import { MatTableModule } from '@angular/material/table';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     UnknownRouteComponent,
     ProductsComponent,
     ConfirmDialogComponent,
+    ProductDialogComponent,
   ],
   imports: [
     BrowserModule,

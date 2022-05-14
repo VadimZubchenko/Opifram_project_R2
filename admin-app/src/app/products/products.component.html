@@ -1,7 +1,7 @@
 <div class="title-container">
     <h2 class="title">{{title}}</h2>
     <button class="add-new-button" mat-stroked-button>
-        <div class="add-new-button-content">
+        <div (click)="onCreate()" class="add-new-button-content">
             <mat-icon>add_circle</mat-icon>
             <span>Lisää tuote</span>
         </div>
@@ -22,7 +22,8 @@
 
     <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef>Hinta (kpl)</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.price | currency: 'EUR': true }}</td>
+        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.price | currency: 'EUR': 'symbol' }}
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="quantity">

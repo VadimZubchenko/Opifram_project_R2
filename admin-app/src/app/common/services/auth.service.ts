@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { apiURI, baseHttpOptions } from 'src/config';
+import { apiURI } from 'src/config';
 import { LoggedUser } from '../models/logged-user';
 
 @Injectable({
@@ -10,6 +10,10 @@ import { LoggedUser } from '../models/logged-user';
 })
 
 export class AuthService {
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   user: LoggedUser | undefined;
 
@@ -21,7 +25,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LoggedUser> {
-    return this.http.post<LoggedUser>(`${apiURI}/auth/login`, { email: email, password: password }, baseHttpOptions);
+    return this.http.post<LoggedUser>(`${apiURI}/auth/login`, { email: email, password: password }, this.httpOptions);
   }
 
   setUser(user: LoggedUser): void {
@@ -32,6 +36,10 @@ export class AuthService {
     this.user = undefined;
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
+  }
+
+  getToken(): string {
+    return this.user ? this.user.token : '';
   }
 
   autoLogin(): void {

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data.action === 'edit' ? 'Muokkaa tuotetta' : 'Lisää tuote'}}</h1>
+<mat-dialog-content>
+    Inputit tähän
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-stroked-button [color]="'primary'" mat-dialog-close="true">Tallenna</button>
+    <button mat-stroked-button cdkFocusInitial mat-dialog-close="false">Peruuta</button>
+</mat-dialog-actions>
