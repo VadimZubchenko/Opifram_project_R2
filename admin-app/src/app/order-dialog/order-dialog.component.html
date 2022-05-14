@@ -1,11 +1,43 @@
 <div class="container">
-    <h1 mat-dialog-title>Tilauksen tiedot</h1>
-    <mat-dialog-content>
 
-        <p *ngFor="let product of order.products">{{product.name}}, {{product.amount}} kpl</p>
+    <!-- When viewing -->
+    <div *ngIf="data.action === 'open'">
+        <h1 mat-dialog-title>Tilauksen tiedot</h1>
+        <mat-dialog-content>
 
-    </mat-dialog-content>
-    <mat-dialog-actions>
-        <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Sulje</button>
-    </mat-dialog-actions>
+            <p *ngFor="let product of order.products">{{product.name}}, {{product.amount}} kpl</p>
+
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Sulje</button>
+        </mat-dialog-actions>
+    </div>
+
+    <!-- When editing -->
+    <div *ngIf="data.action === 'edit'">
+        <h1 mat-dialog-title>Muokkaa tilausta</h1>
+        <mat-dialog-content>
+
+            <form [formGroup]="orderForm">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Tila</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let status of orderStatus" [value]="status">
+                            {{status}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="orderForm.get('status')?.hasError('required')">
+                        Täytä tämä kenttä.
+                    </mat-error>
+                </mat-form-field>
+            </form>
+
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-stroked-button [color]="'primary'" [mat-dialog-close]="orderForm.value">Tallenna</button>
+            <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
+        </mat-dialog-actions>
+
+    </div>
+
 </div>

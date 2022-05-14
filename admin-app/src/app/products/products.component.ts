@@ -40,7 +40,6 @@ export class ProductsComponent implements OnInit {
               this.snackbarService.show('Tuotteen muokkaaminen onnistui.');
             },
             error: (e) => {
-              console.error(e);
               this.snackbarService.show('Tuotteen muokkaaminen epäonnistui.');
               console.error(e);
             }

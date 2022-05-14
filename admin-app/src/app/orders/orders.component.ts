@@ -28,6 +28,26 @@ export class OrdersComponent implements OnInit {
     this.dialog.open(OrderDialogComponent, { data: { action: DialogOpenAction.Open, item: this.selectedOrder } });
   }
 
+  onEdit(): void {
+    this.dialog
+      .open(OrderDialogComponent, { disableClose: true, data: { action: DialogOpenAction.Edit, item: this.selectedOrder } })
+      .afterClosed()
+      .subscribe((data: Order) => {
+        if (data) {
+          this.orderService.updateOrder(data).subscribe({
+            next: () => {
+              this.getOrders();
+              this.snackbarService.show('Tilauksen muokkaaminen onnistui.');
+            },
+            error: (e) => {
+              console.error(e);
+              this.snackbarService.show('Tilauksen muokkaaminen epäonnistui.');
+            }
+          });
+        }
+      });
+  }
+
   onDelete(): void {
     this.confirmService.confirm('Vahvista tilauksen poistaminen.')
       .subscribe((confirmed: boolean) => {
