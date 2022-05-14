@@ -2,7 +2,7 @@ const Product = require('../models/productModel');
 const { toProduct, toProductEntry } = require('../utils');
 
 const getProducts = async () => {
-  const products = await Product.find({});
+  const products = await Product.find({}).sort({ createdAt: -1 });
   return products.map(product => toProduct(product));
 };
 

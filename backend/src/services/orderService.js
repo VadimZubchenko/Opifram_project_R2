@@ -3,7 +3,7 @@ const Product = require('../models/productModel');
 const { formatPrice, toOrder, toShoppingCartData, toOrderUpdateEntry } = require('../utils');
 
 const getOrders = async () => {
-  const orders = await Order.find({}).populate('user').populate('products.product');
+  const orders = await Order.find({}).populate('user').populate('products.product').sort({ createdAt: -1 });
   return orders.map(order => toOrder(order));
 };
 

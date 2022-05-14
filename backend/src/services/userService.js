@@ -3,7 +3,7 @@ const { toUser, toUserEntry, toUserUpdateEntry } = require('../utils');
 const bcrypt = require('bcrypt');
 
 const getUsers = async () => {
-  const users = await User.find({});
+  const users = await User.find({}).sort({ createdAt: -1 });
   return users.map((user) => toUser(user));
 };
 
