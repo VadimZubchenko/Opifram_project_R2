@@ -10,7 +10,7 @@ describe('OrderDialogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ OrderDialogComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

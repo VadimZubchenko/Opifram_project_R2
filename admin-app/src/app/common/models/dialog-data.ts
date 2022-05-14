@@ -4,5 +4,5 @@ import { Product } from './product';
 
 export interface DialogData {
     action: DialogOpenAction;
-    item: Product | Order | undefined;
+    item: Product | Order;
 }

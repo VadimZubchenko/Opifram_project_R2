@@ -6,7 +6,7 @@
 
     <ng-container matColumnDef="user">
         <th mat-header-cell *matHeaderCellDef>Tilaaja</th>
-        <td style="min-width: 135px;" mat-cell *matCellDef="let element">{{element.user.firstName}}
+        <td style="min-width: 100px;" mat-cell *matCellDef="let element">{{element.user.firstName}}
             {{element.user.lastName}}</td>
     </ng-container>
 
@@ -23,8 +23,7 @@
 
     <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef>Päiväys</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.createdAt | date: 'dd.MM.YYYY HH:mm'
-            }}</td>
+        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.createdAt | date: 'dd.MM.YYYY HH:mm'}}</td>
     </ng-container>
 
     <ng-container matColumnDef="id">

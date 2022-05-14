@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../common/services/auth.service';
 import { Router } from '@angular/router';
+import { LoggedUser } from '../common/models/logged-user';
+import { UserRole } from '../common/models/user-role';
 
 @Component({
   selector: 'app-login',
@@ -38,10 +40,10 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password')?.value;
 
     this.authService.login(email, password).subscribe({
-      next: (v): void => {
-        if (v.role === 'admin') {
-          this.authService.user = v;
-          localStorage.setItem('user', JSON.stringify(v));
+      next: (user: LoggedUser): void => {
+        if (user.role === UserRole.Admin) {
+          this.authService.user = user;
+          localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/dashboard']);
         } else {
           this.errorText = 'Sinulla ei ole oikeuksia kirjautua tälle sivulle.';

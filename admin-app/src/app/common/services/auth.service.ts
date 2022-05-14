@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { apiURI } from 'src/config';
 import { LoggedUser } from '../models/logged-user';
+import { UserRole } from '../models/user-role';
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +47,12 @@ export class AuthService {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const parsedUser: LoggedUser = JSON.parse(storedUser);
-      if (parsedUser.role === 'admin') {
+
+      //Ensure parsed user role is admin in order to auto login
+      if (parsedUser.role === UserRole.Admin) {
         this.user = parsedUser;
       }
+
     }
   }
 
