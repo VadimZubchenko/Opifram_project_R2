@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { Product } from '../common/models/product';
 import { ConfirmService } from '../common/services/confirm.service';
@@ -15,13 +14,13 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
 })
 
 export class ProductsComponent implements OnInit {
-  products$: Observable<Product[]>;
+  products: Product[];
   selectedProduct: Product;
 
   displayedColumns: string[] = ['name', 'category', 'price', 'quantity', 'id'];
 
   getProducts(): void {
-    this.products$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe(products => this.products = products);
   }
 
   onSelect(product: Product): void {

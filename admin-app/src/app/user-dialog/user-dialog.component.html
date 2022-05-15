@@ -43,7 +43,7 @@
 
                 <mat-select formControlName="role">
                     <mat-option *ngFor="let role of roles" [value]="role">
-                        {{role}}
+                        {{userService.formatRole(role)}}
                     </mat-option>
                 </mat-select>
 
@@ -54,9 +54,9 @@
 
         </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
-        <button [disabled]="userForm.invalid" mat-stroked-button [color]="'primary'"
-            [mat-dialog-close]="userForm.value">Tallenna</button>
+    <mat-dialog-actions align="end">
         <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
+        <button [disabled]="userForm.invalid" mat-raised-button [color]="'primary'"
+            [mat-dialog-close]="userForm.value">Tallenna</button>
     </mat-dialog-actions>
 </div>

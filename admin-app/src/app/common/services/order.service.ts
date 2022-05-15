@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { apiURI } from 'src/config';
 import { Order } from '../models/order';
+import { OrderStatus } from '../models/order-status';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -28,6 +29,15 @@ export class OrderService {
 
   deleteOrder(order: Order): Observable<Order> {
     return this.http.delete<Order>(`${apiURI}/order/${order.id}`, this.httpOptions);
+  }
+
+  formatStatus(status: OrderStatus): string { 
+    switch(status) {
+    case OrderStatus.SENT:
+      return 'Lähetetty';
+    case OrderStatus.WaitingForShipment:
+      return 'Odottaa lähetystä';
+    }
   }
 
   constructor(private http: HttpClient, private authService: AuthService) { }

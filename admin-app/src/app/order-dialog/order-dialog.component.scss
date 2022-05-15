@@ -1,7 +1,17 @@
 .container {
-    max-width: 500px;
+    max-width: 400px;
+    min-width: 310px;
 }
 
 .mat-dialog-title {
     padding-bottom: 10px;
+}
+
+.product-item {
+    margin: 0;
+    padding: 0;
+}
+
+.product-list-container {
+    margin-bottom: 10px;
 }

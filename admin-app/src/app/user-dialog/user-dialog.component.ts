@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../common/models/dialog-data';
 import { User } from '../common/models/user';
 import { UserRole } from '../common/models/user-role';
+import { UserService } from '../common/services/user.service';
 
 @Component({
   selector: 'app-user-dialog',
@@ -25,7 +26,7 @@ export class UserDialogComponent implements OnInit {
     id: new FormControl(this.user?.id)
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, public userService: UserService) { }
 
   ngOnInit(): void {
   }

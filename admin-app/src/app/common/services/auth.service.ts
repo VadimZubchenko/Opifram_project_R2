@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { apiURI } from 'src/config';
 import { LoggedUser } from '../models/logged-user';
-import { UserRole } from '../models/user-role';
 
 @Injectable({
   providedIn: 'root'
@@ -43,16 +42,13 @@ export class AuthService {
     return this.user ? `Bearer ${this.user.token}` : '';
   }
 
-  autoLogin(): void {
+  async autoLogin(): Promise<void> {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const parsedUser: LoggedUser = JSON.parse(storedUser);
 
-      //Ensure parsed user role is admin in order to auto login
-      if (parsedUser.role === UserRole.Admin) {
-        this.user = parsedUser;
-      }
-
+      //TODO: Verify token before assigning user
+      this.user = parsedUser;
     }
   }
 

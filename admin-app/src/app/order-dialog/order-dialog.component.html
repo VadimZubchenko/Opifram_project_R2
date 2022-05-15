@@ -1,19 +1,49 @@
 <div class="container">
 
-    <!-- When viewing -->
+    <!-- VIEW START -->
     <div *ngIf="data.action === 'open'">
         <h1 mat-dialog-title>Tilauksen tiedot</h1>
         <mat-dialog-content>
 
-            <p *ngFor="let product of order.products">{{product.name}}, {{product.amount}} kpl</p>
+            <div>
+                <b>Tilaaja</b>
+                <p>{{order.user.firstName}} {{order.user.lastName}}</p>
+            </div>
+            <div>
+                <b>Tilauksen päivämäärä</b>
+                <p>{{order.createdAt | date: 'dd.MM.YYYY HH.mm'}}</p>
+            </div>
+
+            <div class="product-list-container">
+                <b>Tuotteet</b>
+                <p class="product-item" *ngFor="let product of order.products">
+                    - {{product.name}}, {{product.amount}} kpl
+                </p>
+            </div>
+
+            <div>
+                <b>Päivitetty viimeksi</b>
+                <p>{{order.updatedAt | date: 'dd.MM.YYYY HH.mm'}}</p>
+            </div>
+
+            <div>
+                <b>Tila</b>
+                <p>{{orderService.formatStatus(order.status)}}</p>
+            </div>
+
+            <div>
+                <b>Summa</b>
+                <p>{{order.sum | currency: 'EUR': 'symbol'}}</p>
+            </div>
 
         </mat-dialog-content>
-        <mat-dialog-actions>
+        <mat-dialog-actions align="end">
             <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Sulje</button>
         </mat-dialog-actions>
     </div>
+    <!-- VIEW ENDS -->
 
-    <!-- When editing -->
+    <!-- EDIT START -->
     <div *ngIf="data.action === 'edit'">
         <h1 mat-dialog-title>Muokkaa tilausta</h1>
         <mat-dialog-content>
@@ -23,7 +53,7 @@
                     <mat-label>Tila</mat-label>
                     <mat-select formControlName="status">
                         <mat-option *ngFor="let status of orderStatus" [value]="status">
-                            {{status}}
+                            {{orderService.formatStatus(status)}}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="orderForm.get('status')?.hasError('required')">
@@ -33,11 +63,11 @@
             </form>
 
         </mat-dialog-content>
-        <mat-dialog-actions>
+        <mat-dialog-actions align="end">
+            <button mat-raised-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
             <button mat-stroked-button [color]="'primary'" [mat-dialog-close]="orderForm.value">Tallenna</button>
-            <button mat-stroked-button cdkFocusInitial [mat-dialog-close]="false">Peruuta</button>
         </mat-dialog-actions>
-
     </div>
+    <!-- EDIT END -->
 
 </div>

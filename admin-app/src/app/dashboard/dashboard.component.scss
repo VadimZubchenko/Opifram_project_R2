@@ -7,8 +7,8 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 15px;
+    gap: 15px;
+    height: 100%;
 }
 
 .title-container {
@@ -23,6 +23,10 @@
 
 .mat-toolbar {
     background-color: transparent;
+}
+
+.toolbar-card {
+    margin-top: 5px;
 }
 
 .dark-mode-button {
@@ -48,14 +52,15 @@
     margin-left: 5px;
 }
 
-.footer {
-    margin-top: auto;
+.center {
+    flex: 1;
 }
 
 @media only screen and (max-width: 500px) {
     .brand-text-secondary {
         display: none;
     }
+
     .brand-divider-dot {
         display: none;
     }

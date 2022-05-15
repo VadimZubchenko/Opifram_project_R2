@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class OnlyLoggedOffUserGuardGuard implements CanActivate {
   canActivate() {
 

@@ -9,4 +9,5 @@ export interface Order {
     status: OrderStatus;
     sum: number;
     createdAt: Date;
+    updatedAt: Date;
 }

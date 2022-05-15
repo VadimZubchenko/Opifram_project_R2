@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { User } from '../common/models/user';
 import { ConfirmService } from '../common/services/confirm.service';
@@ -14,13 +13,13 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users$: Observable<User[]>;
+  users: User[];
   selectedUser: User;
 
   displayedColumns: string[] = ['name', 'email', 'role', 'id'];
 
   getUsers(): void {
-    this.users$ = this.userService.getUsers();
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
 
   onSelect(user: User): void {
@@ -68,7 +67,7 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  constructor(private userService: UserService, private dialog: MatDialog, private snackbarService: SnackbarService, private confirmService: ConfirmService) { }
+  constructor(public userService: UserService, private dialog: MatDialog, private snackbarService: SnackbarService, private confirmService: ConfirmService) { }
 
   ngOnInit(): void {
     this.getUsers();

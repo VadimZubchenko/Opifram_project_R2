@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 35px;
+    visibility: hidden;
+    animation: 0s linear 0.15s forwards delayedShow;
+}
+
+@keyframes delayedShow {
+    to {
+      visibility: visible;
+    }
+  }
+  

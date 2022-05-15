@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { Order } from '../common/models/order';
 import { ConfirmService } from '../common/services/confirm.service';
@@ -15,10 +14,10 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 })
 
 export class OrdersComponent implements OnInit {
-  orders$: Observable<Order[]>;
+  orders: Order[];
   selectedOrder: Order;
 
-  displayedColumns: string[] = ['user', 'status', 'sum', 'createdAt', 'id'];
+  displayedColumns: string[] = [ 'user', 'createdAt', 'status', 'sum', 'id'];
 
   onSelect(order: Order) {
     this.selectedOrder = order;
@@ -68,10 +67,10 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders(): void {
-    this.orders$ = this.orderService.getOrders();
+    this.orderService.getOrders().subscribe(orders => this.orders = orders);
   }
 
-  constructor(private orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService, private dialog: MatDialog) { }
+  constructor(public orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService, private dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.getOrders();

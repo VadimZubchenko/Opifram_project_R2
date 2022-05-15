@@ -31,6 +31,9 @@ import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { UsersComponent } from './users/users.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { MatSelectModule } from '@angular/material/select';
     OrderDialogComponent,
     UsersComponent,
     UserDialogComponent,
+    LoadingSpinnerComponent,
+    NoDataFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule 
   ],
   providers: [
     {
