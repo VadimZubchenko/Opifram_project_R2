@@ -167,6 +167,12 @@ const formatPrice = (price) => {
   return parseFloat(formatted.replace(',', '.').replace('EUR', '').trim());
 };
 
+const wait = async (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+};
+
 module.exports = {
   validateStringProperty,
   validateNumberProperty,
@@ -182,5 +188,6 @@ module.exports = {
   toLoginCredentials,
   toAccessTokenData,
   formatPrice,
-  toLoggedUser
+  toLoggedUser,
+  wait
 };
