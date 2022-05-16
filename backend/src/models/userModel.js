@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
   },
   email: {
     type: String,
+    index: true
   },
   phone: {
     type: String,
