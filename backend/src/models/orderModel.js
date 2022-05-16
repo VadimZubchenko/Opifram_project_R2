@@ -15,6 +15,9 @@ const orderSchema = mongoose.Schema(
         amount: {
           type: Number,
         },
+        price: {
+          type: Number
+        }
       },
     ],
     status: {
