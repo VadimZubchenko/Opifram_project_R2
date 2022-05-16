@@ -71,7 +71,7 @@ import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
     MatDialogModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatProgressSpinnerModule 
+    MatProgressSpinnerModule
   ],
   providers: [
     {

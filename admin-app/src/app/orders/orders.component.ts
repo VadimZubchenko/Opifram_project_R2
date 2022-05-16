@@ -14,13 +14,25 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 })
 
 export class OrdersComponent implements OnInit {
-  orders: Order[];
+
+  allOrders: Order[];
+  displayedOrders: Order[];
+
   selectedOrder: Order;
 
-  displayedColumns: string[] = [ 'user', 'createdAt', 'status', 'sum', 'id'];
+  displayedColumns: string[] = [ 'user', 'createdAt', 'sum', 'status', 'id'];
 
   onSelect(order: Order) {
     this.selectedOrder = order;
+  }
+
+  onSearch(term: string) {
+    if (term) {
+      term = term.toLowerCase().trim();
+      this.displayedOrders = this.allOrders.filter(o => o.user.firstName.toLowerCase().includes(term) || o.user.lastName.toLowerCase().includes(term));
+    } else {
+      this.displayedOrders = this.allOrders;
+    }
   }
 
   onShow(): void {
@@ -33,7 +45,7 @@ export class OrdersComponent implements OnInit {
         if (confirmed) {
           this.orderService.sendOrder(this.selectedOrder).subscribe({
             next: () => {
-              this.getOrders();
+              this.refreshOrders();
               this.snackbarService.show('Tilauksen tilan muuttaminen onnistui.');
             },
             error: (e) => {
@@ -52,7 +64,7 @@ export class OrdersComponent implements OnInit {
           this.orderService.deleteOrder(this.selectedOrder)
             .subscribe({
               next: () => {
-                this.getOrders();
+                this.refreshOrders();
                 this.snackbarService.show('Tilauksen poistaminen onnistui.');
               },
               error: (e) => {
@@ -64,14 +76,39 @@ export class OrdersComponent implements OnInit {
       });
   }
 
-  getOrders(): void {
-    this.orderService.getOrders().subscribe(orders => this.orders = orders);
+  refreshOrders(): void {
+    this.orderService.getOrders().subscribe({
+      next: (orders) => {
+        this.allOrders = orders;
+
+        //Displayed orders might differ from allOrders, so if allOrders gets updated, update also displayed orders
+        const updatedDisplayedOrders: Order[] = [];
+
+        for (const order of orders) {
+          for (const displayedOrder of this.displayedOrders) {
+            if (order.id === displayedOrder.id) {
+              updatedDisplayedOrders.push({ ...order });
+            }
+          }
+        }
+        this.displayedOrders = updatedDisplayedOrders;
+      }
+    });
+  }
+
+  initOrders(): void {
+    this.orderService.getOrders().subscribe({
+      next: (orders) => {
+        this.allOrders = orders;
+        this.displayedOrders = orders;
+      }
+    });
   }
 
   constructor(public orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService, private dialog: MatDialog ) { }
 
   ngOnInit(): void {
-    this.getOrders();
+    this.initOrders();
   }
 
 }

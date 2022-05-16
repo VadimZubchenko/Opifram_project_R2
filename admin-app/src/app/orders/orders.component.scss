@@ -1,15 +1,10 @@
 .table {
-    margin-top: 30px;
-    margin-bottom: 30px;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .title {
     padding-top: 15px;
-    padding-left: 15px;
-}
-
-.no-data-found-text {
     padding-left: 15px;
 }
 
@@ -37,4 +32,13 @@
 
 .add-new-button {
     margin-right: 15px;
+}
+
+.search-input-container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.paginator-container {
+    padding: 15px;
 }
