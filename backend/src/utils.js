@@ -72,15 +72,21 @@ const toProductEntry = (data) => {
 };
 
 const toOrder = (data) => {
-  return {
+  const order = {
     user: toUser(data.user),
     products: data.products.map((product) => toOrderedProduct(product)),
     sum: data.sum,
     status: data.status,
     id: data.id,
     createdAt: data.createdAt,
-    updatedAt: data.updatedAt
+    updatedAt: data.updatedAt,
   };
+
+  if (data.sentAt) {
+    order.sentAt = data.sentAt;
+  }
+
+  return order;
 };
 
 const toUser = (data) => {

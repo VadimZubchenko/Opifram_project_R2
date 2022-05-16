@@ -26,6 +26,9 @@ const orderSchema = mongoose.Schema(
     sum: {
       type: Number,
     },
+    sentAt: {
+      type: Date
+    }
   },
   { timestamps: true }
 );

@@ -48,6 +48,11 @@ const updateOrder = async (id, data) => {
   return toOrder(updatedOrder);
 };
 
+const sendOrder = async (id) => {
+  const updatedOrder = await Order.findByIdAndUpdate(id, { sentAt: new Date(), status: 'SENT' }, { new: true });
+  return toOrder(updatedOrder);
+};
+
 const deleteOrder = async (id) => {
   const deletedOrder = await Order.findByIdAndDelete(id).populate('user').populate('products.product');
   return toOrder(deletedOrder);
@@ -59,5 +64,6 @@ module.exports = {
   getOrder,
   updateOrder,
   createOrder,
-  deleteOrder
+  deleteOrder,
+  sendOrder
 };

@@ -15,7 +15,7 @@ app.use(cors(ALLOWED_ORIGINS));
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    console.log(`Connected to MongoDB: ${MONGODB_URI}`);
+    console.log('Connected to MongoDB');
   })
   .catch((error) => {
     console.error(`Error connecting to MongoDB: ${error.message}`);

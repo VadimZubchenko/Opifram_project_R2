@@ -28,6 +28,11 @@ router.put('/:id', authenticate, checkPermission, async (req, res) => {
   res.json(updatedOrder);
 });
 
+router.put('/send/:id', authenticate, checkPermission, async (req, res) => {
+  const updatedOrder = await orderService.sendOrder(req.params.id);
+  res.json(updatedOrder);
+});
+
 router.delete('/:id', authenticate, checkPermission, async (req, res) => {
   const deletedOrder = await orderService.deleteOrder(req.params.id);
   res.json(deletedOrder);
