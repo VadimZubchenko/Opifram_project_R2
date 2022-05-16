@@ -29,7 +29,31 @@ export class OrdersComponent implements OnInit {
   onSearch(term: string) {
     if (term) {
       term = term.toLowerCase().trim();
-      this.displayedOrders = this.allOrders.filter(o => o.user.firstName.toLowerCase().includes(term) || o.user.lastName.toLowerCase().includes(term));
+
+      const splitted: string[] = term.split(' ');
+      const results: Order[] = [];
+
+      this.allOrders.forEach((o) => splitted.forEach((t) => {
+        if (o.user.firstName.toLowerCase().includes(t) || o.user.lastName.toLowerCase().includes(t)) {
+          let alreadyAdded = false;
+
+          for (const result of results) {
+            if (result.id === o.id) {
+              alreadyAdded = true;
+              break;
+            }
+          }
+
+          if (!alreadyAdded) {
+            results.push(o);
+          }
+
+        }
+        
+      }));
+
+      this.displayedOrders = results;
+      
     } else {
       this.displayedOrders = this.allOrders;
     }
