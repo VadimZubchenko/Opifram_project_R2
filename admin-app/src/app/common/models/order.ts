@@ -10,4 +10,5 @@ export interface Order {
     sum: number;
     createdAt: Date;
     updatedAt: Date;
+    sentAt?: Date;
 }

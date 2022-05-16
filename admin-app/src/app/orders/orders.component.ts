@@ -27,20 +27,18 @@ export class OrdersComponent implements OnInit {
     this.dialog.open(OrderDialogComponent, { data: { action: DialogOpenAction.Open, item: this.selectedOrder } });
   }
 
-  onEdit(): void {
-    this.dialog
-      .open(OrderDialogComponent, { disableClose: true, data: { action: DialogOpenAction.Edit, item: this.selectedOrder } })
-      .afterClosed()
-      .subscribe((data: Order) => {
-        if (data) {
-          this.orderService.updateOrder(data).subscribe({
+  onMarkAsSend(): void {
+    this.confirmService.confirm('Vahvista tilauksen tilan muutos.')
+      .subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.orderService.sendOrder(this.selectedOrder).subscribe({
             next: () => {
               this.getOrders();
-              this.snackbarService.show('Tilauksen muokkaaminen onnistui.');
+              this.snackbarService.show('Tilauksen tilan muuttaminen onnistui.');
             },
             error: (e) => {
               console.error(e);
-              this.snackbarService.show('Tilauksen muokkaaminen epäonnistui.');
+              this.snackbarService.show('Tilauksen tilan muuttaminen epäonnistui.');
             }
           });
         }

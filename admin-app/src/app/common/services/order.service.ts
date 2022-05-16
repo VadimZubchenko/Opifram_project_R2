@@ -27,6 +27,10 @@ export class OrderService {
     return this.http.put<Order>(`${apiURI}/order/${order.id}`, order, this.httpOptions);
   }
 
+  sendOrder(order: Order): Observable<Order> {
+    return this.http.put<Order>(`${apiURI}/order/send/${order.id}`, {}, this.httpOptions);
+  }
+
   deleteOrder(order: Order): Observable<Order> {
     return this.http.delete<Order>(`${apiURI}/order/${order.id}`, this.httpOptions);
   }

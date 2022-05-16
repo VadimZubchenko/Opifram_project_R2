@@ -10,7 +10,8 @@
     <app-no-data-found></app-no-data-found>
 </ng-template>
 
-<table *ngIf="orders && orders.length > 0; else !orders ? loading : nodata" class="table" mat-table [dataSource]="orders">
+<table *ngIf="orders && orders.length > 0; else !orders ? loading : nodata" class="table" mat-table
+    [dataSource]="orders">
 
     <ng-container matColumnDef="user">
         <th mat-header-cell *matHeaderCellDef>Tilaaja</th>
@@ -51,10 +52,10 @@
 
 <mat-menu #menu="matMenu" xPosition="before">
     <button (click)="onShow()" mat-menu-item>
-        <mat-icon>open_in_new</mat-icon>Avaa
+        <mat-icon>open_in_new</mat-icon>Näytä tiedot
     </button>
-    <button (click)="onEdit()" mat-menu-item>
-        <mat-icon>edit</mat-icon>Muokkaa
+    <button [disabled]="selectedOrder?.status === 'SENT'" (click)="onMarkAsSend()" mat-menu-item>
+        <mat-icon>check_circle</mat-icon>Aseta lähetetyksi
     </button>
     <button (click)="onDelete()" mat-menu-item>
         <mat-icon>delete</mat-icon>Poista

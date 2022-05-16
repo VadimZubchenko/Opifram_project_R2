@@ -26,13 +26,8 @@
             </div>
 
             <div>
-                <b>Päivitetty viimeksi</b>
-                <p>{{order.updatedAt | date: 'dd.MM.YYYY HH.mm'}}</p>
-            </div>
-
-            <div>
                 <b>Tila</b>
-                <p>{{orderService.formatStatus(order.status)}}</p>
+                <p>{{orderService.formatStatus(order.status)}} {{order.sentAt | date: 'dd.MM.YYYY HH:mm'}}</p>
             </div>
 
             <div>
