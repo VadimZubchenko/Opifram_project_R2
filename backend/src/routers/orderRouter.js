@@ -23,11 +23,6 @@ router.post('/', authenticate, async (req, res) => {
   res.json(createdOrder);
 });
 
-router.put('/:id', authenticate, checkPermission, async (req, res) => {
-  const updatedOrder = await orderService.updateOrder(req.params.id, req.body);
-  res.json(updatedOrder);
-});
-
 router.put('/send/:id', authenticate, checkPermission, async (req, res) => {
   const updatedOrder = await orderService.sendOrder(req.params.id);
   res.json(updatedOrder);
