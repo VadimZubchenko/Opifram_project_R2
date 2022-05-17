@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -34,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
+import { MyInterceptor } from './my.interceptor';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,11 @@ import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
       provide: APP_INITIALIZER,
       useFactory: (authService: AuthService) => () => authService.autoLogin(),
       deps: [AuthService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
       multi: true
     }
   ],

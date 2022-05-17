@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,10 +11,6 @@ import { LoggedUser } from '../models/logged-user';
 
 export class AuthService {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
   user: LoggedUser | undefined;
 
   isLoggedIn(): boolean {
@@ -25,7 +21,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LoggedUser> {
-    return this.http.post<LoggedUser>(`${apiURI}/auth/login`, { email: email, password: password }, this.httpOptions);
+    return this.http.post<LoggedUser>(`${apiURI}/auth/login`, { email: email, password: password });
   }
 
   setUser(user: LoggedUser): void {

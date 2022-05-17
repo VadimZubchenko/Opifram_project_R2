@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { apiURI } from 'src/config';
@@ -12,24 +12,20 @@ import { AuthService } from './auth.service';
 
 export class UserService {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() })
-  };
-
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${apiURI}/user`, this.httpOptions);
+    return this.http.get<User[]>(`${apiURI}/user`);
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(`${apiURI}/user/${id}`, this.httpOptions);
+    return this.http.get<User>(`${apiURI}/user/${id}`);
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${apiURI}/user/${user.id}`, user, this.httpOptions);
+    return this.http.put<User>(`${apiURI}/user/${user.id}`, user);
   }
 
   deleteUser(user: User): Observable<User> {
-    return this.http.delete<User>(`${apiURI}/user/${user.id}`, this.httpOptions);
+    return this.http.delete<User>(`${apiURI}/user/${user.id}`);
   }
 
   formatRole(role: UserRole): string { 

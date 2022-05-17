@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { apiURI } from 'src/config';
@@ -11,28 +11,24 @@ import { AuthService } from './auth.service';
 
 export class ProductService {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() })
-  };
-
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${apiURI}/product`, this.httpOptions);
+    return this.http.get<Product[]>(`${apiURI}/product`);
   }
 
   getProduct(id: string): Observable<Product> {
-    return this.http.get<Product>(`${apiURI}/product/${id}`, this.httpOptions);
+    return this.http.get<Product>(`${apiURI}/product/${id}`);
   }
 
   createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${apiURI}/product`, product, this.httpOptions);
+    return this.http.post<Product>(`${apiURI}/product`, product);
   }
 
   updateProduct(product: Product): Observable<Product> {
-    return this.http.put<Product>(`${apiURI}/product/${product.id}`, product, this.httpOptions);
+    return this.http.put<Product>(`${apiURI}/product/${product.id}`, product);
   }
 
   deleteProduct(product: Product): Observable<Product> {
-    return this.http.delete<Product>(`${apiURI}/product/${product.id}`, this.httpOptions);
+    return this.http.delete<Product>(`${apiURI}/product/${product.id}`);
   }
 
   constructor(private http: HttpClient, private authService: AuthService) { }
