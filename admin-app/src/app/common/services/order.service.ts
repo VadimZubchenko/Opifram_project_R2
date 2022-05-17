@@ -28,6 +28,13 @@ export class OrderService {
     return this.http.delete<Order>(`${apiURI}/order/${order.id}`);
   }
 
+  searchOrders(term: string): Observable<Order[]> {
+    if (!term) {
+      return this.getOrders();
+    }
+    return this.http.post<Order[]>(`${apiURI}/order/search`, { name: term });
+  }
+
   formatStatus(status: OrderStatus): string { 
     switch(status) {
     case OrderStatus.SENT:

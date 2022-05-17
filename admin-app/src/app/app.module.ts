@@ -35,6 +35,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
 import { MyInterceptor } from './my.interceptor';
+import { OrderSearchComponent } from './order-search/order-search.component';
+import { OrderTableComponent } from './order-table/order-table.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { MyInterceptor } from './my.interceptor';
     UserDialogComponent,
     LoadingSpinnerComponent,
     NoDataFoundComponent,
+    OrderSearchComponent,
+    OrderTableComponent,
   ],
   imports: [
     BrowserModule,
