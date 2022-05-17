@@ -32,7 +32,7 @@ const deleteProduct = async (id) => {
 const searchProducts = async (data) => {
   const productName = validateStringProperty('name', data.name);
   const regex = new RegExp(productName, 'i');
-  const foundProducts = await Product.find({ name: regex });
+  const foundProducts = await Product.find({ name: regex }).sort({ createdAt: -1 });
   return foundProducts.map(product => toProduct(product));
 };
 

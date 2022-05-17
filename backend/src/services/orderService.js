@@ -80,7 +80,7 @@ const searchOrders = async (data) => {
     }},
     {$unwind: '$user'},
     {$match: { $or: searchByUserName() }}
-  ]);
+  ]).sort({ createdAt: -1 });
 
   const populatedOrders = [];
 
