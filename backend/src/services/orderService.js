@@ -43,8 +43,8 @@ const createOrder = async (userId, data) => {
   return toOrder(populatedOrder);
 };
 
-const sendOrder = async (id) => {
-  const updatedOrder = await Order.findByIdAndUpdate(id, { sentAt: new Date(), status: 'SENT' }, { new: true });
+const markAsSent = async (id) => {
+  const updatedOrder = await Order.findByIdAndUpdate(id, { sentAt: new Date(), status: 'SENT' }, { new: true }).populate('user').populate('products.product');
   return toOrder(updatedOrder);
 };
 
@@ -98,6 +98,6 @@ module.exports = {
   getOrder,
   createOrder,
   deleteOrder,
-  sendOrder,
+  markAsSent,
   searchOrders
 };

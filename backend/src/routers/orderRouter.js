@@ -24,8 +24,8 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 router.put('/send/:id', authenticate, checkPermission, async (req, res) => {
-  const updatedOrder = await orderService.sendOrder(req.params.id);
-  res.json(updatedOrder);
+  const sentOrder = await orderService.markAsSent(req.params.id);
+  res.json(sentOrder);
 });
 
 router.delete('/:id', authenticate, checkPermission, async (req, res) => {
