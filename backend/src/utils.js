@@ -53,10 +53,10 @@ const toProduct = (data) => {
 
 const toOrderedProduct = (data) => {
   return {
-    name: data.name,
+    name: data.product.name,
     amount: data.amount,
-    price: data.price,
-    id: data.id ? data.id : data._id
+    price: data.product.price,
+    id: data.id
   };
 };
 
@@ -72,13 +72,12 @@ const toProductEntry = (data) => {
 };
 
 const toOrder = (data) => {
-
   const order = {
     user: toUser(data.user),
-    products: data.products.flatMap(product => toOrderedProduct(product)),
+    products: data.products.map((product) => toOrderedProduct(product)),
     sum: data.sum,
     status: data.status,
-    id: data.id ? data.id : data._id,
+    id: data.id,
     createdAt: data.createdAt,
     updatedAt: data.updatedAt,
   };

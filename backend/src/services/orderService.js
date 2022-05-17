@@ -79,16 +79,17 @@ const searchOrders = async (data) => {
       as: 'user'
     }},
     {$unwind: '$user'},
-    {$match: { $or: searchByUserName() }},
-    { $lookup: {
-      from: Product.collection.name,
-      localField: 'products.product',
-      foreignField: '_id',
-      as: 'products'
-    }},
+    {$match: { $or: searchByUserName() }}
   ]);
 
-  return results.map(result => toOrder(result));
+  const populatedOrders = [];
+
+  for (const result of results) {
+    const order = await Order.findById(result._id).populate('user').populate('products.product');
+    populatedOrders.push(order);
+  }
+
+  return populatedOrders.map(order => toOrder(order));
 };
 
 module.exports = {
