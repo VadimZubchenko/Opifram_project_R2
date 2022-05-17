@@ -1,6 +1,7 @@
 const Order = require('../models/orderModel');
 const Product = require('../models/productModel');
-const { formatPrice, toOrder, toShoppingCartData } = require('../utils');
+const { formatPrice, toOrder, toShoppingCartData, validateStringProperty } = require('../utils');
+const User = require('../models/userModel');
 
 const getOrders = async () => {
   const orders = await Order.find({}).populate('user').populate('products.product').sort({ createdAt: -1 });
@@ -52,11 +53,48 @@ const deleteOrder = async (id) => {
   return toOrder(deletedOrder);
 };
 
+const searchOrders = async (data) => {
+
+  // Example data: { "name": "erkki teppo maija meikäläinen" }
+  // Search from user.firstName and user.lastName by all of these keys in name
+  const searchByUserName = () => {
+    validateStringProperty('name', data.name);
+    const keys = data.name.split(' ');
+    const namesList = [];
+    keys.forEach(key => {
+      namesList.push( 
+        {'user.firstName': { $regex : new RegExp(key, 'i')}},
+        {'user.lastName': { $regex : new RegExp(key, 'i')}},);
+    });
+    return namesList;
+  };
+
+  const results = await Order.aggregate([
+    { $lookup: {
+      from: User.collection.name,
+      localField: 'user',
+      foreignField: '_id',
+      as: 'user'
+    }},
+    {$unwind: '$user'},
+    {$match: { $or: searchByUserName() }},
+    { $lookup: {
+      from: Product.collection.name,
+      localField: 'products.product',
+      foreignField: '_id',
+      as: 'products'
+    }},
+  ]);
+
+  return results.map(result => toOrder(result));
+};
+
 module.exports = {
   getOrders,
   getOrdersByUserId,
   getOrder,
   createOrder,
   deleteOrder,
-  sendOrder
+  sendOrder,
+  searchOrders
 };

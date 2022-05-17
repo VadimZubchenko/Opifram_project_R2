@@ -33,4 +33,9 @@ router.delete('/:id', authenticate, checkPermission, async (req, res) => {
   res.json(deletedOrder);
 });
 
+router.post('/search', authenticate, checkPermission, async (req, res) => {
+  const foundOrders = await orderService.searchOrders(req.body);
+  res.json(foundOrders);
+});
+
 module.exports = router;
