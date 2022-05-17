@@ -52,12 +52,6 @@ const toProduct = (data) => {
 };
 
 const toOrderedProduct = (data) => {
-
-  //Flatten object
-  if (data.product) {
-    data = data.product;
-  }
-
   return {
     name: data.name,
     amount: data.amount,
@@ -81,7 +75,7 @@ const toOrder = (data) => {
 
   const order = {
     user: toUser(data.user),
-    products: data.products.map(product => toOrderedProduct(product)),
+    products: data.products.flatMap(product => toOrderedProduct(product)),
     sum: data.sum,
     status: data.status,
     id: data.id ? data.id : data._id,

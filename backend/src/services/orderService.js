@@ -56,17 +56,19 @@ const deleteOrder = async (id) => {
 const searchOrders = async (data) => {
 
   // Example data: { "name": "erkki teppo maija meikäläinen" }
-  // Search from user.firstName and user.lastName by all of these keys in name
+  // Search from user.firstName and user.lastName by all of these above example keys
+
   const searchByUserName = () => {
     validateStringProperty('name', data.name);
-    const keys = data.name.split(' ');
-    const namesList = [];
+    const keys = data.name.trim().split(' ');
+    const list = [];
     keys.forEach(key => {
-      namesList.push( 
-        {'user.firstName': { $regex : new RegExp(key, 'i')}},
-        {'user.lastName': { $regex : new RegExp(key, 'i')}},);
+      const regex = new RegExp(key, 'i');
+      list.push(
+        { 'user.firstName': { $regex : regex }},
+        { 'user.lastName': { $regex : regex }});
     });
-    return namesList;
+    return list;
   };
 
   const results = await Order.aggregate([
