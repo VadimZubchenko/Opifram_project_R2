@@ -28,4 +28,9 @@ router.delete('/:id', authenticate, checkPermission, async (req, res) => {
   res.json(deletedProduct);
 });
 
+router.post('/search', authenticate, async (req, res) => {
+  const foundProducts = await productService.searchProducts(req.body);
+  res.json(foundProducts);
+});
+
 module.exports = router;

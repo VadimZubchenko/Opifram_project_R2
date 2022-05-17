@@ -1,5 +1,5 @@
 const Product = require('../models/productModel');
-const { toProduct, toProductEntry } = require('../utils');
+const { toProduct, toProductEntry, validateStringProperty } = require('../utils');
 
 const getProducts = async () => {
   const products = await Product.find({}).sort({ createdAt: -1 });
@@ -29,12 +29,18 @@ const deleteProduct = async (id) => {
   return toProduct(deletedProduct);
 };
 
-//TODO: Search/sort products?
+const searchProducts = async (data) => {
+  const productName = validateStringProperty('name', data.name);
+  const regex = new RegExp(productName, 'i');
+  const foundProducts = await Product.find({ name: regex });
+  return foundProducts.map(product => toProduct(product));
+};
 
 module.exports = {
   getProducts,
   getProduct,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  searchProducts
 };
