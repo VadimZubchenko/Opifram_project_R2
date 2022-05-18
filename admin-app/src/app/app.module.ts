@@ -41,6 +41,7 @@ import { AppInterceptor } from './common/app.interceptor';
 import { UserTableComponent } from './user-table/user-table.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSnackBarModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatPaginatorModule
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Order } from '../common/models/order';
 import { OrderService } from '../common/services/order.service';
@@ -13,6 +14,7 @@ export class OrdersComponent implements OnInit {
 
   title = 'Tilaukset';
   orders: Order[];
+  dataSource: MatTableDataSource<Order>;
 
   onSearch(orders: Observable<Order[]>) {
     orders.subscribe(foundOrders => this.orders = foundOrders);

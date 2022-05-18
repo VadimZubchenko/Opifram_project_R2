@@ -30,7 +30,7 @@ export class UserService {
 
   searchUsers(term: string): Observable<User[]> {
     if (!term) { return this.getUsers(); }
-    return this.http.post<User[]>(`${apiURI}/user/search`, { name: term });
+    return this.http.post<User[]>(`${apiURI}/user/search`, { term: term });
   }
 
   formatRole(role: UserRole): string { 

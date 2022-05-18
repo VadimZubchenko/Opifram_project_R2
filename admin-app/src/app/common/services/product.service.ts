@@ -33,7 +33,7 @@ export class ProductService {
 
   searchProducts(term: string): Observable<Product[]> {
     if (!term) { return this.getProducts(); }
-    return this.http.post<Product[]>(`${apiURI}/product/search`, { name: term });
+    return this.http.post<Product[]>(`${apiURI}/product/search`, { term: term });
   }
 
   constructor(private http: HttpClient, private authService: AuthService) { }

@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="orders" class="table">
+<table mat-table [dataSource]="dataSource" class="table">
 
     <ng-container matColumnDef="user">
         <th mat-header-cell *matHeaderCellDef>Tilaaja</th>
@@ -36,13 +36,16 @@
 
     <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-            Tietoja ei löytynyt.
+            Tietoja ei löytynyt
         </td>
     </tr>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of orders">
+</mat-paginator>
 
 <mat-menu #menu="matMenu" xPosition="before">
     <button (click)="onShow()" mat-menu-item>

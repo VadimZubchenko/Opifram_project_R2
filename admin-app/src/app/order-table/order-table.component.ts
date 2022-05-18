@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { Order } from '../common/models/order';
 import { ConfirmService } from '../common/services/confirm.service';
@@ -13,11 +15,20 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
   styleUrls: ['./order-table.component.scss']
 })
 
-export class OrderTableComponent implements OnInit {
+export class OrderTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() orders: Order[];
   selectedOrder: Order;
   displayedColumns: string[] = [ 'user', 'createdAt', 'sum', 'status', 'actions'];
+
+  dataSource = new MatTableDataSource<Order>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  setPaginator(): void {
+    this.dataSource = new MatTableDataSource<Order>(this.orders);
+    this.dataSource.paginator = this.paginator;
+  }
 
   onSelect(order: Order) {
     this.selectedOrder = order;
@@ -37,8 +48,8 @@ export class OrderTableComponent implements OnInit {
         if (confirmed) {
           this.orderService.sendOrder(this.selectedOrder).subscribe({
             next: (updatedOrder) => {
-              //this.orderService.getOrders().subscribe(orders => this.orders = orders);
               this.orders = this.orders.map(order => order.id === updatedOrder.id ? updatedOrder : order);
+              this.setPaginator();
               this.snackbarService.show('Tilauksen tilan muuttaminen onnistui.');
             },
             error: (e) => {
@@ -57,8 +68,8 @@ export class OrderTableComponent implements OnInit {
           this.orderService.deleteOrder(this.selectedOrder)
             .subscribe({
               next: (deletedOrder) => {
-                //this.orderService.getOrders().subscribe(orders => this.orders = orders);
                 this.orders = this.orders.filter(order => order.id !== deletedOrder.id);
+                this.setPaginator();
                 this.snackbarService.show('Tilauksen poistaminen onnistui.');
               },
               error: (e) => {
@@ -73,5 +84,13 @@ export class OrderTableComponent implements OnInit {
   constructor(public orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService, private dialog: MatDialog) { }
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.setPaginator();
+  }
+
+  ngOnChanges(): void {
+    this.setPaginator();
+  }
 
 }

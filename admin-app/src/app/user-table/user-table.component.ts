@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { DialogOpenAction } from '../common/models/dialog-open-action';
 import { User } from '../common/models/user';
 import { ConfirmService } from '../common/services/confirm.service';
@@ -12,13 +14,21 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss']
 })
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() users: User[];
   selectedUser: User;
 
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
 
+  dataSource = new MatTableDataSource<User>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  setPaginator(): void {
+    this.dataSource = new MatTableDataSource<User>(this.users);
+    this.dataSource.paginator = this.paginator;
+  }
 
   onSelect(user: User): void {
     this.selectedUser = user;
@@ -34,6 +44,7 @@ export class UserTableComponent implements OnInit {
             .subscribe({
               next: (updatedUser) => {
                 this.users = this.users.map(user => user.id === updatedUser.id ? updatedUser : user);
+                this.setPaginator();
                 this.snackbarService.show('Käyttäjän muokkaaminen onnistui.');
               },
               error: (e) => {
@@ -54,6 +65,7 @@ export class UserTableComponent implements OnInit {
             .subscribe({
               next: (deletedUser) => {
                 this.users = this.users.filter(user => user.id !== deletedUser.id);
+                this.setPaginator();
                 this.snackbarService.show('Käyttäjän poistaminen onnistui.');
               },
               error: (e) => {
@@ -67,7 +79,14 @@ export class UserTableComponent implements OnInit {
 
   constructor(public userService: UserService, private dialog: MatDialog, private snackbarService: SnackbarService, private confirmService: ConfirmService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.setPaginator();
+  }
+
+  ngOnChanges(): void {
+    this.setPaginator();
   }
 
 }
