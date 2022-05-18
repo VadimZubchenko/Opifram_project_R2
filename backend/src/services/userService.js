@@ -45,8 +45,8 @@ const deleteUser = async (id) => {
 const searchUsers = async (data) => {
 
   const searchTerms = () => {
-    validateStringProperty('term', data.term);
-    const keys = data.term.trim().split(' ');
+    const term = validateStringProperty('term', data.term);
+    const keys = term.trim().split(' ');
     const list = [];
     keys.forEach(key => {
       const regex = new RegExp(key, 'i');
