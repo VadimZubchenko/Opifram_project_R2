@@ -55,6 +55,7 @@ const deleteOrder = async (id) => {
 
 const searchOrders = async (data) => {
 
+
   // Example data: { "name": "erkki teppo maija meikäläinen" }
   // Search from user.firstName and user.lastName by all of these above example keys
 

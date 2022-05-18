@@ -30,9 +30,20 @@ const deleteProduct = async (id) => {
 };
 
 const searchProducts = async (data) => {
-  const productName = validateStringProperty('name', data.name);
-  const regex = new RegExp(productName, 'i');
-  const foundProducts = await Product.find({ name: regex }).sort({ createdAt: -1 });
+  
+  const searchByProductName = () => {
+    validateStringProperty('name', data.name);
+    const keys = data.name.trim().split(' ');
+    const list = [];
+
+    keys.forEach(key => {
+      const regex = new RegExp(key, 'i');
+      list.push({'name': regex});
+    });
+    return list;
+  };
+
+  const foundProducts = await Product.aggregate([{$match: { $or: searchByProductName() }}]);
   return foundProducts.map(product => toProduct(product));
 };
 
