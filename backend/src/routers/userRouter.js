@@ -29,4 +29,9 @@ router.delete('/:id', authenticate, checkPermission, async (req, res) => {
   res.json(deletedUser);
 });
 
+router.post('/search', authenticate, checkPermission, async (req, res) => {
+  const foundUsers = await userService.searchUsers(req.body);
+  res.json(foundUsers);
+});
+
 module.exports = router;

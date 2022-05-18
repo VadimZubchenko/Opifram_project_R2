@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const { toUser, toUserEntry, toUserUpdateEntry } = require('../utils');
+const { toUser, toUserEntry, toUserUpdateEntry, validateStringProperty } = require('../utils');
 const bcrypt = require('bcrypt');
 
 const getUsers = async () => {
@@ -42,10 +42,28 @@ const deleteUser = async (id) => {
   return toUser(deletedUser);
 };
 
+const searchUsers = async (data) => {
+  
+  const searchByUserName = () => {
+    validateStringProperty('name', data.name);
+    const keys = data.name.trim().split(' ');
+    const list = [];
+    keys.forEach(key => {
+      const regex = new RegExp(key, 'i');
+      list.push({'firstName': regex}, {'lastName': regex});
+    });
+    return list;
+  };
+
+  const foundUsers = await User.aggregate([{$match: { $or: searchByUserName() }}]).sort({createdAt: -1});
+  return foundUsers.map(user => toUser(user));
+};
+
 module.exports = {
   getUsers,
   getUser,
   updateUser,
   deleteUser,
-  createUser
+  createUser,
+  searchUsers
 };
