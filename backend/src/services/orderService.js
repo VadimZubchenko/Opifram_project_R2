@@ -54,20 +54,14 @@ const deleteOrder = async (id) => {
 };
 
 const searchOrders = async (data) => {
-
-
-  // Example data: { "name": "erkki teppo maija meikäläinen" }
-  // Search from user.firstName and user.lastName by all of these above example keys
-
-  const searchByUserName = () => {
+  
+  const searchBy = () => {
     validateStringProperty('name', data.name);
     const keys = data.name.trim().split(' ');
     const list = [];
     keys.forEach(key => {
       const regex = new RegExp(key, 'i');
-      list.push(
-        { 'user.firstName': { $regex : regex }},
-        { 'user.lastName': { $regex : regex }});
+      list.push({ 'user.firstName': { $regex : regex }}, { 'user.lastName': { $regex : regex }});
     });
     return list;
   };
@@ -80,7 +74,7 @@ const searchOrders = async (data) => {
       as: 'user'
     }},
     {$unwind: '$user'},
-    {$match: { $or: searchByUserName() }}
+    {$match: { $or: searchBy() }}
   ]).sort({ createdAt: -1 });
 
   const populatedOrders = [];

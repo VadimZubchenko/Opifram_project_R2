@@ -31,7 +31,7 @@ const deleteProduct = async (id) => {
 
 const searchProducts = async (data) => {
   
-  const searchByProductName = () => {
+  const searchBy = () => {
     validateStringProperty('name', data.name);
     const keys = data.name.trim().split(' ');
     const list = [];
@@ -42,7 +42,7 @@ const searchProducts = async (data) => {
     return list;
   };
 
-  const foundProducts = await Product.aggregate([{$match: { $or: searchByProductName() }}]).sort({createdAt: -1});
+  const foundProducts = await Product.aggregate([{$match: { $or: searchBy() }}]).sort({createdAt: -1});
   return foundProducts.map(product => toProduct(product));
 };
 

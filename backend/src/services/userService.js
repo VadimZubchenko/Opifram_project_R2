@@ -43,8 +43,8 @@ const deleteUser = async (id) => {
 };
 
 const searchUsers = async (data) => {
-  
-  const searchByUserName = () => {
+
+  const searchBy = () => {
     validateStringProperty('name', data.name);
     const keys = data.name.trim().split(' ');
     const list = [];
@@ -55,7 +55,7 @@ const searchUsers = async (data) => {
     return list;
   };
 
-  const foundUsers = await User.aggregate([{$match: { $or: searchByUserName() }}]).sort({createdAt: -1});
+  const foundUsers = await User.aggregate([{$match: { $or: searchBy() }}]).sort({createdAt: -1});
   return foundUsers.map(user => toUser(user));
 };
 
