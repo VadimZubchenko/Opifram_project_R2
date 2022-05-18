@@ -13,11 +13,13 @@ import { AuthService } from './services/auth.service';
 export class AppInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const authToken: string = this.authService.getToken();
-    return next.handle(request.clone({ setHeaders: { 'Content-Type': 'application/json', 'Authorization': authToken } }))
+    return next.handle(request.clone({ setHeaders: { 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() } }))
       .pipe(map((event: HttpEvent<unknown>) => {
         if (event instanceof HttpResponse) {
-          console.log('Event status:', event);
+          if (event.status === 419) {
+            //TODO: Show expired session dialog, force logout
+            //this.authService.logout();
+          }
         }
         return event;
       }));
