@@ -10,7 +10,7 @@ describe('UserSearchComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ UserSearchComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   title = 'Tuotteet';
   products: Product[];
 
-  onSearch(foundProducts: Observable<Product[]>) {
+  onSearch(foundProducts: Observable<Product[]>): void {
     foundProducts.subscribe(products => this.products = products);
   }
 

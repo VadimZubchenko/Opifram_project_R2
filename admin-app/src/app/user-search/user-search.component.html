@@ -1,1 +1,7 @@
-<p>user-search works!</p>
+<div class="search-input-container">
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Hae käyttäjän nimellä</mat-label>
+        <input matInput #searchInput (input)="onSearch(searchInput.value)">
+        <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+</div>

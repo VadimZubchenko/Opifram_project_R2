@@ -28,6 +28,11 @@ export class UserService {
     return this.http.delete<User>(`${apiURI}/user/${user.id}`);
   }
 
+  searchUsers(term: string): Observable<User[]> {
+    if (!term) { return this.getUsers(); }
+    return this.http.post<User[]>(`${apiURI}/user/search`, { name: term });
+  }
+
   formatRole(role: UserRole): string { 
     switch(role) {
     case UserRole.Admin:
