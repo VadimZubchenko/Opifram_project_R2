@@ -29,8 +29,8 @@ export class ProductTableComponent implements OnInit {
       .subscribe((data: Product) => {
         if (data) {
           this.productService.updateProduct(data).subscribe({
-            next: () => {
-              //this.getProducts();
+            next: (updatedProduct) => {
+              this.products = this.products.map(product => product.id === updatedProduct.id ? updatedProduct : product);
               this.snackbarService.show('Tuotteen muokkaaminen onnistui.');
             },
             error: (e) => {
@@ -48,12 +48,11 @@ export class ProductTableComponent implements OnInit {
       .subscribe((confirmed: boolean) => {
         if (confirmed) {
           this.productService.deleteProduct(this.selectedProduct).subscribe({
-            next: () => {
-              //this.getProducts();
+            next: (deletedProduct) => {
+              this.products = this.products.filter(product => product.id !== deletedProduct.id);
               this.snackbarService.show('Tuotteen poistaminen onnistui.');
             },
             error: (e) => {
-              //this.getProducts();
               this.snackbarService.show('Tuotteen poistaminen epäonnistui.');
               console.error(e);
             }

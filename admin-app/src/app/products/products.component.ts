@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
         if (data) {
           this.productService.createProduct(data).subscribe({
             next: () => {
-              //this.getProducts();
+              this.productService.getProducts().subscribe(products => this.products = products);
               this.snackbarService.show('Tuotteen lisääminen onnistui.');
             },
             error: (e) => {
