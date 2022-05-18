@@ -9,7 +9,14 @@ import { DarkModeService } from '../common/services/dark-mode.service';
 })
 export class DashboardComponent implements OnInit {
 
+  selectedIndex = '0';
+
   constructor(public authService: AuthService, public darkModeService: DarkModeService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const tabIndex = localStorage.getItem('tabIndex');
+    if (tabIndex) {
+      this.selectedIndex = tabIndex;
+    }
+  }
 }

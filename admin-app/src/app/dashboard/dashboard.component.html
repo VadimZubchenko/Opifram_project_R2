@@ -2,19 +2,13 @@
 
     <mat-card class="toolbar-card">
         <mat-toolbar>
-            <button class="brand-image" [color]="'primary'" mat-mini-fab>
+            <button routerLink="/dashboard" class="brand-image" [color]="'primary'" mat-mini-fab>
                 <mat-icon>verified_user</mat-icon>
             </button>
             <span class="brand-text-primary">Hallinta</span>
             <span class="brand-divider-dot">·</span>
             <span class="brand-text-secondary">Kahvikauppa</span>
             <span class="spacer"></span>
-            <!--
-            <button class="dark-mode-button" (click)="darkModeService.toggleDarkMode()" mat-icon-button
-                aria-label="brightness_medium">
-                <mat-icon>brightness_medium</mat-icon>
-            </button>
-            -->
             <button [matMenuTriggerFor]="menu" mat-stroked-button aria-label="logout">
                 <mat-icon class="face-icon">face</mat-icon>{{authService.user?.firstName}}
                 {{authService.user?.lastName}}
@@ -37,7 +31,7 @@
     </mat-card>
     <mat-card>
 
-        <mat-tab-group class="center" mat-align-tabs="center" animationDuration="0ms">
+        <mat-tab-group [selectedIndex]="selectedIndex" class="center" mat-align-tabs="center" animationDuration="0ms">
             <mat-tab label="Tilaukset">
                 <ng-template matTabContent>
                     <app-orders></app-orders>

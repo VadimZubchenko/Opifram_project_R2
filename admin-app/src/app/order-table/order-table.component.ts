@@ -17,7 +17,7 @@ export class OrderTableComponent implements OnInit {
 
   @Input() orders: Order[];
   selectedOrder: Order;
-  displayedColumns: string[] = [ 'user', 'createdAt', 'sum', 'status', 'id'];
+  displayedColumns: string[] = [ 'user', 'createdAt', 'sum', 'status', 'actions'];
 
   onSelect(order: Order) {
     this.selectedOrder = order;

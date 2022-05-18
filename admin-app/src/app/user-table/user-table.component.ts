@@ -17,7 +17,7 @@ export class UserTableComponent implements OnInit {
   @Input() users: User[];
   selectedUser: User;
 
-  displayedColumns: string[] = ['name', 'email', 'role', 'id'];
+  displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
 
 
   onSelect(user: User): void {

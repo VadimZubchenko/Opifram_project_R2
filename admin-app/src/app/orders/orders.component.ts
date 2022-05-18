@@ -21,6 +21,7 @@ export class OrdersComponent implements OnInit {
   constructor(public orderService: OrderService) { }
 
   ngOnInit(): void {
+    localStorage.setItem('tabIndex', '0');
     this.orderService.getOrders().subscribe(orders => this.orders = orders);
   }
 

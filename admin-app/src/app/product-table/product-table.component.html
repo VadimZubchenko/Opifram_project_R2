@@ -21,7 +21,7 @@
         <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.quantity}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Hallinta</th>
         <td mat-cell *matCellDef="let element">
             <button (click)="onSelect(element)" [matMenuTriggerFor]="menu" mat-icon-button>

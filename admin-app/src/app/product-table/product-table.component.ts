@@ -16,7 +16,7 @@ export class ProductTableComponent implements OnInit {
 
   @Input() products: Product[];
   selectedProduct: Product;
-  displayedColumns: string[] = ['name', 'category', 'price', 'quantity', 'id'];
+  displayedColumns: string[] = ['name', 'category', 'price', 'quantity', 'actions'];
 
   onSelect(product: Product): void {
     this.selectedProduct = product;
