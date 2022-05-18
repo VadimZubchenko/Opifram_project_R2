@@ -47,7 +47,7 @@ const toProduct = (data) => {
     quantity: data.quantity,
     category: data.category,
     image: data.image,
-    id: data.id,
+    id: data.id ? data.id : data._id,
   };
 };
 
@@ -77,7 +77,7 @@ const toOrder = (data) => {
     products: data.products.map((product) => toOrderedProduct(product)),
     sum: data.sum,
     status: data.status,
-    id: data.id,
+    id: data.id ? data.id : data._id,
     createdAt: data.createdAt,
     updatedAt: data.updatedAt,
   };
@@ -97,7 +97,7 @@ const toUser = (data) => {
     role: data.role,
     phone: data.phone,
     address: data.address,
-    id: data.id,
+    id: data.id ? data.id : data._id,
   };
 };
 
