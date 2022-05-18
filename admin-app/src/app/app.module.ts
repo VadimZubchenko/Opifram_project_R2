@@ -40,6 +40,7 @@ import { ProductTableComponent } from './product-table/product-table.component';
 import { AppInterceptor } from './common/app.interceptor';
 import { UserTableComponent } from './user-table/user-table.component';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
     MatDialogModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatBadgeModule
   ],
   providers: [
     {

@@ -1,5 +1,9 @@
-<div class="title-container">
+<ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>
+
+<div *ngIf="users; else loading">
     <h2 class="title">{{title}}</h2>
+    <app-user-search (userSearch)="onSearch($event)"></app-user-search>
+    <app-user-table [users]="users"></app-user-table>
 </div>
-<app-user-search (userSearch)="onSearch($event)"></app-user-search>
-<app-user-table [users]="users"></app-user-table>
