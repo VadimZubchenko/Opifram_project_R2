@@ -52,6 +52,7 @@ const toProduct = (data) => {
 };
 
 const toOrderedProduct = (data) => {
+
   return {
     name: data.product.name,
     amount: data.amount,

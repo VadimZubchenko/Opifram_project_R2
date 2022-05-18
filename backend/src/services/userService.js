@@ -44,9 +44,9 @@ const deleteUser = async (id) => {
 
 const searchUsers = async (data) => {
 
-  const searchBy = () => {
-    validateStringProperty('name', data.name);
-    const keys = data.name.trim().split(' ');
+  const searchTerms = () => {
+    validateStringProperty('term', data.term);
+    const keys = data.term.trim().split(' ');
     const list = [];
     keys.forEach(key => {
       const regex = new RegExp(key, 'i');
@@ -55,7 +55,7 @@ const searchUsers = async (data) => {
     return list;
   };
 
-  const foundUsers = await User.aggregate([{$match: { $or: searchBy() }}]).sort({createdAt: -1});
+  const foundUsers = await User.aggregate([{$match: { $or: searchTerms() }}]).sort({createdAt: -1});
   return foundUsers.map(user => toUser(user));
 };
 
