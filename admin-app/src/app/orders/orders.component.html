@@ -1,3 +1,3 @@
-<h2 class="title">Tilaukset</h2>
-<app-order-search (orderSearch)="onOrderSearch($event)" [orders]="orders"></app-order-search>
+<h2 class="title">{{title}}</h2>
+<app-order-search (orderSearch)="onSearch($event)"></app-order-search>
 <app-order-table [orders]="orders"></app-order-table>

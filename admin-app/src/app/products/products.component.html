@@ -1,5 +1,5 @@
 <div class="title-container">
-    <h2 class="title">Tuotteet</h2>
+    <h2 class="title">{{title}}</h2>
     <button (click)="onCreate()" [disabled]="!products" class="add-new-button" mat-stroked-button>
         <div class="add-new-button-content">
             <mat-icon>add_circle</mat-icon>
@@ -8,55 +8,5 @@
     </button>
 </div>
 
-<ng-template #loading>
-    <app-loading-spinner></app-loading-spinner>
-</ng-template>
-
-<ng-template #nodata>
-    <app-no-data-found></app-no-data-found>
-</ng-template>
-
-<table *ngIf="products && products.length > 0; else !products ? loading : nodata" class="table" mat-table [dataSource]="products">
-
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nimi</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>Kategoria</th>
-        <td mat-cell *matCellDef="let element">{{element.category}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef>Hinta (kpl)</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.price | currency: 'EUR': 'symbol' }}
-        </td>
-    </ng-container>
-
-    <ng-container matColumnDef="quantity">
-        <th mat-header-cell *matHeaderCellDef>Määrä (kpl)</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.quantity}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Hallinta</th>
-        <td mat-cell *matCellDef="let element">
-            <button (click)="onSelect(element)" [matMenuTriggerFor]="menu" mat-icon-button>
-                <mat-icon>more_vert</mat-icon>
-            </button>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-<mat-menu #menu="matMenu" xPosition="before">
-    <button (click)="onEdit()" mat-menu-item>
-        <mat-icon>edit</mat-icon>Muokkaa
-    </button>
-    <button (click)="onDelete()" mat-menu-item>
-        <mat-icon>delete</mat-icon>Poista
-    </button>
-</mat-menu>
+<app-product-search (productSearch)="onSearch($event)"></app-product-search>
+<app-product-table [products]="products"></app-product-table>

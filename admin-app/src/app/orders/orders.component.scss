@@ -2,34 +2,3 @@
     padding-top: 15px;
     padding-left: 15px;
 }
-
-.title-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.total-count-text {
-    padding-top: 20px;
-    padding-left: 15px;
-    padding-bottom: 10px;
-    opacity: 0.75;
-}
-
-.add-new-button-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 7px;
-}
-
-.add-new-button {
-    margin-right: 15px;
-}
-
-.search-input-container {
-    padding-left: 15px;
-    padding-right: 15px;
-}

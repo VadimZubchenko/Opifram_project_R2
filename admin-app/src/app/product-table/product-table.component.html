@@ -1,23 +1,24 @@
-<div class="title-container">
-    <h2 class="title">Käyttäjät</h2>
-</div>
-
-<table class="table" mat-table [dataSource]="users">
+<table class="table" mat-table [dataSource]="products">
 
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nimi</th>
-        <td mat-cell *matCellDef="let element">{{element.firstName}} {{element.lastName}}</td>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Sähköpostiosoite</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.email}}
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Kategoria</th>
+        <td mat-cell *matCellDef="let element">{{element.category}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Hinta (kpl)</th>
+        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.price | currency: 'EUR': 'symbol' }}
         </td>
     </ng-container>
 
-    <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef>Rooli</th>
-        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{userService.formatRole(element.role)}}</td>
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Määrä (kpl)</th>
+        <td style="min-width: 70px;" mat-cell *matCellDef="let element">{{element.quantity}}</td>
     </ng-container>
 
     <ng-container matColumnDef="id">

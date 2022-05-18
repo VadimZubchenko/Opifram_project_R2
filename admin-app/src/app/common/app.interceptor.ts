@@ -6,10 +6,10 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './common/services/auth.service';
+import { AuthService } from './services/auth.service';
 
 @Injectable()
-export class MyInterceptor implements HttpInterceptor {
+export class AppInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const authToken: string = this.authService.getToken();

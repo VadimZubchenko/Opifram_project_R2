@@ -11,10 +11,10 @@ import { OrderService } from '../common/services/order.service';
 
 export class OrdersComponent implements OnInit {
 
+  title = 'Tilaukset';
   orders: Order[];
-  selectedOrder: Order;
 
-  onOrderSearch(orders: Observable<Order[]>) {
+  onSearch(orders: Observable<Order[]>) {
     orders.subscribe(foundOrders => this.orders = foundOrders);
   }
 
@@ -23,4 +23,5 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getOrders().subscribe(orders => this.orders = orders);
   }
+
 }

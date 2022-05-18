@@ -33,10 +33,11 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
-import { MyInterceptor } from './my.interceptor';
 import { OrderSearchComponent } from './order-search/order-search.component';
 import { OrderTableComponent } from './order-table/order-table.component';
+import { ProductSearchComponent } from './product-search/product-search.component';
+import { ProductTableComponent } from './product-table/product-table.component';
+import { AppInterceptor } from './common/app.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,9 +53,10 @@ import { OrderTableComponent } from './order-table/order-table.component';
     UsersComponent,
     UserDialogComponent,
     LoadingSpinnerComponent,
-    NoDataFoundComponent,
     OrderSearchComponent,
     OrderTableComponent,
+    ProductSearchComponent,
+    ProductTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,7 @@ import { OrderTableComponent } from './order-table/order-table.component';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: MyInterceptor,
+      useClass: AppInterceptor,
       multi: true
     }
   ],

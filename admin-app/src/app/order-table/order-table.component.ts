@@ -12,6 +12,7 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
   templateUrl: './order-table.component.html',
   styleUrls: ['./order-table.component.scss']
 })
+
 export class OrderTableComponent implements OnInit {
 
   @Input() orders: Order[];
@@ -26,13 +27,18 @@ export class OrderTableComponent implements OnInit {
     this.dialog.open(OrderDialogComponent, { data: { action: DialogOpenAction.Open, item: this.selectedOrder } });
   }
 
+  getOrders(): void {
+    this.orderService.getOrders().subscribe(orders => this.orders = orders);
+  }
+
   onMarkAsSend(): void {
     this.confirmService.confirm('Vahvista tilauksen tilan muutos.')
       .subscribe((confirmed: boolean) => {
         if (confirmed) {
           this.orderService.sendOrder(this.selectedOrder).subscribe({
-            next: () => {
-              //this.getOrders();
+            next: (updatedOrder) => {
+              //this.orderService.getOrders().subscribe(orders => this.orders = orders);
+              this.orders = this.orders.map(order => order.id === updatedOrder.id ? updatedOrder : order);
               this.snackbarService.show('Tilauksen tilan muuttaminen onnistui.');
             },
             error: (e) => {
@@ -50,8 +56,9 @@ export class OrderTableComponent implements OnInit {
         if (confirmed) {
           this.orderService.deleteOrder(this.selectedOrder)
             .subscribe({
-              next: () => {
-                //this.getOrders();
+              next: (deletedOrder) => {
+                //this.orderService.getOrders().subscribe(orders => this.orders = orders);
+                this.orders = this.orders.filter(order => order.id !== deletedOrder.id);
                 this.snackbarService.show('Tilauksen poistaminen onnistui.');
               },
               error: (e) => {
@@ -65,7 +72,6 @@ export class OrderTableComponent implements OnInit {
 
   constructor(public orderService: OrderService, private confirmService: ConfirmService, private snackbarService: SnackbarService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

@@ -31,5 +31,10 @@ export class ProductService {
     return this.http.delete<Product>(`${apiURI}/product/${product.id}`);
   }
 
+  searchProducts(term: string): Observable<Product[]> {
+    if (!term) { return this.getProducts(); }
+    return this.http.post<Product[]>(`${apiURI}/product/search`, { name: term });
+  }
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 }

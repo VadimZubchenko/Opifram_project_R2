@@ -29,9 +29,7 @@ export class OrderService {
   }
 
   searchOrders(term: string): Observable<Order[]> {
-    if (!term) {
-      return this.getOrders();
-    }
+    if (!term) { return this.getOrders(); }
     return this.http.post<Order[]>(`${apiURI}/order/search`, { name: term });
   }
 

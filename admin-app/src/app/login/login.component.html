@@ -12,22 +12,12 @@
                     <mat-label>Sähköpostiosoite</mat-label>
                     <input (focus)="clearError()" matInput type="email" formControlName="email">
                     <mat-icon class="input-icon" matPrefix>email</mat-icon>
-                    <!--
-                    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-                        Virheellinen sähköpostiosoite.
-                    </mat-error>
-                    -->
                 </mat-form-field>
 
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Salasana</mat-label>
                     <input (focus)="clearError()" matInput type="password" formControlName="password">
                     <mat-icon class="input-icon" matPrefix>lock</mat-icon>
-                    <!--
-                    <mat-error *ngIf="loginForm.get('password')?.hasError('password')">
-                        Virheellinen salasana.
-                    </mat-error>
-                    -->
                 </mat-form-field>
 
                 <p *ngIf="errorText" class="warn-color centered-text error">{{errorText}}</p>

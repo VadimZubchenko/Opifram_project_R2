@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { Order } from '../common/models/order';
 import { OrderService } from '../common/services/order.service';
@@ -11,15 +11,13 @@ import { OrderService } from '../common/services/order.service';
 
 export class OrderSearchComponent implements OnInit {
 
-  @Input() orders: Order[];
-  @Input() testString: string;
-
   @Output() orderSearch = new EventEmitter<Observable<Order[]>>();
+  
+  searchInput: string;
+  searchTerms: Subject<string> = new Subject<string>();
 
-  searchTerms = new Subject<string>();
-
-  onSearchInput(term: string) {
-    this.searchTerms.next(term);
+  onSearchInput(term: string): void {
+    this.searchTerms.next(term.trim());
   }
 
   constructor(private orderService: OrderService) { }
