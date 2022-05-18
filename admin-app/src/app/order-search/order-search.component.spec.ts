@@ -1,4 +1,6 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { OrderSearchComponent } from './order-search.component';
 
@@ -8,7 +10,8 @@ describe('OrderSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrderSearchComponent ]
+      declarations: [ OrderSearchComponent ],
+      providers: [HttpClient, HttpHandler, Router]
     })
       .compileComponents();
   });

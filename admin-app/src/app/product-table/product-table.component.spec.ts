@@ -1,4 +1,6 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { ProductTableComponent } from './product-table.component';
 
@@ -8,7 +10,8 @@ describe('ProductTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductTableComponent ]
+      declarations: [ ProductTableComponent ],
+      providers: [HttpClient, HttpHandler, Router]
     })
       .compileComponents();
   });

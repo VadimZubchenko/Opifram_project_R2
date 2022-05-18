@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ProductDialogComponent } from './product-dialog.component';
 
@@ -8,7 +9,8 @@ describe('ProductDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductDialogComponent ]
+      declarations: [ ProductDialogComponent ],
+      providers: [MatDialog]
     })
       .compileComponents();
   });

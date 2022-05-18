@@ -62,7 +62,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProductSearchComponent,
     ProductTableComponent,
     UserTableComponent,
-    UserSearchComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
