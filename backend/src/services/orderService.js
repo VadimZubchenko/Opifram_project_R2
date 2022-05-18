@@ -67,7 +67,7 @@ const searchOrders = async (data) => {
   };
 
   const results = await Order.aggregate([
-    { $lookup: {
+    {$lookup: {
       from: User.collection.name,
       localField: 'user',
       foreignField: '_id',
@@ -77,14 +77,7 @@ const searchOrders = async (data) => {
     {$match: { $or: searchTerms() }}
   ]).sort({ createdAt: -1 });
 
-  const populatedOrders = [];
-
-  for (const result of results) {
-    const order = await Order.findById(result._id).populate('user').populate('products.product');
-    populatedOrders.push(order);
-  }
-
-  return populatedOrders.map(order => toOrder(order));
+  return results.map(order => toOrder(order));
 };
 
 module.exports = {

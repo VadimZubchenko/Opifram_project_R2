@@ -54,9 +54,9 @@ const toProduct = (data) => {
 const toOrderedProduct = (data) => {
 
   return {
-    name: data.product.name,
+    name: data.product ? data.product.name : data.name,
     amount: data.amount,
-    price: data.product.price,
+    price: data.product ? data.product.price : data.price,
     id: data.id
   };
 };
