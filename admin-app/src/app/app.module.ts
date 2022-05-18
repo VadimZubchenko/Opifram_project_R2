@@ -38,6 +38,8 @@ import { OrderTableComponent } from './order-table/order-table.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { AppInterceptor } from './common/app.interceptor';
+import { UserTableComponent } from './user-table/user-table.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { AppInterceptor } from './common/app.interceptor';
     OrderTableComponent,
     ProductSearchComponent,
     ProductTableComponent,
+    UserTableComponent,
+    UserSearchComponent,
   ],
   imports: [
     BrowserModule,
