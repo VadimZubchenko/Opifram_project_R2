@@ -10,7 +10,7 @@ const cors = require('cors');
 const { errorHandler,unknownEndpoint, requestLogger } = require('./middleware');
 
 const app = express();
-app.use(cors(ALLOWED_ORIGINS));
+app.use(cors({ origin: ALLOWED_ORIGINS, optionsSuccessStatus: 200 }));
 
 mongoose
   .connect(MONGODB_URI)
