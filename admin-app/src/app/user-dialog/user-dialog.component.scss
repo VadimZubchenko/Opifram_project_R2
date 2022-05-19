@@ -6,3 +6,11 @@
 .mat-dialog-title {
     padding-bottom: 10px;
 }
+
+@media screen and (max-width: 500px) {
+    .container {
+        min-width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
