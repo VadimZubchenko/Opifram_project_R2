@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Order } from '../common/models/order';
 import { OrderService } from '../common/services/order.service';
@@ -14,7 +13,6 @@ export class OrdersComponent implements OnInit {
 
   title = 'Tilaukset';
   orders: Order[];
-  dataSource: MatTableDataSource<Order>;
   errorText: string;
 
   onSearch(orders: Observable<Order[]>) {
@@ -24,7 +22,6 @@ export class OrdersComponent implements OnInit {
   constructor(public orderService: OrderService) { }
 
   ngOnInit(): void {
-    localStorage.setItem('tabIndex', '0');
     this.orderService.getOrders().subscribe({
       next: (orders) => {
         this.orders = orders;

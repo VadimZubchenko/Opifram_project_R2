@@ -31,21 +31,16 @@
     </mat-card>
     <mat-card>
 
-        <mat-tab-group [selectedIndex]="selectedIndex" class="center" mat-align-tabs="center" animationDuration="0ms">
+        <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="onTabChange($event)" class="center"
+            mat-align-tabs="center" animationDuration="0ms">
             <mat-tab label="Tilaukset">
-                <ng-template matTabContent>
-                    <app-orders></app-orders>
-                </ng-template>
+                <app-orders></app-orders>
             </mat-tab>
             <mat-tab label="Tuotteet">
-                <ng-template matTabContent>
-                    <app-products></app-products>
-                </ng-template>
+                <app-products></app-products>
             </mat-tab>
             <mat-tab label="Käyttäjät">
-                <ng-template matTabContent>
-                    <app-users></app-users>
-                </ng-template>
+                <app-users></app-users>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

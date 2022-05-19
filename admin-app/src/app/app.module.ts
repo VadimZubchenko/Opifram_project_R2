@@ -65,7 +65,7 @@ import { SessionExpiredDialogComponent } from './session-expired-dialog/session-
     ProductTableComponent,
     UserTableComponent,
     UserSearchComponent,
-    SessionExpiredDialogComponent
+    SessionExpiredDialogComponent,
   ],
   imports: [
     BrowserModule,

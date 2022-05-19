@@ -24,7 +24,6 @@ export class UsersComponent implements OnInit {
   constructor(public userService: UserService, private dialog: MatDialog, private snackbarService: SnackbarService, private confirmService: ConfirmService) { }
 
   ngOnInit(): void {
-    localStorage.setItem('tabIndex', '2');
     this.userService.getUsers().subscribe({
       next: (users) => {
         this.users = users;

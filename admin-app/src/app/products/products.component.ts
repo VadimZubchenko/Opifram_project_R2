@@ -46,7 +46,6 @@ export class ProductsComponent implements OnInit {
   constructor(public productService: ProductService, private dialog: MatDialog, private snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
-    localStorage.setItem('tabIndex', '1');
     this.productService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
