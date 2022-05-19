@@ -14,7 +14,6 @@ import { UserRole } from '../common/models/user-role';
 export class LoginComponent implements OnInit {
 
   errorText: string | undefined;
-  loginButtonText = 'Kirjaudu sisään';
   loading = false;
 
   loginForm: FormGroup = new FormGroup({
@@ -26,10 +25,8 @@ export class LoginComponent implements OnInit {
     if (loading) {
       this.errorText = undefined;
       this.loading = true;
-      this.loginButtonText = 'Ladataan...';
     } else {
       this.loading = false;
-      this.loginButtonText = 'Kirjaudu sisään';
     }
   }
 

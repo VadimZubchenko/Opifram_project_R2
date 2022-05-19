@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint './src/**/*.{ts}'",
-    "lint:fix": "eslint './src/**/*.{ts}' --fix"
+    "lint:fix": "eslint './src/**/*.{ts}' --fix",
+    "i18n:extract": "ng extract-i18n --output-path src/locale"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "@angular-devkit/build-angular": "~13.3.4",
     "@angular/cli": "~13.3.4",
     "@angular/compiler-cli": "~13.3.0",
+    "@angular/localize": "^13.3.7",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
