@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
         this.users = users;
       },
       error: () => {
-        this.errorText = 'Tietoja ei voitu hakea.';
+        this.errorText = 'Tietoja ei voitu hakea';
       }
     });
   }
