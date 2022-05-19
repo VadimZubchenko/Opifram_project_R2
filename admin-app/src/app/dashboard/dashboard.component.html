@@ -34,13 +34,19 @@
         <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="onTabChange($event)" class="center"
             mat-align-tabs="center" animationDuration="0ms">
             <mat-tab label="Tilaukset">
-                <app-orders></app-orders>
+                <ng-template matTabContent>
+                    <app-orders></app-orders>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Tuotteet">
-                <app-products></app-products>
+                <ng-template matTabContent>
+                    <app-products></app-products>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Käyttäjät">
-                <app-users></app-users>
+                <ng-template matTabContent>
+                    <app-users></app-users>
+                </ng-template>
             </mat-tab>
         </mat-tab-group>
     </mat-card>
