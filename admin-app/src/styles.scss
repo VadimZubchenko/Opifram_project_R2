@@ -280,7 +280,8 @@ $border-radius: 15px;
 
 //
 
-html, body {
+html,
+body {
   width: 100% !important;
   height: 100% !important;
   margin: 0;
@@ -313,4 +314,12 @@ html, body {
 .mat-paginator {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.table {
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: scroll;
 }
