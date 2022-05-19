@@ -1,11 +1,3 @@
-<ng-template #loading>
-    <app-loading-spinner></app-loading-spinner>
-</ng-template>
-
-<ng-template #error>
-    <p class="error-text">{{errorText}}</p>
-</ng-template>
-
 <div class="title-container">
     <h2 class="title">{{title}}</h2>
     <button (click)="onCreate()" [disabled]="!products" class="add-new-button" mat-stroked-button>
@@ -16,7 +8,5 @@
     </button>
 </div>
 
-<div *ngIf="products && !errorText; else errorText ? error : loading">
-    <app-product-search (productSearch)="onSearch($event)"></app-product-search>
-    <app-product-table [products]="products"></app-product-table>
-</div>
+<app-product-search (productSearch)="onSearch($event)"></app-product-search>
+<app-product-table [products]="products"></app-product-table>

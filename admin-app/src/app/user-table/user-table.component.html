@@ -3,20 +3,23 @@
 
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Nimi</th>
-            <td style="min-width: 120px;" mat-cell *matCellDef="let element">{{element.firstName}} {{element.lastName}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Sähköpostiosoite</th>
-            <td style="max-width: 120px; min-width: 100px; overflow: hidden; text-overflow: ellipsis; padding-right: 15px;" mat-cell *matCellDef="let element">{{element.email}}
+            <td style="min-width: 120px;" mat-cell *matCellDef="let element">{{element.firstName}} {{element.lastName}}
             </td>
         </ng-container>
-    
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Sähköpostiosoite</th>
+            <td style="max-width: 120px; min-width: 100px; overflow: hidden; text-overflow: ellipsis; padding-right: 15px;"
+                mat-cell *matCellDef="let element">{{element.email}}
+            </td>
+        </ng-container>
+
         <ng-container matColumnDef="role">
             <th mat-header-cell *matHeaderCellDef>Rooli</th>
-            <td style="min-width: 90px;" mat-cell *matCellDef="let element">{{userService.formatRole(element.role)}}</td>
+            <td style="min-width: 90px;" mat-cell *matCellDef="let element">{{userService.formatRole(element.role)}}
+            </td>
         </ng-container>
-    
+
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Toiminnot</th>
             <td mat-cell *matCellDef="let element">
@@ -25,13 +28,13 @@
                 </button>
             </td>
         </ng-container>
-    
+
         <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-                Tietoja ei löytynyt
+                {{!users? 'Ladataan tietoja...' : 'Tietoja ei löytynyt'}}
             </td>
         </tr>
-    
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
