@@ -9,4 +9,4 @@
 </div>
 
 <app-product-search (productSearch)="onSearch($event)"></app-product-search>
-<app-product-table [products]="products"></app-product-table>
+<app-product-table [errorText]="errorText" [products]="products"></app-product-table>

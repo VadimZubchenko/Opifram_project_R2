@@ -17,6 +17,7 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 export class UserTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() users: User[];
+  @Input() errorText: string;
   selectedUser: User;
 
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];

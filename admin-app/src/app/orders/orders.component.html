@@ -1,4 +1,4 @@
 <h2 class="title">{{title}}</h2>
 
 <app-order-search (orderSearch)="onSearch($event)"></app-order-search>
-<app-order-table [orders]="orders"></app-order-table>
+<app-order-table [errorText]="errorText" [orders]="orders"></app-order-table>

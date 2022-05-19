@@ -17,6 +17,7 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
 export class ProductTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() products: Product[];
+  @Input() errorText: string;
   selectedProduct: Product;
   displayedColumns: string[] = ['name', 'category', 'price', 'quantity', 'actions'];
 

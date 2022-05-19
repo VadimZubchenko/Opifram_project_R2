@@ -18,6 +18,7 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 export class OrderTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() orders: Order[];
+  @Input() errorText: string;
   selectedOrder: Order;
   displayedColumns: string[] = [ 'user', 'createdAt', 'sum', 'status', 'actions'];
 

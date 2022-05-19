@@ -31,7 +31,7 @@
 
         <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-                {{!users? 'Ladataan tietoja...' : 'Tietoja ei löytynyt'}}
+                {{ errorText ? errorText : !users? 'Ladataan tietoja...' : 'Tietoja ei löytynyt'}}
             </td>
         </tr>
 
