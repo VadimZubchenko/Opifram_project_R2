@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit {
         this.products = products;
       },
       error: () => {
-        this.errorText = 'Tietoja ei voitu hakea.';
+        this.errorText = 'Tietoja ei voitu hakea';
       }
     });
   }

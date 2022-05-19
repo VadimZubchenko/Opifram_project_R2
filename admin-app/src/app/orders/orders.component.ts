@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
       },
       error: () => {
         this.orders = [];
-        this.errorText = 'Tietoja ei voitu hakea.';
+        this.errorText = 'Tietoja ei voitu hakea';
       }
     });
   }
