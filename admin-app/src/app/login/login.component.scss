@@ -32,3 +32,9 @@
 .input-icon {
     margin-right: 7px;
 }
+
+@media screen and (max-width: 500px) {
+    .container {
+        padding-top: 20vh;
+    }
+}
