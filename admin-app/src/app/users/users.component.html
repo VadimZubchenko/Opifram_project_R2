@@ -6,8 +6,9 @@
     <p class="error-text">{{errorText}}</p>
 </ng-template>
 
+<h2 class="title">{{title}}</h2>
+
 <div *ngIf="users && !errorText; else errorText ? error : loading">
-    <h2 class="title">{{title}}</h2>
     <app-user-search (userSearch)="onSearch($event)"></app-user-search>
     <app-user-table [users]="users"></app-user-table>
 </div>

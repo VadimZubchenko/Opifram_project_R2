@@ -6,17 +6,17 @@
     <p class="error-text">{{errorText}}</p>
 </ng-template>
 
-<div *ngIf="products && !errorText; else errorText ? error : loading">
-    <div class="title-container">
-        <h2 class="title">{{title}}</h2>
-        <button (click)="onCreate()" [disabled]="!products" class="add-new-button" mat-stroked-button>
-            <div class="add-new-button-content">
-                <mat-icon>add_circle</mat-icon>
-                <span>Lisää tuote</span>
-            </div>
-        </button>
-    </div>
+<div class="title-container">
+    <h2 class="title">{{title}}</h2>
+    <button (click)="onCreate()" [disabled]="!products" class="add-new-button" mat-stroked-button>
+        <div class="add-new-button-content">
+            <mat-icon>add_circle</mat-icon>
+            <span>Lisää tuote</span>
+        </div>
+    </button>
+</div>
 
+<div *ngIf="products && !errorText; else errorText ? error : loading">
     <app-product-search (productSearch)="onSearch($event)"></app-product-search>
     <app-product-table [products]="products"></app-product-table>
 </div>
