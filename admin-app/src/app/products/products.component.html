@@ -2,7 +2,11 @@
     <app-loading-spinner></app-loading-spinner>
 </ng-template>
 
-<div *ngIf="products; else loading">
+<ng-template #error>
+    <p class="error-text">{{errorText}}</p>
+</ng-template>
+
+<div *ngIf="products && !errorText; else errorText ? error : loading">
     <div class="title-container">
         <h2 class="title">{{title}}</h2>
         <button (click)="onCreate()" [disabled]="!products" class="add-new-button" mat-stroked-button>

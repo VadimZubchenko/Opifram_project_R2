@@ -2,7 +2,11 @@
     <app-loading-spinner></app-loading-spinner>
 </ng-template>
 
-<div *ngIf="users; else loading">
+<ng-template #error>
+    <p class="error-text">{{errorText}}</p>
+</ng-template>
+
+<div *ngIf="users && !errorText; else errorText ? error : loading">
     <h2 class="title">{{title}}</h2>
     <app-user-search (userSearch)="onSearch($event)"></app-user-search>
     <app-user-table [users]="users"></app-user-table>

@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
 
   title = 'Käyttäjät';
   users: User[];
+  errorText: string;
 
   onSearch(users: Observable<User[]>): void {
     users.subscribe(users => this.users = users);
@@ -24,7 +25,14 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem('tabIndex', '2');
-    this.userService.getUsers().subscribe(users => this.users = users);
+    this.userService.getUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: () => {
+        this.errorText = 'Tietoja ei voitu hakea.';
+      }
+    });
   }
 
 }

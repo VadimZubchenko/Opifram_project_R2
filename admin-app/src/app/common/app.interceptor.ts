@@ -4,27 +4,35 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse
+  HttpErrorResponse
 } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SessionExpiredDialogComponent } from '../session-expired-dialog/session-expired-dialog.component';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
 
+  handleSessionExpired(): void {
+    this.dialog.open(SessionExpiredDialogComponent, { disableClose: true }).afterClosed().subscribe(() => {
+      this.authService.logout();
+    });
+  }
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request.clone({ setHeaders: { 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() } }))
-      .pipe(map((event: HttpEvent<unknown>) => {
-        if (event instanceof HttpResponse) {
-          if (event.status === 419) {
-            //TODO: Show expired session dialog, force logout
-            //this.authService.logout();
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 419) {
+            this.handleSessionExpired();
           }
-        }
-        return event;
-      }));
+          return throwError(error);
+        })
+      );
     
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {}
 }

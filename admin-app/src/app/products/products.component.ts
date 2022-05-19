@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
 
   title = 'Tuotteet';
   products: Product[];
+  errorText: string;
 
   onSearch(foundProducts: Observable<Product[]>): void {
     foundProducts.subscribe(products => this.products = products);
@@ -46,7 +47,14 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem('tabIndex', '1');
-    this.productService.getProducts().subscribe(products => this.products = products);
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+      },
+      error: () => {
+        this.errorText = 'Tietoja ei voitu hakea.';
+      }
+    });
   }
 
 }

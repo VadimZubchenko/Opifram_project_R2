@@ -41,7 +41,9 @@ import { AppInterceptor } from './common/app.interceptor';
 import { UserTableComponent } from './user-table/user-table.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { AppPaginatorIntl } from './common/app-paginator-intl';
+import { SessionExpiredDialogComponent } from './session-expired-dialog/session-expired-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProductSearchComponent,
     ProductTableComponent,
     UserTableComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    SessionExpiredDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +108,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptor,
       multi: true
+    },
+    {
+      provide: MatPaginatorIntl, useValue: AppPaginatorIntl()
     }
   ],
   bootstrap: [AppComponent]
