@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { apiURI } from 'src/config';
+import { environment } from 'src/environments/environment';
 import { LoggedUser } from '../models/logged-user';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LoggedUser> {
-    return this.http.post<LoggedUser>(`${apiURI}/auth/login`, { email: email, password: password });
+    return this.http.post<LoggedUser>(`${environment.API_URI}/auth/login`, { email: email, password: password });
   }
 
   setUser(user: LoggedUser): void {

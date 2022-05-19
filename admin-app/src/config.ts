@@ -1,1 +1,0 @@
-export const apiURI = process.env['API_URI'] as 'API_URI' || 'http://localhost:3001/api';

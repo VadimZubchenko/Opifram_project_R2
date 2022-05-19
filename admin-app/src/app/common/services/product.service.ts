@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { apiURI } from 'src/config';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
 import { AuthService } from './auth.service';
 
@@ -12,28 +12,28 @@ import { AuthService } from './auth.service';
 export class ProductService {
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${apiURI}/product`);
+    return this.http.get<Product[]>(`${environment.API_URI}/product`);
   }
 
   getProduct(id: string): Observable<Product> {
-    return this.http.get<Product>(`${apiURI}/product/${id}`);
+    return this.http.get<Product>(`${environment.API_URI}/product/${id}`);
   }
 
   createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${apiURI}/product`, product);
+    return this.http.post<Product>(`${environment.API_URI}/product`, product);
   }
 
   updateProduct(product: Product): Observable<Product> {
-    return this.http.put<Product>(`${apiURI}/product/${product.id}`, product);
+    return this.http.put<Product>(`${environment.API_URI}/product/${product.id}`, product);
   }
 
   deleteProduct(product: Product): Observable<Product> {
-    return this.http.delete<Product>(`${apiURI}/product/${product.id}`);
+    return this.http.delete<Product>(`${environment.API_URI}/product/${product.id}`);
   }
 
   searchProducts(term: string): Observable<Product[]> {
     if (!term) { return this.getProducts(); }
-    return this.http.post<Product[]>(`${apiURI}/product/search`, { term: term });
+    return this.http.post<Product[]>(`${environment.API_URI}/product/search`, { term: term });
   }
 
   constructor(private http: HttpClient, private authService: AuthService) { }
